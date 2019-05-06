@@ -173,6 +173,7 @@ $$\mathbb{P}\left[ \frac{1}{m}\sum_{i=1}^m{Z_i}-\mu < -\epsilon \right] \leq e^{
 \end{lemma}
 
 \begin{lemma}
+\label{task_conc_lemm}
 Դիցուք ունենք միմյանցից անկախ $\mathcal{P}(\mathcal{T} \text{ } |\text{ }  |\mathcal{T}| = k +1)$ բաշխումից ընտրված $N$ հատ առաջադրանքներ՝ $\mathcal{T}_1, ..., \mathcal{T}_N$ և ֆիքսենք կամայական $f \in \mathcal{F}$ ներկայացում։ $\hat{L}(f)$ էմպիրիկ վերահսկիչ միջին կորուստն է $f$ ներկայացման համար,  իսկ $L(f)$-ը վերահսկիչ միջին կորուստը և դիցուք $|\cup_{i=1}^N{T_i}| = n$։
 Այդ դեպքում առնվազն $1-\delta$ հավանականությամբ տեղի ունի հետևյալ անհավասարությունը։
 \begin{equation}
@@ -338,6 +339,7 @@ $$(\hat{f}, \hat{W}) = \argmin_{\substack{f \in \mathcal{F} \\ W \in \mathcal{V}
 որտեղ $\hat{f}$ փնտրվող ներկայացումն է։ Այսպիսով ալգորթմը ըստ $f$ ներկայացման և գծային դասկարգիչի $W$ մատրիցայի  մինիմիզացնում է $\mathcal{T}$ առաջադրանքի վերահսկիչ էմպիրիկ սխալանքը $S$ օրինակների բազմության վրա։
 
 \begin{lemma}
+\label{rad_lemma_main}
 Դիցուք $\delta$-ն կամայական դրական թիվ է։ Այդ դեպքում առնվազն $1-\delta$ հավանականությամբ կամայական $f \in \mathcal{F}$ ներկայացման և կամայական $W \in \mathcal{V}$ մատրիցայի համար տեղի ունի հետևյալ անհավասարությունը՝
 $$L(\mathcal{T}, \hat{f}, \hat{W}) \leq L(\mathcal{T}, f, W) + Gen_M$$,
 \end{lemma}
@@ -422,13 +424,81 @@ $$L(\hat{f}) \leq L(T, f, W) + Gen_{M, n} \text{  } \forall f \in \mathcal{F} \t
 
 \begin{proof}[Ապացույց] Առաջին հերթին կարելի է հեշտությամբ համոզվել որ դիտարկվող հինջ և լոգիստիկ կորստի ֆունկցիաները բավարարում են հետևյալ հատկությանը՝
 \begin{equation}
+\label{prop_log_hinge}
 \forall I \subseteq [t] \text{   }   l(\{v_i\}_{i\in I}) \leq l(\{v_i\}_{i \in [t]})
 \end{equation}
 Դիցուք ունենք $N$ հատ միմյանցից անկախ $\mathcal{T}_1,\mathcal{T}_2, ...,\mathcal{T}_N$  առաջադրանքները ընտրված 
 $$\mathcal{P}(\mathcal{T} \text{ } |\text{ }  |\mathcal{T}| = k +1)$$
-բաշխումից և $\mathcal{T} = \cup_{i=1}^N\mathcal{T}_i$, որի հզորությունը հավասար է $n+1$-ի:
-\end{proof}
+բաշխումից և $\mathcal{T} = \cup_{i=1}^N\mathcal{T}_i$, որի հզորությունը հավասար է $n+1$-ի: Ինչպես նաև ունենք $M$ հատ օրինակների ուսուցման բազմությունը ընտրված $\mathcal{D_\mathcal{T}}$ բաշխումից՝
+$$S = \{(x_1, y_1), (x_2, y_2), ..., (x_M, y_M) | x_i \in \mathcal{X}, y_i \in \mathcal{T} \text{ }\forall i \in[M]\}$$
 
+\noindent Այժմ ֆիքսենք ցանկացած $\delta$ դրական թիվ: Օգտվելով լեմմա \ref{rad_lemma_main}-ից առնվազն $1-\frac{\delta}{2}$ հավանականությամբ տեղի ունի հետևյալ անհվասարությունը $f \in \mathcal{F}$-ի և $W \in \mathcal{V}$-ի համար՝
+
+\begin{align}
+\label{ineq_rad_6}
+L(\mathcal{T}, \hat{f}, \hat{W}) \leq  L(\mathcal{T}, f, W) + \frac{4\sqrt{2} \eta Q\sqrt{n}}{M} \E_{\sigma \sim \{\pm1\}^{Md}} \sup_{\substack{ f  \in \mathcal{F}  }}\sum_{i=1}^M \sum_{j=1}^d \sigma_{ij}f(x_i)+    4B\sqrt{\frac{\log \left( \frac{4}{\delta} \right)}{2M}}
+\end{align}
+
+\noindent Ըստ \ref{prop_log_hinge} հատկության $\forall i \in [N]$ համար, քանի որ $T_i \subseteq T$, տեղի ունի հետևյալը՝
+\begin{align}
+\label{prop_ineq_1}
+L(\mathcal{T}_i, \hat{f}, \hat{W}_{\mathcal{T}_i}) \leq L(\mathcal{T}, \hat{f}, \hat{W} )
+\end{align}
+ որտեղ $\hat{W}_{\mathcal{T}_i}$ կազմված է $T_i$ առաջադրանքում մասնակցող դասերին համապատասխան  $\hat{W}$ մատրիցայի տողերից: Համաձայն $L(\mathcal{T}_i, \hat{f})$ սահմանման ակնհայտ է, որ` 
+\begin{align}
+\label{prop_ineq_2}
+L(\mathcal{T}_i, \hat{f}) \leq L(\mathcal{T}_i, \hat{f}, \hat{W}_{\mathcal{T}_i})
+\end{align}
+
+Միավորելով \ref{ineq_rad_6}, \ref{prop_ineq_1}  և \ref{prop_ineq_2}-ը $\forall i \in [N]$՝ կունենանք՝
+
+
+\begin{align}
+\label{ineq_rad_7}
+L(\mathcal{T}_i, \hat{f}) \leq  L(\mathcal{T}, f, W) + \frac{4\sqrt{2} \eta Q\sqrt{n}}{M} \E_{\sigma \sim \{\pm1\}^{Md}} \sup_{\substack{ f  \in \mathcal{F}  }}\sum_{i=1}^M \sum_{j=1}^d \sigma_{ij}f(x_i)+    4B\sqrt{\frac{\log \left( \frac{4}{\delta} \right)}{2M}}
+\end{align}
+
+Այժմ \ref{ineq_rad_7} անհավասարության աջ և ձախ մասերը ըստ բոլոր $i $-երի գումարենք և անհավասարության երկու մասերը բաժանենք $N$-ի կստանանք՝
+
+\begin{align}
+\label{ineq_rad_8}
+\frac{1}{N}\sum_{i=1}^NL(\mathcal{T}_i, \hat{f}) \leq  L(\mathcal{T}, f, W) + \frac{4\sqrt{2} \eta Q\sqrt{n}}{M} \E_{\sigma \sim \{\pm1\}^{Md}} \sup_{\substack{ f  \in \mathcal{F}  }}\sum_{i=1}^M \sum_{j=1}^d \sigma_{ij}f(x_i)+    4B\sqrt{\frac{\log \left( \frac{4}{\delta} \right)}{2M}}
+\end{align}
+
+Նկատենք որ \ref{ineq_rad_8} անհասարության ձախ մասը $\mathcal{T}_1,\mathcal{T}_2, ...,\mathcal{T}_N$ առաջադրանքների Էմպիրիկ վերահսկիչ միջին կորուստն է $\hat{f}$ ներկայացման համար՝
+
+
+\begin{align}
+\label{emp_eq}
+\hat{L}(\hat{f}) = \frac{1}{N}\sum_{i=1}^NL(\mathcal{T}_i, \hat{f})
+\end{align}
+
+\ref{emp_eq}-ը տեղադրենք \ref{ineq_rad_8}-ի մեջ՝
+ 
+\begin{align}
+\label{ineq_rad_9}
+\hat{L}(\hat{f}) \leq  L(\mathcal{T}, f, W) + \frac{4\sqrt{2} \eta Q\sqrt{n}}{M} \E_{\sigma \sim \{\pm1\}^{Md}} \sup_{\substack{ f  \in \mathcal{F}  }}\sum_{i=1}^M \sum_{j=1}^d \sigma_{ij}f(x_i)+    4B\sqrt{\frac{\log \left( \frac{4}{\delta} \right)}{2M}}
+\end{align}
+
+Համաձայն լեմմա \ref{task_conc_lemm}-ի առնվազն $1-\frac{\delta}{2}$ հավանականությամբ $\hat{f}$ ներկայացման համար տեղի ունի հետևյալը՝ 
+
+
+\begin{equation}
+\label{lemm_ineq}
+\hat{L}(\hat{f}) \geq L(\hat{f}) - B\sqrt{\frac{\left(k+1\right)\log \left(\frac{2}{\delta}\right) }{2(n+1)}}
+\end{equation}
+
+
+
+Կիրառելով պատահույթների միավորման բանաձևը՝ \ref{ineq_rad_9}, \ref{lemm_ineq}-ից  հետևում է, որ առնվազն $1-\delta$ հավանականությամբ՝
+
+ 
+\begin{align*}
+\label{ineq_rad_10}
+L(\hat{f}) \leq  L(\mathcal{T}, f, W) + \frac{4\sqrt{2} \eta Q\sqrt{n}}{M} \E_{\sigma \sim \{\pm1\}^{Md}} \sup_{\substack{ f  \in \mathcal{F}  }}\sum_{i=1}^M \sum_{j=1}^d \sigma_{ij}f(x_i)+    4B\sqrt{\frac{\log \left( \frac{4}{\delta} \right)}{2M}} + B\sqrt{\frac{\left(k+1\right)\log \left(\frac{2}{\delta}\right) }{2(n+1)}}
+\end{align*}
+
+ \end{proof}
 
 \pagebreak
 \medskip
