@@ -1,4 +1,4 @@
-\documentclass[11pt]{article}
+\documentclass[12pt]{article}
 
 \usepackage[top=2cm,bottom=3cm,left=3cm,right=2cm]{geometry}
 \usepackage{amsmath}
@@ -29,11 +29,26 @@
 %tikz package for drawing graphs%
 \usepackage{tkz-berge}
 \usepackage{tikz}
+
+\usetikzlibrary{arrows}
+
 \usetikzlibrary{decorations.markings}
 \usetikzlibrary{positioning,chains,fit,shapes,calc}
+
+\usetikzlibrary{trees,positioning,fit,arrows,decorations.pathreplacing}
+
+\usetikzlibrary{shapes.geometric, shapes.misc, positioning, calc, arrows.meta}
 \renewcommand{\figurename}{Նկ.}
 % the figure insert specific place with [H] param
 \usepackage{float}
+
+
+
+
+
+
+
+
 
 
 % increase distance between two lines%
@@ -87,22 +102,87 @@ ItalicFont    =arnamu_italic.ttf]{arnamu.ttf}
  Թվային անալիզի և մաթեմատիկական մոդելավորման ամբիոն\\
  \vspace{2mm}
 \hrule width \hsize height 2pt  \kern 1mm \hrule width \hsize height 2pt 
-\vspace{50mm}
+\vspace{12mm}
+«Թվային անալիզ և մաթեմատիկական մոդելավորում»
+կրթական ծրագիր
+
+
+\vspace{28mm}
 \textbf{\huge Մագիստրոսական Թեզ\\}\noindent \newline \newline
 \textbf{\large Թեմա՝}	\hspace{3mm} Տրանսֆերային ուսուցման որոշակի մեթոդի ընդհանրացման \\ սխալանքի գնահատման մասին
 \end{center}
-\vspace{25mm}
+\vspace{12mm}
 \begin{flushright}
 \textbf{\large Ուսանող՝ \hspace{18mm}}			Մինասյան Գևորգ \\
 \vspace{4mm}
-\textbf{\large Ղեկավար՝ \hspace{2mm}}			ֆիզ. մաթ. գիտ. թեկնածու \\  Հ.Է. Դանոյան
+\textbf{\large Ղեկավար՝ \hspace{2mm}}			ֆիզ. մաթ. գիտ. թեկնածու \\  Դանոյան  Հ.Է.
 \end{flushright}
-\vspace{56mm}
+ \vspace{10mm}
+\begin{center}
+«Ինֆորմատիկա և կիրառական մաթեմատիկա»  մասնագիտությամբ \\
+ինֆորմատիկայի և կիրառական մաթեմատիկայի մագիստրոսի \\ որակավորման աստիճանի հայցման համար
+\end{center}
+
+\vspace{12mm}
 \centering{\large Երևան -- 2019}
 \end{titlepage}
+
+{
+
+\large{
+Ուսանող՝ \hspace{0.3cm}  \hrulefill \hspace{0.3cm}  Մինասյան Գ.Մ.   \hspace{4.5cm}} \\
+
+\large{Գիտական ղեկավար՝ ֆիզ.-մաթ. գիտությունների թեկնածու} \\
+
+\large{\hspace{7cm} \hrulefill  \hspace{0.3cm}  Դանոյան Հ.Է.} \\
+
+
+\vspace{30mm}
+
+
+
+\large{\textbf{«Թույլատրել պաշտպանության»}} \\
+
+\large{Ամբիոնի վարիչ՝  ֆիզ.-մաթ. գիտությունների դոկտոր, պրոֆեսոր} \\
+
+\large{\hspace{7cm} \hrulefill  \hspace{0.3cm}  Հակոբյան Յու.Ռ.} \\
+
+\large{31 մայիսի 2018 թ.}}
+
+\pagebreak
+
+
+
+
+
+
+\begin{center}
+\Large{\textbf{Համառոտագիր}}
+ \end{center}
+ \vspace{10mm}
+{
+\small Տրանսֆերային ուսուցման որոշակի մեթոդի ընդհանրացման սխալանքի գնահատման մասին\\
+On Generalization Error Bound Estimation of Certain Transform Learning Method
+}
+
+
+\pagebreak
+
+
+
 \pdfbookmark{Բովանդակություն}{contents}
 \tableofcontents
 \newpage
+
+
+\section*{\hfill 
+\begin{center}
+Ներածություն
+ \end{center}
+ \hfill} \noindent
+\phantomsection
+\addcontentsline{toc}{section}{Ներածություն}
+\pagebreak
 
 
 \section*{\hfill 
@@ -113,17 +193,256 @@ ItalicFont    =arnamu_italic.ttf]{arnamu.ttf}
 \phantomsection
 \addcontentsline{toc}{section}{Տրանսֆերային ուսուցում}
 
-Անբավարար ուսուցման տվյալների դեպքում մեքենայական ուսուցման  հիմնական խնդիրները լուծելու համար տրանսֆերային ուսուցումը շատ կարևոր գործիք է։
+
+
+Մեքենայական ուսուցման բազմաթիվ մեթոդներում կատարվում է մի ընդհանուր ենթադրություն, որ ուսուցման և փորձարկվող տվյալները ընտրվում են միևնույն առանձնահատկությունների տարածությունից,  անկախ և միևնույն բաշխումից։ Երբ բաշխումը փոխվում է, վիճակագրական և մեքենայական ուսուցման մոդելների մեծ մասը պետք է սկզբից վերակառուցել՝ օգտագործելով նոր հավաքագրված ուսուցման տվյալներ։ Բազմաթիվ կիրառական խնդիրներում անհրաժեշտ  ուսուցման տվյալների հավաքագրումը  անհնար է կամ ծախսատար։   Խնդիրների որոշ տիրույթներ ինչպիսիք են բիոինֆորմատիկան և ռոբոտաշինությունը, տվյալների ձեռքբերման և անոտացման ծախսատար լինելու պատճառով՝  մեծ քանակությամբ անոտացված տվյալներ հավաքագրելը  շատ բարդ է և թանկարժեք, որն էլ սահմանափակում է այդ տիրույթների զարգացումը։ Շատ կարևոր է կրճատել ուսուցման տվյալների   հավաքագրման անհրաժեշտությունը խնդիրների այնպիսի տիրույթներում, որտեղ բավարար քանակությամբ ուսուցման տվյալներ չկան։ Անբավարար տվյալների դեպքում մեքենայական ուսուցման  հիմնական խնդիրները լուծելու համար տրանսֆերային ուսուցումը  շատ կարևոր գործիք է։ \par Մարդիկ հատուկ կարողություն ունեն տարբեր առաջադրանքներում օգտագործած գիտելիքները և հմտությունները կիրառել  նաև այլ առաջադրանքներում։ Ինչ-որ առաջադրանքի կատարումը սովորելու ընթացքում ձեռք բերված գիտելիքները մենք օգտագործում ենք նմանատիպ առաջադրանքներ լուծելու ժամանակ։  Որքան իրար հետ կապված և նման են առաջադրանքները,  մեզ համար այնքան հեշտ է  գիտելիքների փոխանցումը առաջադրանքների միջև։ Նոր առաջադրանքներ կատարելու համար, մենք այն չենք սովորում ամենասկզբից, այլ անցյալում ունեցած մեր գիտելիքները և հմտությունները օգտագործում ենք այդ առաջադրանքում։
+
+ \par Բազմաթիվ մեքենայական ուսուցման և խորը ուսուցման ալգորիթմները նախատեսված են մեկուսացված առաջադրանքների մոդելավորման համար։  Տրանսֆերային ուսուցումը առաջարկում է նոր մոտեցում ըստ որի մեկուսացված առաջադրաքների ուսուցումը փոխարինվում է հետևյալ կերպ՝ արդեն իսկ սովորած ինչ-որ առաջադրանքից ձեռք բերված գիտելիքները օգտագործել առնչվող այլ  առաջադրանքներում։  Այսպիսով տրասֆերային ուսուցումը փորձում է խնդրի  կամ առաջադրանքի մի տիրույթի՝ այսպես կոչված աղբյուր տիրույթից, գիտելիքն ու փորձը փոխանցել դեպի այլ  առաջադրանքի թիրախային տիրույթ։ Սովորական մեքենայական ուսուցման և տրանսֆերային ուսուցման միջև տարբերությունները պատկերված են նկար \ref{fig:ml_vs_tl}-ում։
+
+
+% for double arrows a la chef
+% adapt line thickness and line width, if needed
+\tikzstyle{vecArrow} = [thick, decoration={markings,mark=at position
+   1 with {\arrow[semithick]{open triangle 60}}},
+   double distance=2.5pt, shorten >= 5.5pt,
+   preaction = {decorate},
+   postaction = {draw,line width=2.5pt, white,shorten >= 4.5pt}]
+\tikzstyle{innerWhite} = [semithick, white,line width=1.4pt, shorten >= 4.5pt]
+
+
+\begin{figure}[h]
+\centering
+
+\begin{tikzpicture}[
+    arr/.style={-{Latex[length=2mm]}},
+    persistence/.style={cylinder, shape border rotate=90, 
+        minimum height=1.3cm, minimum width=2cm, draw},
+        persistence2/.style={cylinder, shape border rotate=90, 
+        minimum height=0.8cm, minimum width=1.5cm, draw},
+    task_rec/.style={rectangle, draw, minimum height=2cm, minimum width=3.5cm},
+     knowledge_rec/.style={rectangle, draw, minimum height=1.5cm, minimum width=2.5cm}
+    ]
+
+
+\node[persistence, label=below : {Տվյալներ 1}] (per1)  at (0, 6) {};
+\node(task1) [task_rec, text width=3cm,align=center] at (4, 6) {Առաջադրանք 1-ի  ուսուցում} ;
+ \draw[vecArrow] (per1) to (task1);
+
+
+
+\node(task2) [task_rec, text width=3cm,align=center] at (4, 0) {Առաջադրանք 2-ի   ուսուցում} ;
+\node[persistence, label=below : {Տվյալներ 2}] (per2)  at (0, 0) {};
+\draw[vecArrow] (per2) to (task2);
+
+
+
+ 
+  
+  \node[persistence, label=below : {Տվյալներ 1}] (per1_tl)  at (8, 6) {};
+\node(task1_tl) [task_rec, text width=3cm,align=center] at (12, 6) {Առաջադրանք 1-ի  ուսուցում} ;
+ \draw[vecArrow] (per1_tl) to (task1_tl);
+
+
+
+\node(task2_tl) [task_rec, text width=3cm,align=center] at (12, 0) {Առաջադրանք 2-ի   ուսուցում} ;
+\node[persistence2, label=below : {Տվյալներ 2}] (per2_tl)  at (8, 0) {};
+\draw[vecArrow] (per2_tl) to (task2_tl);
+
+
+
+\node(kn_rec_tl) [knowledge_rec] at (12, 3) {Գիտելիք} ;
+\draw[vecArrow] (task1_tl) to (kn_rec_tl);
+\draw[vecArrow] (kn_rec_tl) to (task2_tl);
+ 
+ 
+  % grouping ml nodes
+  \node[fit=(per1)(task1)](group_ml){};
+  
+  \draw[line width=1pt,decorate,decoration={amplitude=7pt,brace}]
+  (group_ml.north west) -- (group_ml.north east);
+  \node[above=of group_ml,anchor=center]{Մեկուսացված առաջադրանք 1};
+  
+  
+    % grouping ml nodes
+  \node[fit=(per2)(task2)](group_22_ml){};
+  
+  \draw[line width=1pt,decorate,decoration={amplitude=7pt,brace, mirror}]
+  (group_22_ml.south west) -- (group_22_ml.south east);
+  \node[below=of group_22_ml,anchor=center]{Մեկուսացված առաջադրանք 2};
+
+  % grouping ml nodes
+  \node[fit=(per1_tl)(task1_tl)](group_tl){};
+  
+  \draw[line width=1pt,decorate,decoration={amplitude=7pt,brace}]
+  (group_tl.north west) -- (group_tl.north east);
+  \node[above=of group_tl,anchor=center]{Աղբյուրի տիրույթ};
+  
+  
+  
+  % grouping ml nodes
+  \node[fit=(per2_tl)(task2_tl)](group_2_tl){};
+  
+  \draw[line width=1pt,decorate,decoration={amplitude=7pt,brace, mirror}]
+  (group_2_tl.south west) -- (group_2_tl.south east);
+  \node[below=of group_2_tl,anchor=center]{Թիրախի տիրույթ};
+  
+  
+  
+  % grouping ml nodes
+  \node[fit=(task1_tl)(task2_tl)](group_3_tl){};
+  
+  \draw[line width=1pt,decorate,decoration={amplitude=7pt,brace}]
+  (group_3_tl.north east) -- (group_3_tl.south east);
+  \node[right=of group_3_tl,anchor=center, rotate=90	]{\textbf{Տրանսֆերային ուսուցում}};
+  
+  
+    % grouping ml nodes
+  \node[fit=(per1)(per2)](group_2_ml){};
+  
+  \draw[line width=1pt,decorate,decoration={amplitude=7pt,brace, mirror}]
+  (group_2_ml.north west) -- (group_2_ml.south west);
+  \node[left=of group_2_ml,anchor=center, rotate=90]{\textbf{Սովորական մեքենյական ուսուցում}};
+
+%\draw [->, arr] (dts.south) to (per.top);
+\end{tikzpicture}
+\caption{Տրանֆերային ուսուցուման և սովորական մեքենայական ուսուցման միջև տարբերությունը} \label{fig:ml_vs_tl}
+\end{figure}
+
+
+
+\begin{center}
+\subsection*{
+ \center{Տրանսֆերային ուսուցման տեսակները}} 
+ \end{center}
+ \noindent
+\phantomsection
+\addcontentsline{toc}{subsection}{Տրանսֆերային ուսուցման տեսակները}
+
+
+Տրանսֆերային ուսուցման տեսակները և մեթոդները բազմաթիվ են (տես օրինակ \cite{bib_item_1, bib_item_2, bib_item_3}), որոնք կարելի կիրառել կախված առաջադրանքից և տվյալների հասանելիությունից։ Տրանսֆերային ուսուցման մեթոդները կարելի է դասակարգել ըստ սովորական մեքենայական ուսուցման ալգորիթմի տեսակների՝ \linebreak
+
+\noindent \textbf{Ինդուկտիվ տրանսֆերային ուսուցում։}  Այս դեպքում աղբյուրի և թիրախի տիրույթները նույն են սակայն տարբեր են առաջադրանքները և թիրախ տիյույթի առաջադրանքները վերահսկվող են։ Այս տեսակին պատկանող ալգորիթմները փորձում են աղբյուր տիրույթի համար կատարված ենթադրությունները օգտագործելով  թիրախի առաջադրանքի լուծման արդյունավետությունը լավացնել։ Կախված նրանից, թե աղբյուր տիրույթը պարունակում է պիտակավորված տվյալնել, թե ոչ  կարելի ինդուկտիվ տրանսֆերային ուսուցումը համապատասխանաբար բաժանել ենթատեսակների՝ \textit{բազմառաջադրանքային ուսուցում} և  \textit{ինքնուրույն ուսուցում}։\\
+
+\noindent \textbf{Ոչ վերահսկվող տրանսֆերային ուսուցում։} Նման է ինդուկտիվ տրանսֆերային ուսուցմանը, սակայն թիրախ տիրույթի առաջադրանքները ոչ վերահսկվող  են։ Աղբյուրի և թիրախի տիրույթները  նույնն են և երկու տիրույթներում էլ պիտակավորված տվյալներ հասանելի չեն։ \\
+
+
+\noindent \textbf{Շարունակական տրանսֆերային ուսուցում։}
+Այս դեպքում աղբյուրի և թիրախի առաջադրանքները նմանություններ ունեն, բայց համապատասխան տիրույթները տարբեր են։ Աղբյուրի տիրույթում կա մեծ քանակությամ անոտացված տվյալներ, մինչդեռ թիրախի տիրույթում անոտացված տվյալներ հասանելի չեն։ \\
+
+\begin{center}
+\subsection*{
+ \center{Տրանսֆերային ուսուցումը խորը ուսուցման համար}} 
+ \end{center}
+ \noindent
+\phantomsection
+\addcontentsline{toc}{subsection}{Տրանսֆերային ուսուցումը խորը ուսուցման համար}
+
+Վերջին տարիներին խորը ուսուցուման միջոցով կիրառական բազմաթիվ խնդիրներ հնարավոր է բարձր արդյունավետությամբ լուծել։ Խորը ուսուցման ալգորիթմները փորձում են զանգածային տվյալներից ավելի բարձր մակարդակի  ներկայացումներ սովորել։  Ոչ վերահսկվող կամ կիսավերահսվող խորը ուսուցման ալգորիթմները ավտոմատ կերպով տվյալներից նոր և բարձր մակարդակի ներկայացումներ է դուրս հանում։ Ի տարբերություն ավանդական մեքենայական ուսուցման մեթոդների, որտեղ  տվյալների առանձնահատկությունները ձեռքով են ընտրվում,  խորը ուսուցման մեթոդներում տվյալների առաձնահատկությունները ավտոմատ կերպով կառուցվում են ուսուցման ընթացքում։ Սակայն ուսուցման ժամանակը և անհրաժեշտ տվյալների քանակը խորը ուսուցման համակարգեր ստեղծելու համար շատ ավելին է՝ համեմատած ավանդական մեքենայական ուսուցման համակարգերի համար։ Վերջին տարիներին բնական լեզվի մշակման(տես օրինակ \cite{bib_item_6, bib_item_7}) և պատկերների ճանաչման (տես օրինակ \cite{bib_item_4, bib_item_5}) տարատեսակ խնդիրների համար բարձր արդյունավետությամբ(երբեմն մարդուն գերազանցող) խորը ուսուցման նեյրոնային ցանցեր են  մշակվել։ Շատ դեպքերում նախապես սովորած նեյոնային ցանցերը օգտագործվում են այլ առաջադրանքներում։ Խորը ուսուցման համատեքստում նախապես մշակված ցանցերը կամ մոդելները կազմում են հիմքը  խորը փոխանցումային ուսուցման համար։ Խորը փոխանցումային ուսուցման մեթոդները մտնում են ինդուկտիվ տրասֆերային ուսուցման մեթոդների մեջ։ Այժմ նկարագրենք խորը փոխանցումային ուսուցման ամենահայտնի մեթոդներից մեկը։ \\
+
+\begin{center}
+\subsection*{
+ \center{Մշակված նեյրոնային ցանցը որպես տվյալների ներկայացման հիմք}} 
+ \end{center}
+ \noindent
+\phantomsection
+\addcontentsline{toc}{subsection}{Մշակված նեյրոնային ցանցը որպես տվյալների ներկայացման հիմք}
+
+Խորը ուսուցման համակարգերը և մոդելները ունեն շերտային կառուցվածքներ, տարբեր շերտեր տվյալների տարբեր ներկայացումներ են սովորում։ Վերահսկվող ուսուցման դեպքում վերջին ելքային շերտը, որի նեյրոները քանակը համընկնում  է  դիտարկվող առաջադրանքում մասնակցող դասերի քանակին և յուրաքանչյուր դասի համապատասխանում է այդ շերտի մեկ նեյրոն,   միանում է տվյաների ներկայացման շերտերից վերջինին։ Այս շերտային կառուցվածքը հնարավոր է դարձնում է օգտագործել արդեն պատրաստի մշակված ցանցը առանց վերջին շերտի։ Նախավերջին շերտը օգտագործվում է որպես տվյալների ներկայացման աղբյուր և օգտագործվում այլ առաջադրանքներում։  Սա ամենատարածված մեթոդներից մեկն է տրանսֆերային ուսուցում իրականացնելու համար՝ օգտագործելով խորը նեյրոնային ցանցեր։ Փորձնական եղանակով ցույց է տրվել որը պատրաստի խորը նեյրոնայից ցանցերի ներկայացումների միջոցով սահմանափակ տվյալների վրա այլ դասակարգման առաջադրանքներ հնարավոր է լուծել բարձր արդյունավետությամբ (տես օրինակ \cite{bib_item_8})։ \\
+
+
+
+
+\begin{figure}[h]
+\centering
+
+\begin{tikzpicture}[
+    arr/.style={-{Latex[length=2mm]}},
+    persistence/.style={cylinder, shape border rotate=90, 
+        minimum height=1.3cm, minimum width=2cm, draw},
+        persistence2/.style={cylinder, shape border rotate=90, 
+        minimum height=0.8cm, minimum width=1.5cm, draw},
+    task_rec/.style={rectangle, draw, minimum height=2cm, minimum width=3.5cm},
+     input_rec/.style={rectangle, draw, minimum height=1cm, minimum width=4.8cm},
+      conv_rec/.style={rectangle, draw, minimum height=1cm, minimum width=4.8cm},
+      fc/.style={rectangle, draw, minimum height=1cm, minimum width=4.8cm},
+      linclf/.style={rectangle, draw, minimum height=1cm, minimum width=3cm},
+    ]
+   
+\node(linclf_1)[linclf] at (0, 9){\small Սոֆթմաքս};  
+\node(fc_12)[fc] at (0, 7.5){\small Լրիվ կապակցված շերտ 2};  
+\node(fc_11)[fc] at (0, 6){\small Լրիվ կապակցված շերտ 1};  
+\node(conv_rec_13)[conv_rec] at (0, 4.5){\small փաթույթային շերտ 3};  
+
+\node(conv_rec_12)[conv_rec] at (0,3){\small փաթույթային շերտ 2};   
+\node(conv_rec_11)[conv_rec] at (0,1.5){\small փաթույթային շերտ 1};
+\node(input_rec_11)[input_rec] at (0, -0.5){\small Աղբյուր տվյալների շերտ};
+
+\draw[vecArrow] (input_rec_11) to (conv_rec_11);
+\draw[vecArrow] (conv_rec_11) to (conv_rec_12);
+\draw[vecArrow] (conv_rec_12) to (conv_rec_13);
+\draw[vecArrow] (conv_rec_13) to (fc_11);
+\draw[vecArrow] (fc_11) to (fc_12);
+\draw[vecArrow] (fc_12) to (linclf_1);
+
+
+
+\node(linclf_2)[linclf] at (10, 9){\small Գծային դասակարգիչ};  
+\node(fc_21)[fc] at (10, 6){\small Լրիվ կապակցված շերտ 1};  
+\node(conv_rec_23)[conv_rec] at (10, 4.5){\small փաթույթային շերտ 3};  
+
+\node(conv_rec_22)[conv_rec] at (10,3){\small փաթույթային շերտ 2};   
+\node(conv_rec_21)[conv_rec] at (10,1.5){\small փաթույթային շերտ 1};
+\node(input_rec_21)[input_rec] at (10, -0.5){\small Թիրախ տվյալների շերտ};
+
+\draw[vecArrow] (input_rec_21) to (conv_rec_21);
+\draw[vecArrow] (conv_rec_21) to (conv_rec_22);
+\draw[vecArrow] (conv_rec_22) to (conv_rec_23);
+\draw[vecArrow] (conv_rec_23) to (fc_21);
+
+
+\node(rep_node)[text width=3cm] at (10, 7.5) {Ներկայացումներ};
+
+\draw[vecArrow] (fc_21) to (rep_node);
+\draw[vecArrow] (rep_node) to (linclf_2);
+
+\draw[dashed] (-3, 6.75) -- (3, 6.75);
+
+
+\node(tr_arr)[draw, single arrow,
+              minimum height=32mm, minimum width=15mm,
+              single arrow head extend=3mm,
+              anchor=west] at (3.5,3.7) {\small Փոխանցում};
+              
+              
+%\draw (3,6.2) -- (3.5,3.7);
+\draw [dashed](fc_11.north east) -- (tr_arr.west);
+\draw[dashed] (conv_rec_11.south east) -- (tr_arr.west);
+
+
+
+\draw[dashed] (fc_21.north west) -- (tr_arr.east);
+\draw [dashed](conv_rec_21.south west) -- (tr_arr.east);
+
+%\draw [->, arr] (dts.south) to (per.top);
+\end{tikzpicture}
+\caption{Տրանսֆերային ուսուցումը պատրաստի նեյրոնային ցանցի միջոցով } \label{fig:ml_vs_tl}
+\end{figure}
+
+
+
+
+
+
+
 
 
 \pagebreak
 
 
-\section*{\hfill 
- \center{Նշանակումներ և սահմանումներ}
- \hfill} \noindent
+\section*{
+ \center{Տրասֆերային ուսուցման որոշակի մեթոդի \\ տեսական երաշխիքներ}} \noindent
 \phantomsection
-\addcontentsline{toc}{section}{Նշանակումներ և սահմանումներ}
+\addcontentsline{toc}{section}{Տրասֆերային ուսուցման որոշակի մեթոդի տեսական երաշխիքներ}
  
  $\mathcal{X}$-ով նշանակենք բոլոր հնարավոր տվյալների օրինակները, իսկ $\mathcal{C}$-ով նշանակենք բոլոր պիտակների կամ դասերի բազմությունը։ Յուրաքանչյուր $c \in \mathcal{C}$ դասին համպատասխանում է $\mathcal{X}$ բազմության վրա որոշված ինչ-որ $\mathcal{D}_c(x)$ բաշխում, այն ցույց է տալիս, թե $x$ օրինակը ինչքանով է $c$ դասին համապատասխան։ Ուսուցումը կատարվում է $\mathcal{F}$ ներկայացումների ֆունկցիաների դասի վրա։ $\forall f \in \mathcal{F}$  ֆունկցիա $\mathcal{X}$ տվյաների բազմությունը արտապատկերում $d$-չափանի էվկլիդյան $\mathcal{R}^d$տարծություն՝ $f:\mathcal{X}\rightarrow\mathcal{R}^d$, բացի այդ կդիտարկենք միայն սահմանափակ ֆունկցիաները՝
  $$||f(x)|| \leq R \text{    } \forall x \in \mathcal{X} \text{ և } R > 0։$$ 
@@ -131,7 +450,13 @@ ItalicFont    =arnamu_italic.ttf]{arnamu.ttf}
 
 %\noindent Նաև կենթադրենք, որ դասերի վրա կա ինչ-որ $\rho$ բաշխում, որը բնութագրում է, թե ինչպես են այդ դասերը հանդիպում չպիտակավորված տվյալներում:
 
-\subsection*{Վերահսկվող առաջադրանքներ}
+\begin{center}
+\subsection*{
+ \center{Վերահսկվող առաջադրանքներ}} 
+ \end{center}
+ \noindent
+\phantomsection
+\addcontentsline{toc}{subsection}{Վերահսկվող առաջադրանքներ}
 
 \par Այժմ կնկարագրենք այն առաջադրանքները, որոնց միջոցով փորձարկվելու է ներկայացումների $f$ ֆուկցիան: $k+1$ դասերից բաղկացած $\mathcal{T}$ վերահսկվող առաջադրանքը, բաղկացած է $$\{c_1, ..., c_{k+1}\} \subseteq \mathcal{C}$$
 միմյանցից տարբեր դասերից: Կենթադրենք որ վերահսկվող առաջադրանքները ունեն $\mathcal{P}(\mathcal{T})$ բաշխում, որը բնութագրում է այդ առաջադրանքը դիտարկվելու հավանականությունը: $k+1$ դասերից բաղկացած վերահսկվող առաջադրանքների բաշխումը հետևյալն է՝ $$\mathcal{P}(\mathcal{T} \text{ } |\text{ }  |\mathcal{T}| = k +1)$$ Պիտակավորված տվյալների բազմությունը $\mathcal{T}$ առաջադրանքի համար բաղկացած է $m$ հատ միմյանցից անկախ և միևնույն բաշխումից ընտրրված օրինակներից: Այդ օրինակները ընտրվում են ստորև նկարագրված պրոցեսով:
@@ -139,7 +464,15 @@ ItalicFont    =arnamu_italic.ttf]{arnamu.ttf}
 \textit{$c \in \{c_1, ..., c_{k+1}\} $   դասը ընտրվում է ըստ $\mathcal{D}_{\mathcal{T}}$ բաշխման, որից հետո $x$ օրինակը ընտրվում է $\mathcal{D}_c$ բաշխումից: Դրանք միասին ձևավորում են պիտակավորված $(x, c)$ զույգը, որը ունի հետևյալ բաշխումը՝
 $$\mathcal{D}_{\mathcal{T}} (x, c) = \mathcal{D}_{c}(x)\mathcal{D}_{\mathcal{T}}(c):$$}
 
-\subsection*{Վերահսկվող ներկայացումների գնահատման չափը}
+\begin{center}
+\subsection*{
+ \center{Վերահսկվող ներկայացումների գնահատման չափը}} 
+ \end{center}
+ \noindent
+\phantomsection
+\addcontentsline{toc}{subsection}{Վերահսկվող ներկայացումների գնահատման չափը}
+
+
 \par $f$ ներկայացումների ֆունկցիաի որակի գնահատումը կատարվում է $\mathcal{T}$ բազմադաս դասակարգման առաջադրանքի միջոցով՝ օգտագործելով գծային դասակարգիչ։  Ֆիքսենք $\mathcal{T} = \{c_1, ..., c_{k+1}\}$ առաջադրանքը։ $\mathcal{T}$ առաջադրանքի բազմադաս դասակարգիչը ֆուկցիա է՝ $g:\mathcal{X} \rightarrow \mathcal{R}^{k+1}$, որի արժեքի կորդինատները ինդեքսավորված են $\mathcal{T}$ առաջադրանքի դասերով։ $(x, y) \in \mathcal{X} \times \mathcal{T}$ կետում $g$ դասակարգիչով պայմանավորված կորուստը սահմանենք հետևյալ կերպ՝
 $$l(\{ g(x)_y-g(x)_{y'}\}_{y \neq y'}  ),$$
 որը ֆունկցիա կախված $k$ չափանի վեկտորից,  այն ստացվում է $k+1$ չափանի  $g(x)$ վեկտորի կորդինատների տարբերությունից, բացի այդ $\{ g(x)_y-g(x)_{y'}\}_{y \neq y'}$ վեկտորի կոմպոնենտները կամայական հերթականությամբ կարելի է համարակալել և $l$-ի արժեքը կախված չէ վեկտորի կոմպոնենտների համարակալման հերթականությունից։  Պրակտիկայում մեծ կիրառություն ունեցող երկու կորուստի ֆունկցիաներ ենք դիտարկելու աշխատանքում՝ ստանդարտ հինջ կորստի ֆունկցիան որը սահմանվում է հետևյալ կերպ՝
@@ -169,19 +502,78 @@ $$L(f) \defeq \E_{\mathcal{T} \sim \mathcal{P}} \left [L (\mathcal{T}, f) \text{
 $$\hat{L}(f) \defeq \frac{1}{N}\sum_{i=1}^{N}L (\mathcal{T}_i, f)$$
 \end{defination}
 \pagebreak
-\section*{\hfill Օժանդակ արդյունքներ \hfill} \noindent
+
+\subsection*{\hfill Ռադեմախերի բարդությունը \hfill} \noindent
 
 \phantomsection
-\addcontentsline{toc}{section}{Օժանդակ արդյունքներ}
+\addcontentsline{toc}{subsection}{Ռադեմախերի բարդությունը}
+
+$\mathcal{H}$-ով նշանակենք այն ֆունկցիաների բազմությունը, որի վրա իրականացվելու է ուսուցումը՝
+$$\forall h \in \mathcal{H}, h:\mathcal{X} \rightarrow \mathcal{C}$$
+
+\noindent $\mathcal{H}$ ֆունկցիաների բազմությունը կոչվում է հիպոթեզների բազմություն կամ հիպոթեզների դաս։ Ուսուցման ալգորիթմը $\mathcal{H}$ ֆունկցիաների բազմությունից, ընտրում է $h \in \mathcal{H}$ հիպոթեզ։
+ Վերջավոր հիպոթեզների համար էմպիրիկ սխալանքի մինիմիզացիայի միջոցով ընտրված հիպոթեզը, ուսուցման էֆեկտիվ ալգորիթմ է (տես օրինակ \cite{bib_item_9, bib_item_10})։ Սակայն մեքենայական ուսուցման մեջ օգտագործվող հիպոթեզների բազմությունների հզորությունները սովորաբար անվերջ են։ 
+Հիպոթեզների դասերի բարդությունը գնահատող տարբեր մեծություններ կան։ Պարզվում է անվերջ հիպոթեզների համար էֆեկտիվ ուսուցման ալգորիթմի գոյությունը կապված է հիպոթեզների բարդությունը գնահատող մեծությունների հետ։ Ստորև կներկայացնենք հիպոթեզների բարդությունը գնահատող մեծություններից մեկը՝   \textit{Ռադեմախերի բարդությունը} (տես օրինակ \cite{bib_item_9, bib_item_10})։
+
+\par Դիցուք $l:\mathcal{H}\times \mathcal{Z} \rightarrow \mathbb{R}$ արտապատկերում է, որտեղ $\mathcal{Z} = \mathcal{X} \times \mathcal{C}$։ $l(h, z)$-ը ցույց է տալիս $h$ հիպոթեզի կորուստը $z = (x, c)$  պիտակավորված օրինակի համար։ Ներմուծենք $\mathcal{G}$ կորստի ֆունկցիաների ընտանիքը $\mathcal{H}$ հիպոթեզների համար՝
+$$\mathcal{G} = \{z \mapsto l(h, z) | h \in \mathcal{H}\}$$
+
+Սակայն Ռադեմախերի բարդության սահմանումները կտանք ավելի ընդհանուր ֆունկցիաների $\mathcal{G}$ դասի համար, որի ֆունկցիաները $\mathcal{Z}$-ը արտապատկերում են դեպի $\mathbb{R}$։
+
+Ռադեմախերի բարդությունը ցույց է տալիս թե ինչքանով է «հարուստ» ֆունկցիաների ընտանիքը՝ չափելով պատահական աղմուկի հետ կորելացիան։ Ստորև  ֆորմալ կտանք  էմպիրիկ և միջին Ռադեմախերի բարդության սահմանումները։
+
+\begin{defination}[Էմպիրիկ Ռադեմախերի բարդություն]
+Դիցուք $\mathcal{G}$-ն $\mathcal{Z}$-ից դեպի $[a, b]$ հատված արտապատկերող ֆունկցիաների ընտանիք է և
+$$S = \{z_i  | z_i \in \mathcal{Z}, \forall i \in [m]\}$$
+$m$ հատ ֆիքսված օրինակների բազմություն է։ Այդ դեպքում $\mathcal{G}$ ֆունկցիաների ընտանիքի Ռադեմախերի բարդությունը կախված օրինակների $S$ բազմությունից տրվում է հետևյալ կերպ՝
+$$\hat{\mathcal{R}}_S(\mathcal{G})  = \frac{1}{m}\E_{\sigma \sim \{\pm1\}^m} \left [\sup_{g \in \mathcal{G}} \sum_{i=1}^m \sigma_ig(z_i) \right] $$
+որտեղ $\sigma = (\sigma_1, ..., \sigma_m)^T$ և $\sigma_i$-երը պատահական մեծություններ են, հավասար հավանականությամբ արժեքներ են ընդունում $\{-1, +1\}$-ից։ $\sigma_i$ պատահական մեծությունները կոչվում են Ռադեմախերի փոփոխականներ։
+\end{defination}
+
+Դիսուք $g_S$-ով նշանակենք այն $m$ չափանի վեկտորը, որի կոմպոնենտները $g$ ֆունկցիայի $S$ բազմության օրինակների վրա ընդունած արժեքներն են՝ $g_S = (g(z_1), ..., g(z_m))^T$։ Այժմ էմպիրիկ Ռադեմախերի բարդությունը կարող ենք գրել հետևալ ձևով՝
+
+$$\hat{\mathcal{R}}_S(\mathcal{G})  = \E  _{\sigma \sim \{ \pm 1\}^m}  \left [  \sup_{g \in \mathcal{G}} \frac{\langle \sigma, g_S \rangle }{m} \right ]$$
+
+$\langle \sigma, g_S \rangle$ սկալյար արտադրյալը ցույց է տալիս $g_S$ վեկտորի և $\sigma$ պատահական աղմուկի միջև կորելացիայի չափը։ $\sup_{g \in \mathcal{G}}  \frac{\langle \sigma, g_S \rangle}{m}$ սուպրեմումը ցույց է տալիս թե ինչքան է $\mathcal{G}$ ֆունկցիաների ընտանիքը $S$ բազմության վրա կորելացված $\sigma$-ի հետ։ Այսպիսով էմպիրիկ Ռադեմախերի բարդությունը ցույց է տալիս այն միջին չափը, թե ինչքանով է $\mathcal{G}$ ֆունկցիաների ընտանիքը $S$ բազմության վրա կորելացված պատահական աղմուկի հետ։ Այս մեծությունը բնութագրում է, թե ինչքան «հարուստ» է $\mathcal{G}$ ֆունկցիաների ընտանիքը, եթե ավելի «հարուստ» կամ բարդ է $\mathcal{G}$ ֆունկցիաների ընտանիքը, ապա ավելի $g_S$ վեկտորներ կստեղծվեն $\mathcal{G}$-ի միջոցով և ավելի մեծ կլինի պատահական աղմուլի հետ միջին կորելացիան։
 
 
-\begin{lemma}[Հոֆդինգի անհավասարություն]
+\begin{defination}[Ռադեմախերի բարդություն]
+$\mathcal{D}$-ով նշանակենք այն բաշխումը որտեղից $S$ օրինակները գեներացվում են։ Կամայական $m$ բնական թվի համար $\mathcal{G}$ ֆունկցիաների ընտանիքի Ռադեմախերի բարդությունը սահմանվում է որպես էմպիրիկ Ռադեմախերի բարդության մաթսպասում ըստ բլոր հնարավոր $m$ օրինակների $\mathcal{D}^m$ բաշխման՝
+$$\mathcal{R}_m(\mathcal{G}) = \E_{S \sim \mathcal{D}^m} \left [     \hat{\mathcal{R}}_S(\mathcal{G})  \right] $$
+\end{defination}
+Այժմ ձևակերպենք Ռադեմախերի բարդության վրա հիմնված ընդհանրական սխալանքի գնահատականը, որը կկիրառենք աշխատանքում։ 
+\begin{theorem}[\cite{bib_item_9}]
+\label{rad_comp_th}
+Դիցուք $\mathcal{G}$ ֆուկցիաների բազմությունը, որի յուրաքանչյուր ֆունկցիա  $Z$-ը արտապատկերոմ է $[0, 1]$ և $S = \{z_i\}_{i=1}^m$ m հզորությամբ միմյանցից անկախ և միևնույն բաշխումից ընտրված օրինակների բազմություն է։ Այդ դեպքում ցանկացած $\delta$ դրական թվի համար առվազն $1 - \delta$ հավանականությամբ բոլոր $g \in \mathcal{G}$ ֆունկցիաների համար տեղի ունի հետևյալ անհավասարությունները՝
+\begin{equation}
+\E[g(z)] \leq \frac{1}{m}\sum_{i=1}^mg(z_i) + 2\mathcal{R}_m(\mathcal{G}) + \sqrt{\frac{\log\left( \frac{1}{\delta} \right)}{2m}}
+\end{equation}
+և
+\begin{equation}
+\E[g(z)] \leq \frac{1}{m}\sum_{i=1}^mg(z_i) + 2\hat{\mathcal{R}}_S(\mathcal{G}) + 3\sqrt{\frac{\log \left( \frac{2}{\delta} \right)}{2m}}
+\end{equation}
+\end{theorem}
+
+\phantomsection
+\addcontentsline{toc}{subsection}{Հոֆդինգի անհավասարությունը}
+
+
+\subsection*{\hfill Հոֆդինգի անհավասարությունը \hfill} \noindent
+
+ Դիցուք ունենք $Z_1, ..., Z_m$ անկախ և միևնույն բաշխման պատահական մեծություններ։ Հավանականությունների տեսությունից հայտնի \textit{մեծ թվերի օրենքը} երաշխավորում է, որ եթե $m$-ը ձգտի անվերջության, ապա
+ այդ պատահական մեծությունների էմպիրիկ միջինը զուգամիտելու է դրանց մաթսպասմանը։ Սակայն մեծ թվերի օրենքը ընդամենը ասիմտոտիկ գնահատական է և տրված $m$ օրինակների համար ինֆորմացիա չի տալիս էմպիրիկ միջինի և մաթսպասման միջև տարբերության մոդուլի մասին։ Ստորև ձևակերպենք Հոֆդինգի անհավասարությունը, որը տրված $m$ օրինակների համար գնահատական է տալիս էմպիրիկ միջինի և դրանց մաթսպասման  միջև հեռավորության մասին։ Այս անհավասարությունը կկիրառենք աշխատանքում։ 
+
+\begin{lemma}[Հոֆդինգի անհավասարություն \cite{bib_item_10}]
 \label{hofding_inq}
 Դիցուք $Z_1, ..., Z_m$ անկախ և միևնույն բաշխման պատահական մեծություններ են և $\bar{Z} = \frac{1}{m}\sum_{i=1}^m{Z_i}$: Ենթադրենք $\E[\bar{Z}] = \mu$ և յուրաքանչյուր $i$-ի համար $\mathbb{P}[a \leq Z_i \leq b] = 1$: Այդ դեպքում ցանկացած $\epsilon > 0$ թվի համար տեղի ունի հետևյալը՝
 $$\mathbb{P}\left[ \frac{1}{m}\sum_{i=1}^m{Z_i}-\mu > \epsilon \right] \leq e^{\frac{-2m\epsilon^2}{(b-a)^2}}$$ 
 և
 $$\mathbb{P}\left[ \frac{1}{m}\sum_{i=1}^m{Z_i}-\mu < -\epsilon \right] \leq e^{\frac{-2m\epsilon^2}{(b-a)^2}}$$ 
 \end{lemma}
+
+\subsection*{\hfill Վերահսկիչ միջին կորուստի գնահատականը \hfill} \noindent
+\phantomsection
+\addcontentsline{toc}{subsection}{Վերահսկիչ միջին կորուստի գնահատականը}
 
 \begin{lemma}
 \label{task_conc_lemm}
@@ -211,6 +603,12 @@ $$\sqrt{\frac{k+1}{n}} \geq \sqrt{\frac{1}{N}}$$
 $$\hat{L}(f) \geq L(f) - B\sqrt{\frac{\left(k+1\right)\log \left(\frac{1}{\delta}\right) }{2n}}$$
 անհավասարությունը։
 \end{proof}
+
+
+
+
+
+
 \begin{preposition}
 \label{prep_vec_ineq}
 Կամայական $v \in \mathbb{R}^d$ վեկտորի համար տեղի ունի հետևյալը՝
@@ -329,18 +727,6 @@ $$\E_{\epsilon \sim \{\pm1\}}\sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal
 
 \end{proof}
   
-\begin{theorem}
-\label{rad_comp_th}
-Դիցուք $\mathcal{G}$ ֆուկցիաների բազմությունը, որի յուրաքանչյուր ֆունկցիա  $Z$-ը արտապատկերոմ է $[0, 1]$ և $S = \{z_i\}_{i=1}^m$ m հզորությամբ միմյանցից անկախ և միևնույն բաշխումից ընտրված օրինակների բազմություն է։ Այդ դեպքում ցանկացած $\delta$ դրական թվի համար առվազն $1 - \delta$ հավանականությամբ բոլոր $g \in \mathcal{G}$ ֆունկցիաների համար տեղի ունի հետևյալ անհավասարությունները՝
-\begin{equation}
-\E[g(z)] \leq \frac{1}{m}\sum_{i=1}^mg(z_i) + 2\mathcal{R}_m(\mathcal{G}) + \sqrt{\frac{\log\left( \frac{1}{\delta} \right)}{2m}}
-\end{equation}
-և
-\begin{equation}
-\E[g(z)] \leq \frac{1}{m}\sum_{i=1}^mg(z_i) + 2\mathcal{R}_S(\mathcal{G}) + 3\sqrt{\frac{\log \left( \frac{2}{\delta} \right)}{2m}}
-\end{equation}
-\end{theorem}
-
 Դիցուք ունենք միմյանցից անկախ $\mathcal{P}(\mathcal{T} \text{ } |\text{ }  |\mathcal{T}| = k +1)$ բաշխումից ընտրված $N$ հատ առաջադրանքներ՝ $\mathcal{T}_1, ..., \mathcal{T}_N$  և $\mathcal{T} = \cup_{i=1}^N{\mathcal{T}_i}$։ Միավորված առաջադրանքի հզորությունը $n$ է՝  $|\mathcal{T}| =n $։ Այժմ ենթադրենք միավորված $\mathcal{T}$ առաջադրանքի համար ունենք միմյանցին ակախ և $D_{\mathcal{T}}$ բաշխումից ընտրված $M$ օրինակներ՝
 $$S = \{(x_1, y_1), (x_2, y_2), ..., (x_M, y_M) | x_i \in \mathcal{X}, y_i \in \mathcal{T} \text{ և } i \in [M] \}$$
 $\mathcal{T}$   առաջադրանքի համար դիցուք $g(x) = Wf(x)$ գծային դասակարգչն է ըստ $f \in \mathcal{F}$ ներկայացման, որտեղ $W$-ն $(n+1) \times d$ չափանի մատրիցա է և $W \in \mathcal{V}$։ $g(x)$ դասակարգչի էմպիրիկ սխալանքը $S$ բազմության վրա սահմանենք հետևյալ կերպ՝
@@ -455,7 +841,7 @@ L(\mathcal{T}, \hat{f}, \hat{W}) \leq  L(\mathcal{T}, f, W) + \frac{4\sqrt{2} \e
 \label{prop_ineq_1}
 L(\mathcal{T}_i, \hat{f}, \hat{W}_{\mathcal{T}_i}) \leq L(\mathcal{T}, \hat{f}, \hat{W} )
 \end{align}
- որտեղ $\hat{W}_{\mathcal{T}_i}$ կազմված է $T_i$ առաջադրանքում մասնակցող դասերին համապատասխան  $\hat{W}$ մատրիցայի տողերից: Համաձայն $L(\mathcal{T}_i, \hat{f})$ սահմանման ակնհայտ է, որ` 
+ որտեղ $\hat{W}_{\mathcal{T}_i}$ կազմված է $T_i$ առաջադրանքում մասնակցող դասերին համապատասխան  $\hat{W}$ մատրիցայի տողերից: Համաձայն $L(\mathcal{T}_i, \hat{f})$ սահմանման ակնհայտ է, որ՝
 \begin{align}
 \label{prop_ineq_2}
 L(\mathcal{T}_i, \hat{f}) \leq L(\mathcal{T}_i, \hat{f}, \hat{W}_{\mathcal{T}_i})
@@ -491,7 +877,7 @@ L(\mathcal{T}_i, \hat{f}) \leq  L(\mathcal{T}, f, W) + \frac{4\sqrt{2} \eta Q\sq
 \hat{L}(\hat{f}) \leq  L(\mathcal{T}, f, W) + \frac{4\sqrt{2} \eta Q\sqrt{n}}{M} \E_{\sigma \sim \{\pm1\}^{Md}} \sup_{\substack{ f  \in \mathcal{F}  }}\sum_{i=1}^M \sum_{j=1}^d \sigma_{ij}f(x_i)+    4B\sqrt{\frac{\log \left( \frac{4}{\delta} \right)}{2M}}
 \end{align}
 
-Համաձայն լեմմա \ref{task_conc_lemm}-ի առնվազն $1-\frac{\delta}{2}$ հավանականությամբ $\hat{f}$ ներկայացման համար տեղի ունի հետևյալը՝ 
+Համաձայն լեմմա \ref{task_conc_lemm}-ի առնվազն $1-\frac{\delta}{2}$ հավանականությամբ $\hat{f}$ ներկայացման համար տեղի ունի հետևյալը՝
 
 
 \begin{equation}
@@ -518,56 +904,54 @@ L(\hat{f}) \leq  L(\mathcal{T}, f, W) + \frac{4\sqrt{2} \eta Q\sqrt{n}}{M} \E_{\
 \addcontentsline{toc}{section}{Գրականություն} 
 
 \bibitem{bib_item_1}
-John R Firth.
-\textit{A synopsis of linguistic theory,}  1930-1955. Studies in linguistic analysis, 1957.
+S. Pan and Q. Yang.
+\textit{A survey on transfer learning,}  Knowledge and Data Engineering, IEEE Transactions on,
+22(10):1345–1359, 2010.
 
 \bibitem{bib_item_2}
-Tomas Mikolov, Ilya Sutskever, Kai Chen, Greg S Corrado, and Jeff Dean. \textit{ Distributed representations of words and phrases and their compositionality.} 
-In C. J. C. Burges, L. Bottou, M. Welling, Z. Ghahramani, and K. Q. Weinberger, editors, Advances in Neural Information
-Processing Systems 26, pages 3111–3119. Curran Associates, Inc., 2013c.
+K. Weiss, T. M. Khoshgoftaar, and D. Wang. \textit{ A survey of transfer learning,} 
+Journal of Big Data, vol. 9, no. 3, 2016.
 
 \bibitem{bib_item_3}
-Karen Sparck Jones. \textit{A statistical interpretation of term specificity and its application in retrieval.}
-Journal of documentation, 28(1):11–21, 1972.
+C. Tan, F. Sun, T. Kong, W. Zhang, C. Yang, and C. Liu.
+\textit{A survey on deep transfer learning,}  https://arxiv.org/abs/1808.01974, 2018.
 
-\bibitem{bib_item_4}
-Tomas Mikolov, Quoc V Le, and Ilya Sutskever. \textit{Exploiting similarities among languages for machine
-translation.} arXiv preprint arXiv:1309.4168, 2013b.
 
-\bibitem{bib_item_5}
-Sepp Hochreiter and J¨urgen Schmidhuber. \textit{Long short-term memory.} Neural computation, 9(8):
-1735–1780, 1997.
 
 \bibitem{bib_item_6}
-Yoshua Bengio, R´ejean Ducharme, Pascal Vincent, and Christian Jauvin. \textit{A neural probabilistic
-language model.} Journal of machine learning research, 3(Feb):1137–1155, 2003.
+Devlin, J., Chang, M.-W., Lee, K., and Toutanova. \textit{K. Bert: Pretraining of deep bidirectional transformers for language understanding,} arXiv preprint arXiv:1810.04805, 2018.
+
 
 \bibitem{bib_item_7}
-Ilya Sutskever, Oriol Vinyals, and Quoc V Le. \textit{Sequence to sequence learning with neural networks.}
-In Advances in neural information processing systems, pages 3104–3112, 2014.
+Logeswaran, L. and Lee, H. \textit{An efficient framework for
+learning sentence representations,}  In Proceedings of the
+International Conference on Learning Representations,
+2018.
+
+
+\bibitem{bib_item_4}
+K. Simonyan and A. Zisserman. \textit{ Very deep convolutional networks
+for large-scale image recognition,} In ICLR, 2015
+
+\bibitem{bib_item_5}
+K. He, X. Zhang, S. Ren, and J. Sun. \textit{Deep
+residual learning for image recognition,} In
+Proceedings of CVPR, pages 770–778, 2016.
+arxiv.org/abs/1512.03385
 
 \bibitem{bib_item_8}
-Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio. \textit{Neural machine translation by jointly
-learning to align and translate.} arXiv preprint arXiv:1409.0473, 2014.
-
+A. Razavian, H. Azizpour, J. Sullivan, and S. Carlsson. \textit{ CNN Features off-the-shelf: an Astounding Baseline
+for Recognition,} CoRR, abs/1403.6382, 2014.
 
 \bibitem{bib_item_9}
-Ramesh Nallapati, Bowen Zhou, Cicero dos Santos, C¸ a glar Gul¸cehre, and Bing Xiang. \textit{ Abstractive
-text summarization using sequence-to-sequence rnns and beyond.} CoNLL 2016, page 280, 2016.
+M.  Mohri, A. Rostamizadeh and A. Talwalkar.  \textit{Foundations of Machine Learning}, MIT press, 2018.
 
 \bibitem{bib_item_10}
-Kelvin Xu, Jimmy Ba, Ryan Kiros, Kyunghyun Cho, Aaron Courville, Ruslan Salakhudinov, Rich
-Zemel, and Yoshua Bengio. Show, attend and tell: \textit{Neural image caption generation with visual
-attention.} In International Conference on Machine Learning, pages 2048–2057, 2015.
-
+Shai Shalev-Shwartz and Shai Ben-David. \textit{Understanding Machine Learning: From Theory to Algorithms,} Cambridge University Press, New York, NY, USA, 2014.
 
 \bibitem{bib_item_11}
-Oriol Vinyals, Alexander Toshev, Samy Bengio, and Dumitru Erhan. Show and tell: \textit{A neural
-image caption generator.} In Proceedings of the IEEE conference on computer vision and pattern
-recognition, pages 3156–3164, 2015.
-
-
-
+A. Maurer. \textit{A vector-contraction inequality for rademacher
+complexities}, In International Conference on Algorithmic Learning Theory, pp. 3–17. Springer, 2016.
 
 \end{thebibliography}
 
