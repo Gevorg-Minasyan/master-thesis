@@ -147,7 +147,7 @@ ItalicFont    =arnamu_italic.ttf]{arnamu.ttf}
 
 \large{\hspace{7cm} \hrulefill  \hspace{0.3cm}  Հակոբյան Յու.Ռ.} \\
 
-\large{31 մայիսի 2018 թ.}}
+\large{31 մայիսի 2019 թ.}}
 
 \pagebreak
 
@@ -609,6 +609,63 @@ $$\hat{L}(f) \geq L(f) - B\sqrt{\frac{\left(k+1\right)\log \left(\frac{1}{\delta
 
 
 
+
+\begin{lemma}
+\label{bs_inequality}
+\begin{align}
+\frac{1}{N}\sum_{i=1}^N L(T_i, f, W_{T_i}) \leq  \frac{m_{max}}{(n+1) \rho_{min}}  L(T, f, W) \text{ } \forall f \in \mathcal{F}, W \in \mathcal{V} 
+\end{align}
+\end{lemma}
+\begin{proof}[Ապացույց]
+
+Առաջին հերթին կարելի է հեշտությամբ համոզվել որ դիտարկվող հինջ և լոգիստիկ կորստի ֆունկցիաները բավարարում են հետևյալ հատկությանը՝
+\begin{equation}
+\label{prop_log_hinge}
+\forall I \subseteq [t] \text{   }   l(\{v_i\}_{i\in I}) \leq l(\{v_i\}_{i \in [t]})
+\end{equation}
+
+\begin{align*}
+L(T, f, W) &= \E_{(x,c) \sim D_{T}} \left [               l \left( \left\{    (Wf(x))_c - (Wf(x))_{c'}     \right\}_{\substack{c \neq c' \\ c'\in T_i}} \right)          \right] = \\
+&= \E_{c \sim D_{T_i}(c)}      \E_{x \sim D_{c}(x)}                      \left [               l \left( \left\{    (Wf(x))_c - (Wf(x))_{c'}     \right\}_{\substack{c \neq c' \\ c'\in T}} \right)          \right]
+\end{align*}
+
+Կատարենք նշանակում՝
+$$\phi(c, T, f, W) \defeq \E_{x \sim D_{c}(x)}                      \left [               l \left( \left\{    (Wf(x))_c - (Wf(x))_{c'}     \right\}_{\substack{c \neq c' \\ c'\in T}} \right)          \right]$$
+
+\begin{align*}
+L(T, f, W) =  \E_{c \sim D_{T}(c)}  \left[ \phi(c, T, f, W) \right ]
+\end{align*}
+
+Համանման ձևով $\forall i \in [N]$ համար՝
+
+\begin{align*}
+L(T_i, f, W_{T_i}) =  \E_{c \sim D_{T}(c)}  \left[ \phi(c, T_i, f, W_{T_i}) \right ]
+\end{align*}
+
+
+Ակնհայտ է $\forall i \in [N], \forall f \in \mathcal{F}, \forall W \in \mathcal{V}$  և $\forall c \in T_i$ համար տեղի ունի՝ 
+$$\phi(c, T_i, f, W_{T_i}) \leq \phi(c, T, f, W)$$
+
+
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{preposition}
 \label{prep_vec_ineq}
 Կամայական $v \in \mathbb{R}^d$ վեկտորի համար տեղի ունի հետևյալը՝
@@ -819,11 +876,7 @@ $$L(\hat{f}) \leq L(T, f, W) + Gen_{M, n} \text{  } \forall f \in \mathcal{F} \t
 Որտեղ $M$ ուսուցման օրինակների քանակն է, իսկ $N$-ը առաջադրանքների քանակը:
 \end{theorem}
 
-\begin{proof}[Ապացույց] Առաջին հերթին կարելի է հեշտությամբ համոզվել որ դիտարկվող հինջ և լոգիստիկ կորստի ֆունկցիաները բավարարում են հետևյալ հատկությանը՝
-\begin{equation}
-\label{prop_log_hinge}
-\forall I \subseteq [t] \text{   }   l(\{v_i\}_{i\in I}) \leq l(\{v_i\}_{i \in [t]})
-\end{equation}
+\begin{proof}[Ապացույց] 
 Դիցուք ունենք $N$ հատ միմյանցից անկախ $\mathcal{T}_1,\mathcal{T}_2, ...,\mathcal{T}_N$  առաջադրանքները ընտրված 
 $$\mathcal{P}(\mathcal{T} \text{ } |\text{ }  |\mathcal{T}| = k +1)$$
 բաշխումից և $\mathcal{T} = \cup_{i=1}^N\mathcal{T}_i$, որի հզորությունը հավասար է $n+1$-ի: Ինչպես նաև ունենք $M$ հատ օրինակների ուսուցման բազմությունը ընտրված $\mathcal{D_\mathcal{T}}$ բաշխումից՝
