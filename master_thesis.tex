@@ -45,6 +45,14 @@
 
 
 
+\newcommand{\undertextline}[2]{ {
+\renewcommand{\arraystretch}{0.7}
+\begin{tabular}{p{#2cm}}
+\\
+\hline
+\centering{{\fontsize{8pt}{8pt} \textit{#1}}}
+\end{tabular}} }
+
 
 \newcommand*{\vertbar}{\rule[-1ex]{0.5pt}{2.5ex}}
 \newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}}
@@ -98,58 +106,55 @@ ItalicFont    =arnamu_italic.ttf]{arnamu.ttf}
 \begin{titlepage}
 
 \begin{center}
-\large  Երևանի Պետական Համալսարան\\
-\large Ինֆորմատիկայի և Կիրառական Մաթեմատիկայի Ֆակուլտետ\\
- Թվային անալիզի և մաթեմատիկական մոդելավորման ամբիոն\\
- \vspace{2mm}
-\hrule width \hsize height 2pt  \kern 1mm \hrule width \hsize height 2pt 
-\vspace{12mm}
-«Թվային անալիզ և մաթեմատիկական մոդելավորում»
-կրթական ծրագիր
+{\fontsize{18pt}{18pt} \selectfont \textbf{ԵՐԵՎԱՆԻ ՊԵՏԱԿԱՆ ՀԱՄԱԼՍԱՐԱՆ\\}} 
+\vspace{7mm}
+{\fontsize{18pt}{18pt} \selectfont \textbf{ԻՆՖՈՐՄԱՏԻԿԱՅԻ ԵՎ ԿԻՐԱՌԱԿԱՆ ՄԱԹԵՄԱՏԻԿԱՅԻ ՖԱԿՈՒԼՏԵՏ\\}}
+\vspace{7mm}
+{\fontsize{16pt}{16pt} \selectfont \textbf{ Թվային անալիզի և մաթեմատիկական մոդելավորման ամբիոն\\}}
+\vspace{7mm}
+{\fontsize{18pt}{18pt} \selectfont \textbf{ «ԹՎԱՅԻՆ ԱՆԱԼԻԶ ԵՎ ՄԱԹԵՄԱՏԻԿԱԿԱՆ ՄՈԴԵԼԱՎՈՐՈՒՄ»
+ԿՐԹԱԿԱՆ ԾՐԱԳԻՐ\\}}
 
-
-\vspace{28mm}
-\textbf{\huge Մագիստրոսական Թեզ\\}\noindent \newline \newline
-\textbf{\large Թեմա՝}	\hspace{3mm} Տրանսֆերային ուսուցման որոշակի մեթոդի ընդհանրացման \\ սխալանքի գնահատման մասին
-\end{center}
-\vspace{12mm}
-\begin{flushright}
-\textbf{\large Ուսանող՝ \hspace{18mm}}			Մինասյան Գևորգ \\
-\vspace{4mm}
-\textbf{\large Ղեկավար՝ \hspace{2mm}}			ֆիզ. մաթ. գիտ. թեկնածու \\  Դանոյան  Հ.Է.
-\end{flushright}
- \vspace{10mm}
-\begin{center}
-«Ինֆորմատիկա և կիրառական մաթեմատիկա»  մասնագիտությամբ \\
-ինֆորմատիկայի և կիրառական մաթեմատիկայի մագիստրոսի \\ որակավորման աստիճանի հայցման համար
+\vspace{25mm}
+{\fontsize{18pt}{18pt} \selectfont \textbf{ՄԻՆԱՍՅԱՆ ԳԵՎՈՐԳ ՄԱՆՎԵԼԻ\\}}
+\vspace{15mm}
+{\fontsize{18pt}{18pt} \selectfont \textbf{ՄԱԳԻՍՏՐՈՍԱԿԱՆ ԹԵԶ\\}}
+\vspace{5mm}
+{\fontsize{16pt}{16pt} \selectfont \textbf{ՏՐԱՆՍՖԵՐԱՅԻՆ ՈՒՍՈՒՑՄԱՆ ՈՐՈՇԱԿԻ ՄԵԹՈԴԻ ԸՆԴՀԱՆՐԱՑՄԱՆ ՍԽԱԼԱՆՔԻ ԳՆԱՀԱՏՄԱՆ ՄԱՍԻՆ\\}}
+\vspace{15mm}
+{\fontsize{14pt}{14pt} \selectfont \textit{\textbf{«Ինֆորմատիկա և կիրառական մաթեմատիկա»  մասնագիտությամբ 
+ինֆորմատիկայի և կիրառական մաթեմատիկայի մագիստրոսի որակավորման աստիճանի հայցման համար\\}}}
+\vspace{30mm}
+{\fontsize{13pt}{13pt} \selectfont \textbf{ ԵՐԵՎԱՆ 2019\\}}
 \end{center}
 
-\vspace{12mm}
-\centering{\large Երևան -- 2019}
 \end{titlepage}
 
 {
 
-\large{
-Ուսանող՝ \hspace{0.3cm}  \hrulefill \hspace{0.3cm}  Մինասյան Գ.Մ.   \hspace{4.5cm}} \\
 
-\large{Գիտական ղեկավար՝ ֆիզ.-մաթ. գիտությունների թեկնածու} \\
+{\fontsize{13pt}{13pt} \selectfont \textit{\textbf{Ուսանող՝}}}
+ \hspace{0.3cm} \undertextline{ստորագրություն}{7} \hspace{0.3cm}  {\fontsize{13pt}{13pt} \selectfont \textbf{Մինասյան Գ.Մ.}}\\
+ 
+\vspace{5mm}
 
-\large{\hspace{7cm} \hrulefill  \hspace{0.3cm}  Դանոյան Հ.Է.} \\
+{\fontsize{13pt}{13pt} \selectfont \textit{\textbf{Գիտական ղեկավար՝  \hspace{0.3cm}ֆիզ.-մաթ. գիտությունների թեկնածու}}}\\
+
+
+\large{\hspace{4cm} \undertextline{ստորագրություն}{7} \hspace{0.3cm} \hspace{0.3cm}  {\fontsize{13pt}{13pt} \selectfont \textbf{Դանոյան Հ.Է.}}}\\
 
 
 \vspace{30mm}
 
 
+{\fontsize{13pt}{13pt} \selectfont \textit{\textbf{«Թույլատրել պաշտպանության»}}}\\
 
-\large{\textbf{«Թույլատրել պաշտպանության»}} \\
+{\fontsize{13pt}{13pt} \selectfont \textit{\textbf{Ամբիոնի վարիչ՝   \hspace{0.3cm}ֆիզ.-մաթ. գիտությունների դոկտոր, պրոֆեսոր}}}\\
 
-\large{Ամբիոնի վարիչ՝  ֆիզ.-մաթ. գիտությունների դոկտոր, պրոֆեսոր} \\
+\large{\hspace{3.5cm}  \undertextline{ստորագրություն}{7} \hspace{0.3cm} {\fontsize{13pt}{13pt} \selectfont \textbf{Հակոբյան Յու.Ռ.}}  } \\
 
-\large{\hspace{7cm} \hrulefill  \hspace{0.3cm}  Հակոբյան Յու.Ռ.} \\
-
-\large{31 մայիսի 2019 թ.}}
-
+{\fontsize{13pt}{13pt} \selectfont \textit{{31 մայիսի 2019 թ.}}}
+}
 \pagebreak
 
 
