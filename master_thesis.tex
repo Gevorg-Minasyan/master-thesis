@@ -46,7 +46,8 @@
 
 
 
-
+\newcommand*{\vertbar}{\rule[-1ex]{0.5pt}{2.5ex}}
+\newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}}
 
 
 
@@ -577,7 +578,7 @@ $$\mathbb{P}\left[ \frac{1}{m}\sum_{i=1}^m{Z_i}-\mu < -\epsilon \right] \leq e^{
 
 \begin{lemma}
 \label{task_conc_lemm}
-Դիցուք ունենք միմյանցից անկախ $\mathcal{P}(\mathcal{T} \text{ } |\text{ }  |\mathcal{T}| = k +1)$ բաշխումից ընտրված $N$ հատ առաջադրանքներ՝ $\mathcal{T}_1, ..., \mathcal{T}_N$ և ֆիքսենք կամայական $f \in \mathcal{F}$ ներկայացում։ $\hat{L}(f)$ էմպիրիկ վերահսկիչ միջին կորուստն է $f$ ներկայացման համար,  իսկ $L(f)$-ը վերահսկիչ միջին կորուստը և դիցուք $|\cup_{i=1}^N{T_i}| = n$։
+Դիցուք ունենք միմյանցից անկախ $\mathcal{P}(\mathcal{T} \text{ } |\text{ }  |\mathcal{T}| = k +1)$ բաշխումից ընտրված $N$ հատ առաջադրանքներ՝ $\mathcal{T}_1, ..., \mathcal{T}_N$ և ֆիքսենք կամայական $f \in \mathcal{F}$ ներկայացում։ $\hat{L}(f)$ էմպիրիկ վերահսկիչ միջին կորուստն է $f$ ներկայացման համար,  իսկ $L(f)$-ը վերահսկիչ միջին կորուստը և դիցուք $|\cup_{i=1}^N{\mathcal{T}_i}| = n$։
 Այդ դեպքում առնվազն $1-\delta$ հավանականությամբ տեղի ունի հետևյալ անհավասարությունը։
 \begin{equation}
 \hat{L}(f) \geq L(f) - B\sqrt{\frac{\left(k+1\right)\log \left(\frac{1}{\delta}\right) }{2n}}
@@ -605,16 +606,54 @@ $$\hat{L}(f) \geq L(f) - B\sqrt{\frac{\left(k+1\right)\log \left(\frac{1}{\delta
 \end{proof}
 
 
+Նախապես ներմուծեք որոշակի նշանակումներ, որոնք  կօգտագործենք հաջորդ լեմմայի ձևակերպան մեջ և ապացույցի ընթացքում։ Դիցուք $\mathcal{T}_1, ..., \mathcal{T_N}$ առաջադրանքները միմյանցից անկախ ընտրված են $\mathcal{P}(\mathcal{T} \text{ } |\text{ }  |\mathcal{T}| = k +1)$ բաշխումից և $\mathcal{T} = \cup_{i=1}^N{\mathcal{T}_i}$, որի հզորությունը $n+1$ է՝ $|\mathcal{T}| =  n +1$։
+Այժմ $\rho_{min}$-ով նշանակենք $\mathcal{T}$ առաջադրանքում պարունակող դասերից ամենափոքրի հավանականությունը՝  
+
+\begin{align}
+\label{rhomin}
+\rho_{min}  \defeq \min_{c \in \mathcal{T} } D_\mathcal{T}(c)
+\end{align}
+
+$m(c)$-ով նշանակենք այն $T_i$ առաջադրանքների քանակը, որոնցում $c$ դասը մասնակցում է, իսկ $m_{max}$-ով նշանակենք $m(c)$-ի առավելագույն արժեքը ըստ բոլոր $c \in \mathcal{T}$ դասերի՝
+\begin{align}
+\label{mmax}
+m_{max} \defeq \max_{c \in T} m(c) 
+\end{align}
+
+ Դիտարկենք $(n+1) \times  d$  չափանի մատրիցան մատրիցան, որի տողերը ինդեքսավորված են $\mathcal{T}$ առաջադրանքի $c_1, ..., c_n$ դասերով՝ 
+
+$$W = \left[
+  \begin{array}{ccc}
+    \horzbar & w^{T}_{c_1} & \horzbar \\
+    \horzbar & w^{T}_{c_2} & \horzbar \\
+             & \vdots    &          \\
+    \horzbar & w^{T}_{c_{n+1}} & \horzbar
+  \end{array}
+\right]$$
 
 
+$W_{\mathcal{T}_i}$-ով նշանակենք $(k+1) \times d$ չափանի մատրիցան, որի տողերը կազմած են $W$ մատրիցայի այն դասերի տողերից, որոնք ձևավորում են  $c_{i,1}, ..., c_{i,k+1}$ դասերից բաղկացած $\mathcal{T}_i$ առաջադրանքը՝
+
+$$W_{T_i} = \left[
+  \begin{array}{ccc}
+    \horzbar & w^{T}_{c_{i,1}} & \horzbar \\
+    \horzbar & w^{T}_{c_{i, 2}} & \horzbar \\
+             & \vdots    &          \\
+    \horzbar & w^{T}_{c_{{i, k+1}}} & \horzbar
+  \end{array}
+\right]$$
 
 
 
 \begin{lemma}
 \label{bs_inequality}
+Դիցուք $\mathcal{T}_1, ..., \mathcal{T_N}$ առաջադրանքները միմյանցից անկախ ընտրված են $\mathcal{P}(\mathcal{T} \text{ } |\text{ }  |\mathcal{T}| = k +1)$ բաշխումից և $\mathcal{T} = \cup_{i=1}^N{\mathcal{T}_i}$, որի հզորությունը $n+1$ է։ Այդ դեպքում կամայական $f \in \mathcal{F}$ ներկայացման և  կամայական $(n+1) \times d$ չափանի $W$  մատրիցայի համար տեղի ունի հետևյալ անհավասարությունը՝
 \begin{align}
-\frac{1}{N}\sum_{i=1}^N L(T_i, f, W_{T_i}) \leq  \frac{m_{max}}{(n+1) \rho_{min}}  L(T, f, W) \text{ } \forall f \in \mathcal{F}, W \in \mathcal{V} 
+\label{mean_task_ineq}
+\frac{1}{N}\sum_{i=1}^N L(T_i, f, W_{T_i}) \leq  \frac{m_{max}}{(n+1) \rho_{min}}  L(T, f, W) 
 \end{align}
+
+\noindent որտեղ $\rho_{max}$ և $m_{max}$ մեծությունները սահմանված են համապատասխանաբար \ref{rhomin}-ի և \ref{mmax}-ի միջոցով։
 \end{lemma}
 \begin{proof}[Ապացույց]
 
@@ -624,28 +663,46 @@ $$\hat{L}(f) \geq L(f) - B\sqrt{\frac{\left(k+1\right)\log \left(\frac{1}{\delta
 \forall I \subseteq [t] \text{   }   l(\{v_i\}_{i\in I}) \leq l(\{v_i\}_{i \in [t]})
 \end{equation}
 
+
+Ենթադրենք որ $T$  առաջադրանքը կազմող դասերը ինչ-որ կերպ համարարակալված են և ֆիքսենք այդ  $c_1, ..., c_{n+1}$  համարակալումը։ Իսկ $\mathcal{T}_i$ առաջադրանքի դասերը համարակալված են հետևյալ կերպ՝ $c_{i,1}, ..., c_{i, {k+1}} $։ $I(\mathcal{T}_i) \subseteq T$  նշանակենք այն ինդեքսների բազմությունը, որոնց համապատասխան դասերը կան նաև $\mathcal{T}_i$ առաջադրանքում։  Այժմ $\mathcal{D}_{\mathcal{T}_i}(c_{ij})$ հավանականությունը գնահատենք $\mathcal{D}_{\mathcal{T}}(c_{ij})$ հավանականության միջոցով`
+
+\begin{align*}
+D_{\mathcal{T}_i}(c_{ij}) = \frac{D_\mathcal{T}(c_{ij})}{\sum_{j \in I(\mathcal{T}_i)}D_\mathcal{T}(c_j) } \leq \frac{D_{T}(c_{ij})}{|I(\mathcal{T}_i)|\rho_{min}} = \frac{D_{T}(c_{ij})}{(k+1)\rho_{min}}
+\end{align*}
+
+Համաձայն $L(T, f, W)$-ի կորստի ֆունկցիայի սահմանման՝
 \begin{align*}
 L(T, f, W) &= \E_{(x,c) \sim D_{T}} \left [               l \left( \left\{    (Wf(x))_c - (Wf(x))_{c'}     \right\}_{\substack{c \neq c' \\ c'\in T_i}} \right)          \right] = \\
 &= \E_{c \sim D_{T_i}(c)}      \E_{x \sim D_{c}(x)}                      \left [               l \left( \left\{    (Wf(x))_c - (Wf(x))_{c'}     \right\}_{\substack{c \neq c' \\ c'\in T}} \right)          \right]
 \end{align*}
 
-Կատարենք նշանակում՝
+\noindent Կատարենք նոր նշանակում՝
 $$\phi(c, T, f, W) \defeq \E_{x \sim D_{c}(x)}                      \left [               l \left( \left\{    (Wf(x))_c - (Wf(x))_{c'}     \right\}_{\substack{c \neq c' \\ c'\in T}} \right)          \right]$$
-
+Տեղադրելով վերոնշյալ նոր նշանակումը $L(T, f, W)$-ի մաթսպասման մեջ կունենանք՝
 \begin{align*}
 L(T, f, W) =  \E_{c \sim D_{T}(c)}  \left[ \phi(c, T, f, W) \right ]
 \end{align*}
 
-Համանման ձևով $\forall i \in [N]$ համար՝
-
+\noindent Համանման ձևով $\forall i \in [N]$ համար՝
 \begin{align*}
 L(T_i, f, W_{T_i}) =  \E_{c \sim D_{T}(c)}  \left[ \phi(c, T_i, f, W_{T_i}) \right ]
 \end{align*}
 
 
-Ակնհայտ է $\forall i \in [N], \forall f \in \mathcal{F}, \forall W \in \mathcal{V}$  և $\forall c \in T_i$ համար տեղի ունի՝ 
+Օգտվելով \ref{prop_log_hinge} անհվասարությունից՝  հեշտ է նկատել, որ $\forall i \in [N], \forall f \in \mathcal{F}, \forall W \in \mathbb{R}^{(n+1)\times d}$  և $\forall c \in T_i$ համար տեղի ունի՝ 
 $$\phi(c, T_i, f, W_{T_i}) \leq \phi(c, T, f, W)$$
 
+
+\noindent Միավորելով այս ամենը կունենանք՝
+\begin{align*}
+&\frac{1}{N}\sum_{i=1}^NL(\mathcal{T}_i, f, W_{\mathcal{T}_i})  = \frac{1}{N} \sum_{i=1}^N \E_{c \sim D_{\mathcal{T}_i}(c)} \left [\phi(c, \mathcal{T}_i, f, W_{\mathcal{T}_i}) \right] = \frac{1}{N}   \sum_{i=1}^N \sum_{j = 1}^{k+1}  D_{\mathcal{T}_i}(c_{ij}) \phi(c_{ij}, \mathcal{T}_i, f, W_{\mathcal{T}_i}) \leq \\
+&\leq  \frac{1}{N}   \sum_{i=1}^N \sum_{j = 1}^{k+1}   \frac{D_{T}(c_{ij})}{(k+1)\rho_{min}} \phi(c_{ij}, \mathcal{T}_i, f, W_{\mathcal{T}_i}) \leq
+\frac{1}{N(k+1)\rho_{min}}   \sum_{i=1}^N \sum_{j = 1}^{k+1}   D_{T}(c_{ij}) \phi(c_{ij}, \mathcal{T}, f, W) \leq \\
+&\leq   \frac{1}{N(k+1)\rho_{min}}   \sum_{i=1}^{n+1}  m(c)D_{T}(c_{i}) \phi(c_{i}, \mathcal{T}, f, W) \leq 
+\frac{m_{max}}{N(k+1)\rho_{min}}   L(T, f, W) \leq \\
+&\leq \frac{m_{max}}{(n+1)\rho_{min}}   L(T, f, W) 
+\end{align*}
+Հետևաբար կամայական $f \in \mathcal{F}$ և կամայական $W \in \mathbb{R}^{(n+1)\times d}$ մատրիցայի համար տեղի ունի \ref{mean_task_ineq} անահվասարությունը և լեմմայի ապացույցը ավարտված է։
 
 \end{proof}
 
