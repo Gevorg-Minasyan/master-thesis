@@ -14,6 +14,8 @@
 \usepackage{hyperref}
 \usepackage[thinc]{esdiff}
 \usepackage{cite}
+\usepackage{pdfpages}
+\usepackage{graphicx}
 \hypersetup{
     colorlinks=true,
     linkcolor=blue,
@@ -65,7 +67,7 @@
 
 % increase vertical space between section subsection%
 \titlespacing*{\section}
-{0pt}{8ex plus 1ex minus .2ex}{10ex plus .2ex}
+{0pt}{5ex plus 1ex minus .2ex}{3ex plus .2ex}
 \titlespacing*{\subsection}
 {0pt}{5ex plus 1ex minus .2ex}{3ex plus .2ex}
 
@@ -91,6 +93,8 @@ ItalicFont    =arnamu_italic.ttf]{arnamu.ttf}
 \newtheorem{corollary}{Հետևանք}
 \newtheorem{preposition}{Պնդում}
 \newtheorem{defination}{Սահմանում}
+\newtheorem{remark}{Դիտողություն}
+\newtheorem*{remark*}{Դիտողություն}
 
 
 \theoremstyle{definition} %After this line new defined commands by \newthorem will be non italic.%
@@ -168,9 +172,11 @@ ItalicFont    =arnamu_italic.ttf]{arnamu.ttf}
  \vspace{10mm}
 {
 \small Տրանսֆերային ուսուցման որոշակի մեթոդի ընդհանրացման սխալանքի գնահատման մասին\\
-On Generalization Error Bound Estimation of Certain Transform Learning Method
+On Generalization Error Bound Estimation of Certain Transform Learning Method\\
 }
 
+Մեքենայական ուսուցման դասական մոդելում ենթադրվում է, որ օրինակները տրված են ըստ որևէ ֆիքսված բայց անհայտ հավանականային բաշխումից՝ մեկը մյուսից անկախ: Իրական կյանքին առնչվող բազմաթիվ դրվագներում (որոնցից են բիոինֆորմատիկան, ռոբոտաշինությունը և այլն) բավարար ճշգրտություն ապահովող քանակով օրինակների ձեռքբերումը կարող է լինել ոչ արդյունավետ, երբեմն նաև անհնար: Նման դեպքերում խնդիր է առաջանում օգտագործելով այլ խնդիրներում կուտակված փորձը (օրինակներ, մոդել) կիրառելով քիչ օրինակներով տրված խնդրի համար կառուցել բավարար ճշգրտություն ունեցող մոդել: Մեքենայական ուսուցման այս ոլորտը հայտնի է տրանսֆերային ուսուցում անվամբ: 
+\par Աշխատանքը վերաբերվում է տրանսֆերային ուսուցման առկա մոտեցումներից մեկի՝ նեյրոնային ցանցի շերտերի միջոցով տվյալների ներկայացմանը (fine tuning) մաթեմատիկական վերլուծությանը: Մասնավորապես, աշխատանքում ստացվել է համեմատաբար փոքր քանակով օրինակներով խնդրի և նախկին փորձի հիման վրա կառուցված մոդելի ընդհանրացման սխալանքների կապն արտահայտող գնահատական: Աշխատանքում ստացված արդյունքը թույլ է տալիս մաթեմատիկորեն մեկնաբանել նշված տրանսֆերային ուսուցման մեթոդի պրակտիկ արդյունավետության տիրույթը:
 
 \pagebreak
 
@@ -188,6 +194,15 @@ On Generalization Error Bound Estimation of Certain Transform Learning Method
  \hfill} \noindent
 \phantomsection
 \addcontentsline{toc}{section}{Ներածություն}
+
+Վերջին տարիներին մեքենայական ուսուցման  հատկապես «խորը» ուսուցման ալգորիթմների օգտագործմամբ բազմաթիվ կիրառական խնդիրներ հնարավոր է լուծել բարձր արդյունավետությամբ։ Խորը ուսուցման ալգորիթմները հնարավորություն են տալիս ոչ կառուցվածքային տվյալների համար նոր ներկայացումներ ստանալ և փորձնական ճանապարհով պարզվում է, որ այդ ներկայացումները նմանատիպ առաջադրանքներում օգտագործելու դեպքում  բարելավվում է լուծման արդյունավետությունը։  Փոխարինելով տվյալի $x$  օրինակը $f(x)$ ներկայացման նկարագիրների վեկտորով՝ կրճատվում է պիտակավորված տվյալների անհրաժեշտությունը նոր դասակարգման առաջադրանքներում։ Հաշվի առնելով որ բազմաթիվ խնդիրներում պիտակավորված տվյալների հավաքագրումը դժվար է և ծախսատար, շատ կարևոր է լուծման ցանկալի ճշգրտությունն ապահովել՝ օգտագործելով ավելի քիչ պիտակավորված տվյալներ։ Անբավարար տվյալների դեպքում մեքենայական ուսուցման  հիմնական խնդիրները լուծելու համար «տրանսֆերային» ուսուցումը  շատ կարևոր գործիք է։   
+
+Նկարների համար լայնորեն օգտագործվող ներկայցումների ստացումը իրականացվում է խորը փաթույթային  նեյրոնային ցանցերի միջոցով,  որոնց ճարտարապետությունը մշակվել է՝ վարժեցնելով միլլիոնից ավել նկարների վրա։ Ներկայացումները ստացվում են՝ վերցնելով նեյրոնային ցանցի նախավերջին շերտի ներքին ներկայացումները, որոնց օգտագործումը էապես լավացնում է նոր դասակարգման խնդրի ճշգրտությունը և կրճատում պիտակավորված տվյալների անհրաժեշտությունը։  Մշակված հայտնի ճարտարապետություն ունեցող  ցանցեր են $AlexNet$-ը, $VGG$-ն և այլն,  իսկ ավելի խորը ցանցերի օրինակներ են $Inception$ և $ResNet$ տեսակի ճարտարապետությունները։
+
+Բնական լեզվի մշակման մեջ «տրանսֆերային» ուսուցումը իրականացվում է բառերի, նախադասությունների կամ տեքստերի ներդրված վեկտրոների միջոցով, որոնց ստացումը հիմնականում իրականացվում է  ոչ վերահսկվող ուսուցման ալգորիթմների միջոցով։ Բառերի ներդրված վեկտորների առավել հայտնի մեթոդներ են $word2vec$ մեթոդների ընտանիքը, $glove$ մատրիցային վերլուծության վրա հիմնված մեթոդը և այլն։
+\par Վարժեցված նեյրոնային ցանցի ներկայացումների օգտագործումը այլ առաջադրանքներում տրանսֆերային ուսուցման մեթոդ է։ Սույն մագիստրոսական աշխատանքում տեսականորեն կհիմնավորենք, թե ինչու է փորձնական ճանապարհով ստացվող ներկայացումները բարելավվում նոր դասակարգման առաջադրանքների արդյունավետությունը։
+
+
 \pagebreak
 
 
@@ -487,9 +502,9 @@ $$l(v) = \log_2(1+\sum_{i}{e^{-v_i}}),$$
 որտեղ $v \in \mathcal{R}^k$։ $\mathcal{T}$ առաջադրանքի համար $g$ դասակարգիչի կորուստը հետևյալն է՝
 $$L(\mathcal{T}, g) \defeq \E_{(x, c) \sim \mathcal{D}_{\mathcal{T}}} \left [ l(\{ g(x)_c-g(x)_{c'}\}_{c \neq c'}  ) \right ]$$
 
-$f$ ներկայացումների ֆունկցիան օգտագործելու նպատակով,  $g(x) = Wf(x)$ տեսքի դասակարգիչներն ենք դիտարկելու, որտեղ $W \in \mathcal{R}^{(k+1)\times d }$, որը ունի սահմանափակ նորմ՝ $||W|| \leq Q \text{ և }Q >0։$
+$f$ ներկայացումների ֆունկցիան օգտագործելու նպատակով,  $g(x) = Wf(x)$ տեսքի դասակարգիչներն ենք դիտարկելու, որտեղ $W \in \mathcal{R}^{(k+1)\times d }$, որը ունի սահմանափակ նորմ՝ $||W||_{\infty} \leq Q \text{ և }Q >0։$
 $\mathcal{W}$-ով նշանակենք սահմանափակ նորմ ունեցող մատրիցաների բազմությունը՝
-$$\mathcal{V} = \{W: ||W|| \leq Q \text{ և } Q > 0\}$$
+$$\mathcal{V} = \{W: ||W||_{\infty} \leq Q \text{ և } Q > 0\}$$
  $\mathcal{T}$ առաջադրանքի համար $g(x) = Wf(x)$ ներկայացումից կախված գծային դասակարգչի կորստի ֆունկցիան հետևյալն է՝
 $$L(\mathcal{T}, f, W) \defeq \E_{(x, c) \sim \mathcal{D}_{\mathcal{T}}} \left [ l(\{ Wf(x)_c-Wf(x)_{c'}\}_{c \neq c'}  ) \right ]$$
  
@@ -559,6 +574,170 @@ $$\mathcal{R}_m(\mathcal{G}) = \E_{S \sim \mathcal{D}^m} \left [     \hat{\mathc
 \E[g(z)] \leq \frac{1}{m}\sum_{i=1}^mg(z_i) + 2\hat{\mathcal{R}}_S(\mathcal{G}) + 3\sqrt{\frac{\log \left( \frac{2}{\delta} \right)}{2m}}
 \end{equation}
 \end{theorem}
+
+
+Ներկայացումների $\mathcal{F}$ ֆունկցիաների ընտանիքի բարդության գնահատականի համար կօգտվենք Արորայի և այլոց աշխատանքում տրված սահմանումից։ Յուրաքանչյուր $f$ ներկայացման ֆունկցիա արտապատկերում է տվյալների բոլոր հնարավոր օրինակների $\mathcal{X}$ բազմությունը $d$ չափանի էվկլիդյան տարածության մեջ՝ $\mathbb{R}^d$։
+
+\begin{defination}[Ներկայացումների էմպիրիկ Ռադեմախերի բարդություն \cite{bib_item_12}] Դիցուք $\mathcal{F}$ տվյալների ներկայացումների ֆունկցիաների ընտանիք է՝ $$\forall f \in \mathcal{F}, f:\mathcal{X}: \rightarrow \mathbb{R}^d$$
+և $S$-ը $m$ հզորությամբ տվյալների ֆիքսված օրինակների բազմություն՝
+$$S = \{x_i | x_i \in \mathcal{X}, \forall i \in [m]\}$$
+Այդ դեպքում ներկայացումների $\mathcal{F}$ ընտանիքի էմպիրիկ Ռադեմախերի բարդությունը ֆիքսված օրինակների $S$ բազմության համար սահմանվում է հետևյալ կերպ՝
+
+$$\hat{\mathcal{R}}_S(\mathcal{F}) = \frac{1}{m} \E_{\sigma \sim \{\pm 1\}^{md}} \sup_{f\in \mathcal{F}} \sum_{i = 1}^m \sum_{j = 1}^d \sigma_{ij} f_j(x_i) $$
+
+\end{defination}
+
+\begin{remark*}
+Ներկայացումների էմպիրիկ $\mathcal{\hat{R}}_S(\mathcal{F})$ Ռադեմախերի բարդությունը սերտորեն կապված է դասակարգման առաջադրանքներում պիտակավորված օրինակների համար սահմանաված Ռադեմախերի բարդության հետ։ $$\mathcal{G}  = \{w^Tf(\cdot)| f \in \mathcal{F}, ||w|| \leq 1 \}$$
+ֆունկցիաների դասը հնարավոր է օգտագործել բինար դասակարգման առաջադրանքի լուծման համար՝ օգտագործելով պիտակավորված տվյալներ։ Հեշտությամբ կարելի է ցույց տալ, որ $$\hat{\mathcal{R}}_S(\mathcal{F}) \leq d \hat{\mathcal{R}}_S(\mathcal{G})$$
+որտեղ $\hat{\mathcal{R}}_S(\mathcal{G})$-ը $\mathcal{G}$-ի Էմպիրիկ  սովորական Ռադեմախերի բարդությունն է $S$ բազմության վրա։
+\end{remark*}
+
+
+\phantomsection
+\addcontentsline{toc}{subsection}{Որոշ անհավասարություններ Ռադեմախերի բարդությունների համար}
+
+
+\subsection*{ \centering Որոշ անհավասարություններ Ռադեմախերի \\ բարդությունների համար } \noindent
+
+
+
+Լիպշից հակությամբ օժտված ֆունկցիաների համար Ռադեմախերի բարդությունների միջև \cite{bib_item_11} աշխատանքում ցույց է տրվել մի անհավասարություն, որը կընդհանրացնենք և կօգտագործենք սույն մագիստրոսական աշխատանքում։  Այժմ տանք $L$ հաստատունով Լիպշից հատկությամբ օժտված ֆունկցիայի սահմանումը։
+\begin{defination}
+Կասենք $f:\mathbb{R}^n \rightarrow \mathbb{R}^m$ արտապատկերումը $L > 0$ հաստատունով Լիպշից հատկությամբ օժտված ֆունկցիա է $S \subseteq \mathbb{R}^n$ բազմության վրա եթե՝
+$$||f(x)-f(y)|| \leq L||x-y||   \text{ } \forall x, y \in S$$ 
+\end{defination}
+
+Ստորև ձևակերպենք այսպես կոչված վեկտորի կրճատման անհավասարությունը Ռադեմախերի բարդությունների համար՝
+
+
+
+\begin{theorem}[\cite{bib_item_11}]
+\label{contr_theorem_orig}
+Դիցուք $\mathcal{X}$-ը որևէ բազմություն է և $(x_1, x_2, ..., x_n) \in X^N$։ Տրված է նաև $\mathcal{F}$ ֆունկցիաների բազմություն, որի կամայական $f \in \mathcal{F}$ ֆունկցիա $\mathcal{X}$ բազմությունը արտապատկերում է $\mathbb{R}^d$ էվկլիդյան տարածություն՝ $f:\mathcal{X} \rightarrow \mathbb{R}^d$։ Դիցուք $h_i$ ֆունկցիաներ ունենք որոնք $\mathbb{R}^d$ էվկլիդյան տարածությունը արտապատկերում են  իրական թվերի $\mathbb{R}$ տարածություն՝
+$h_i:\mathbb{R}^d \rightarrow \mathbb{R}$, կամայական $i \in [n]$ համար։ Կենթադրենք, որ բոլոր $h_i$ ֆունկցիաները, ինչ-որ $L$ դրական հաստատունով Լիպշից հատկությամբ օժտված ֆունկցիաներ են։ Այդ դեպքում տեղի ունի հետևյալ անհավասարությունը՝
+\begin{equation}
+\label{contradiction_ineq}
+\E_{\sigma \sim \{\pm 1\}^n}\left[\sup_{f \in \mathcal{F}}  \sum_{i=1}^n{\sigma_ih_i(f(x_i))}  \right]    \leq \sqrt{2}L \E_{\sigma \sim \{\pm1\}^{nd}} \left[  \sup_{f \in \mathcal{F}}  \sum_{i=1}^n\sum_{j=1}^d{\sigma_{ij}f_j(x_i)}   \right]
+\end{equation}
+\end{theorem}
+
+
+
+
+
+Այժմ  ձևակեպենք մի պնդում, որն օգտագործելու ենք ընդհանրացված թեորեմի ապացույցի ընթացքում։  
+\begin{preposition}[\cite{bib_item_11}]
+\label{prep_vec_ineq}
+Կամայական $v \in \mathbb{R}^d$ վեկտորի համար տեղի ունի հետևյալը՝
+$$||v|| \leq \sqrt{2}\E_{\sigma \sim \{\pm1\}^d} \left| \sum_{i=1}^d \sigma_iv_i \right|$$
+\end{preposition}
+
+
+Թեորեմ \ref{contr_theorem_orig}-ը կարելի է ընդհանրացնել  $h_i(v, y) \in \mathbb{R}$ ֆունկցիաների համար, որտեղ $v \in \mathbb{R}^d$, $y \in \mathcal{Y}$ և $h_i$ ֆունկցիաները ըստ $v$ փոփոխականի $L$ հաստատունով Լիպշից հատկությամբ օժտված ֆունկցիաներ են կամայական $y \in \mathcal{Y}$ համար։ 
+
+\begin{theorem}
+\label{contr_theorem}
+Դիցուք $\mathcal{X}$-ը և $\mathcal{Y}$-ը որևէ բազմություններ են  և $(x_1, x_2, ..., x_n) \in X^N$։ Տրված է նաև $\mathcal{F}$ ֆունկցիաների բազմություն, որի կամայական $f \in \mathcal{F}$ ֆունկցիա $\mathcal{X}$ բազմությունը արտապատկերում է $\mathbb{R}^d$ էվկլիդյան տարածություն՝ $f:\mathcal{X} \rightarrow \mathbb{R}^d$։ Դիցուք $h_i$ ֆունկցիաներ ունենք՝ $$h_i:\mathbb{R}^d \times \mathcal{Y} \rightarrow \mathbb{R}$$ կամայական $i \in [n]$ համար։ Կենթադրենք, որ բոլոր $h_i(v, y)$ ֆունկցիաները, ինչ-որ $L$ դրական հաստատունով Լիպշից հատկությամբ օժտված ֆունկցիաներ են ըստ $v$-ի կամայական $y \in \mathcal{Y}$ համար։ Այդ դեպքում տեղի ունի հետևյալ անհավասարությունը՝
+\begin{equation}
+\label{contradiction_ineq}
+\E_{\sigma \sim \{\pm 1\}^n}\left[\sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal{Y}} }  \sum_{i=1}^n{\sigma_ih_i(f(x_i), y)}  \right]    \leq \sqrt{2}L \E_{\sigma \sim \{\pm1\}^{nd}} \left[  \sup_{f \in \mathcal{F}}  \sum_{i=1}^n\sum_{j=1}^d{\sigma_{ij}f_j(x_i)}   \right]
+\end{equation}
+\end{theorem}
+
+\begin{proof}[Ապացույց]
+Սկզբում ցույց տանք, որ բոլոր $i \in [n]$-երի համար և կամայական $g:\mathcal{F}\times \mathcal{Y} \rightarrow \mathbb{R}$  ֆունկցիոնալի համար տեղի ունի հետևյալ անհավասարությունը՝
+\begin{equation}
+\label{sup_ineq}
+\E_{\epsilon \sim \{\pm1\}}\sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal{Y}}}    {\epsilon h_i(f(x_i), y)} + g(f, y)   \leq    \sqrt{2}L 
+\E_{\epsilon \sim \{\pm1\}^d}\sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal{Y}}}      {   \sum_{j=1}^d    \epsilon_jf_j(x_i)} + g(f, y)
+\end{equation}
+Դիցուք $\delta > 0$ կամայական դրական թիվ է։ Այդ դեպքում համաձայն Ռադեմախերի փոփոխականի սահմանաման կունենանք՝
+\begin{align*}
+ 2\E_{\epsilon \sim \{\pm1\}}\sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal{Y}}}    {\epsilon h_i(f(x_i), y)} - \delta  
+= \sup_{\substack{f, \bar{f} \in \mathcal{F}  \\ y \in \mathcal{Y}}}    {h_i(f(x_i), y)  + g(\bar{f}, y) - h_i(\bar{f}(x_i), y) + g(\bar{f}, y) - \delta}
+\end{align*}
+
+Օգտվելով սուպրեմումի սահմանումից՝ գոյություն ունեն $f*, \bar{f}^* \in \mathcal{F}$ ֆունկցիաներ, որ տեղի ունի հետևյալը՝
+\begin{align*}
+ &\sup_{\substack{f, \bar{f} \in \mathcal{F}  \\ y \in \mathcal{Y}}}    {h_i(f(x_i), y)  + g(\bar{f}, y) - h_i(\bar{f}(x_i), y) + g(\bar{f}, y) -\delta}  \leq \\
+ &\leq \sup_{y \in \mathcal{Y}}   h_i(f^*(x_i), y) - h_i(\bar{f}^*(x_i), y) + g(f^*, y) + g(\bar{f}^*, y)
+\end{align*}
+
+Օգտագործելով $h_i$ ֆունկցաի Լիպշիցի հատկությամբ օժտված լինելը կունենանք՝ 
+
+\begin{align*}
+ &\sup_{y \in \mathcal{Y}}   h_i(f^*(x_i), y) - h_i(\bar{f}^*(x_i), y) + g(f^*, y) + g(\bar{f}^*, y) \leq \\
+& \leq   {L||f^*(x_i) - \bar{f}^*(x_i)||} + \sup_{y \in \mathcal{Y}}  g(f^*, y) + g(\bar{f}^*, y)
+\end{align*}
+
+Պնդում \ref{prep_vec_ineq}-ը կիրառելով կստանանք՝
+\begin{align*}
+ &{L||f^*(x_i) - \bar{f}^*(x_i)||} + \sup_{y \in \mathcal{Y}}  g(f^*, y) + g(\bar{f}^*, y) \leq \\
+& \leq  {\sqrt{2}L} \E_{\epsilon \sim \{\pm 1\}^d}    \left |  \sum_{j=1}^d \epsilon_j (f^*_j(x_i) - \bar{f}_j^*(x_i))  \right|                    + \sup_{y \in \mathcal{Y}}    g(f^*, y) + g(\bar{f}^*, y)  \leq \\
+&\leq  {\sqrt{2}L} \E_{\epsilon \sim \{\pm 1\}^d}        \sup_{f, \bar{f} \in \mathcal{F}}      \left |  \sum_{j=1}^d \epsilon_j f_j(x_i) - \sum_{j=1}^d \epsilon_j\bar{f}_j(x_i)  \right|                    + \sup_{y \in \mathcal{Y}}    g(f, y) + g(\bar{f}, y) 
+\end{align*}
+
+Հեշտ է նկատել, որ կամայական ֆիքսված $\epsilon$-ի դեպքում 
+$$\sup_{f, \bar{f} \in \mathcal{F}}      \left |  \sum_{j=1}^d \epsilon_j f_j(x_i) - \sum_{j=1}^d \epsilon_j\bar{f}_j(x_i)  \right|  = 
+\sup_{f, \bar{f} \in \mathcal{F}}         \sum_{j=1}^d \epsilon_j f_j(x_i) - \sum_{j=1}^d \epsilon_j\bar{f}_j(x_i)    $$
+և քանի որ $\sup_{y \in \mathcal{Y}}    g(f, y) + g(\bar{f}, y)$ ինվարիանտ է $f, \bar{f}$ ֆունկցիաների փոփոխման նկատմամբ, կունենանք՝ 
+
+\begin{align*}
+&  {\sqrt{2}L} \E_{\epsilon \sim \{\pm 1\}^d}    \left |  \sum_{j=1}^d \epsilon_j (f^*_j(x_i) - \bar{f}_j^*(x_i))  \right|                    + \sup_{y \in \mathcal{Y}}    g(f^*, y) + g(\bar{f}^*, y)  \leq \\
+&\leq  {\sqrt{2}L} \E_{\epsilon \sim \{\pm 1\}^d}        \sup_{f, \bar{f} \in \mathcal{F}}        \sum_{j=1}^d \epsilon_j f_j(x_i) - \sum_{j=1}^d \epsilon_j\bar{f}_j(x_i)                      + \sup_{y \in \mathcal{Y}}    g(f, y) + g(\bar{f}, y)  = \\
+&=  {\sqrt{2}L} \E_{\epsilon \sim \{\pm 1\}^d}        \sup_{f \in \mathcal{F}}        \sum_{j=1}^d \epsilon_j f_j(x_i)    + \sup_{y \in \mathcal{Y}}    g(f, y)    +  \E_{\epsilon \sim \{\pm 1\}^d}        \sup_{\bar{f} \in \mathcal{F}}   -  \sum_{j=1}^d \epsilon_j\bar{f}_j(x_i)                      + \sup_{y \in \mathcal{Y}}  g(\bar{f}, y) 
+\end{align*}
+
+
+Հաշվի առնելով Ռադեմախերի $\epsilon_j$ փոփոխականների սիմետրիկություը կստանանք՝
+
+\begin{align*}
+&{\sqrt{2}L} \E_{\epsilon \sim \{\pm 1\}^d}        \sup_{f \in \mathcal{F}}        \sum_{j=1}^d \epsilon_j f_j(x_i)    + \sup_{y \in \mathcal{Y}}    g(f, y)    +  \E_{\epsilon \sim \{\pm 1\}^d}        \sup_{\bar{f} \in \mathcal{F}}   -  \sum_{j=1}^d \epsilon_j\bar{f}_j(x_i)                      + \sup_{y \in \mathcal{Y}}  g(\bar{f}, y)  = \\
+&= 2\left({\sqrt{2}L} \E_{\epsilon \sim \{\pm 1\}^d}        \sup_{f \in \mathcal{F}}        \sum_{j=1}^d \epsilon_j f_j(x_i)    + \sup_{y \in \mathcal{Y}}    g(f, y)  \right)    = \\
+&=  2\left({\sqrt{2}L} \E_{\epsilon \sim \{\pm 1\}^d}        \sup_{\substack{f \in \mathcal{F}  \\ y \in \mathcal{Y}  }}     \sum_{j=1}^d \epsilon_j f_j(x_i)    +   g(f, y)  \right)    
+\end{align*}
+
+Այսպիսով կամայական $\delta > 0$ դրական թվի համար՝
+$$\E_{\epsilon \sim \{\pm1\}}\sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal{Y}}}    {\epsilon h_i(f(x_i), y)} - \delta  \leq {\sqrt{2}L} \E_{\epsilon \sim \{\pm 1\}^d}        \sup_{\substack{f \in \mathcal{F}  \\ y \in \mathcal{Y}  }}     \sum_{j=1}^d \epsilon_j f_j(x_i)    +   g(f, y)   $$
+
+Քանի որ վերջինս տեղի ունի ցանկացած  $\delta$-ի համար, այստեղից անմիջապես հետևում է \ref{sup_ineq} անհավասարությունը։
+
+\par Այժմ ինդուկցիայի միջոցով ցույց տանք,
+որ  ցանկացած $m \in \{0, ..., n\}$ համար տեղի ունի հետևյալ անհավասարությունը։
+
+\begin{align*}
+&\E_{\epsilon \sim \{\pm 1\}^n}\left[\sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal{Y}} }  \sum_{i=1}^n{\epsilon_ih_i(f(x_i), y)}  \right]    \leq \sqrt{2}L \E_{\sigma \sim \{\pm1\}^{md}} \left[  \sup_{f \in \mathcal{F}}  \sum_{i=1}^m\sum_{j=1}^d{\sigma_{ij}f_j(x_i)}   \right] +\\ &+\E_{\epsilon \sim \{\pm 1\}^{n-m}}\left[\sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal{Y}} }  \sum_{i=m+1}^n{\epsilon_ih_i(f(x_i), y)}  \right]   
+\end{align*}
+
+\ref{contradiction_ineq} անհավասարությունը անմիջապես հետևում է՝ վերցնելով $m = n$։ Երբ $m=0$ անհավասարության երկու կողմերում նույն արտահայտությունն է գրված և հետևաբար տեղի ունի անհավասարությունը։ Կատարենք ինդուկցիոն ենթադրություն և համարենք անհավասարությունը տեղի ունի $(m-1)$-ի համար, որտեղ $m \leq n$։
+
+
+
+\begin{align*}
+&\E_{\epsilon \sim \{\pm 1\}^n}\left[\sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal{Y}} }  \sum_{i=1}^n{\epsilon_ih_i(f(x_i), y)}  \right]   
+ \leq \sqrt{2}L \E_{\sigma \sim \{\pm1\}^{(m-1)d}} \left[  \sup_{f \in \mathcal{F}}  \sum_{i=1}^{m-1}\sum_{j=1}^d{\sigma_{ij}f_j(x_i)}   \right] +\\ 
+ &+\E_{\epsilon \sim \{\pm 1\}^{n-m+1}}\left[\sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal{Y}} }  \sum_{i=m}^n{\epsilon_ih_i(f(x_i), y)}  \right] = \\  
+ &= \E_{\substack{\epsilon \sim \{ \pm 1\}^{n-m}   \\ \sigma \sim \{ \pm 1\}^{(m-1)d} }}     \E_{\epsilon_m \sim \{ \pm1 \}} \left [          \sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal{Y}}}     \left(\epsilon_m h_m(f(x_m), y)   +   \sqrt{2}L 				 \sum_{i=1}^{m-1}\sum_{j=1}^d{\sigma_{ij}f_j(x_i)}  + \sum_{i = m+1}^n \epsilon_ih_i(f(x_i), y)				\right )	\right ]
+\end{align*}
+
+
+Սահմանենք $$g(f, y) = \sqrt{2}L\sum_{i=1}^{m-1}\sum_{j=1}^d{\sigma_{ij}f_j(x_i)}  + \sum_{i = m+1}^n\epsilon_ih_i(f(x_i), y)$$
+և տեղադրելով այն վերջինիս մեջ և օգտագործելով \ref{sup_ineq} անհավասարությունը կստանանք՝
+
+
+\begin{align*}
+ &\E_{\substack{\epsilon \sim \{ \pm 1\}^{n-m}   \\ \sigma \sim \{ \pm 1\}^{(m-1)d} }}     \E_{\epsilon_m \sim \{ \pm1 \}} \left [          \sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal{Y}}}     \left(\epsilon_m h_m(f(x_m), y)   +   g(f, y)			\right )	\right ] \leq \\
+ &\leq  \E_{\substack{\epsilon \sim \{ \pm 1\}^{n-m}   \\ \sigma \sim \{ \pm 1\}^{(m-1)d} }}     \E_{\sigma_m \sim \{ \pm1 \}^d} \left [          \sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal{Y}}}     \left( \sum_{j = 1}^d  \sigma_{mj}f(x_m) +   g(f, y)			\right )	\right ] =\\
+ &= \sqrt{2}L \E_{\sigma \sim \{\pm1\}^{md}} \left[  \sup_{f \in \mathcal{F}}  \sum_{i=1}^m\sum_{j=1}^d{\sigma_{ij}f_j(x_i)}   \right] + \E_{\epsilon \sim \{\pm 1\}^{n-m}}\left[\sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal{Y}} }  \sum_{i=m+1}^n{\epsilon_ih_i(f(x_i), y)}  \right] 
+\end{align*}
+
+
+\end{proof}
+  
+
+
+
 
 \phantomsection
 \addcontentsline{toc}{subsection}{Հոֆդինգի անհավասարությունը}
@@ -721,131 +900,6 @@ $$\phi(c, T_i, f, W_{T_i}) \leq \phi(c, T, f, W)$$
 
 
 
-
-
-
-
-
-
-
-\begin{preposition}
-\label{prep_vec_ineq}
-Կամայական $v \in \mathbb{R}^d$ վեկտորի համար տեղի ունի հետևյալը՝
-$$||v|| \leq \sqrt{2}\E_{\sigma \sim \{\pm1\}^d} \left| \sum_{i=1}^d \sigma_iv_i \right|$$
-\end{preposition}
-\begin{theorem}
-\label{contr_theorem}
-Դիցուք $\mathcal{X}$-ը որևէ բազմություն է և $(x_1, x_2, ..., x_n) \in X^N$։ Տրված է նաև $\mathcal{F}$ ֆունկցիաների բազմություն, որի կամայական $f \in \mathcal{F}$ ֆունկցիա $\mathcal{X}$ բազմությունը արտապատկերում է $\mathbb{R}^d$ էվկլիդյան տարածություն՝ $f:\mathcal{X} \rightarrow \mathbb{R}^d$։ Դիցուք $h_i$ ֆունկցիաներ ունենք որոնք $\mathbb{R}^d$ էվկլիդյան տարածությունը արտապատկերում են  իրական թվերի $\mathbb{R}$ տարածություն՝
-$h_i:\mathbb{R}^d \rightarrow \mathbb{R}$, կամայական $i \in [n]$ համար։ Կենթադրենք, որ բոլոր $h_i$ ֆունկցիաները, ինչ-որ $L$ դրական հաստատունով Լիպշից հատկությամբ օժտված ֆունկցիաներ են։ Այդ դեպքում տեղի ունի հետևյալ անհավասարությունը՝
-\begin{equation}
-\label{contradiction_ineq}
-\E_{\sigma \sim \{\pm 1\}^n}\left[\sup_{f \in \mathcal{F}}  \sum_{i=1}^n{\sigma_ih_i(f(x_i))}  \right]    \leq \sqrt{2}L \E_{\sigma \sim \{\pm1\}^{nd}} \left[  \sup_{f \in \mathcal{F}}  \sum_{i=1}^n\sum_{j=1}^d{\sigma_{ij}f_j(x_i)}   \right]
-\end{equation}
-\end{theorem}
-
-
-\noindent
-Թեորեմ \ref{contr_theorem}-ը կարելի է ընդհանրացնել  $h_i(v, y) \in \mathbb{R}$ ֆունկցիաների համար, որտեղ $v \in \mathbb{R}^d$, $y \in \mathcal{Y}$ և $h_i$ ֆունկցիաները ըստ $v$ փոփոխականի $L$ հաստատունով Լիպշից հատկությամբ օժտված ֆունկցիաներ են կամայական $y \in \mathcal{Y}$ համար։ 
-
-\begin{theorem}
-\label{contr_theorem}
-Դիցուք $\mathcal{X}$-ը և $\mathcal{Y}$-ը որևէ բազմություններ են  և $(x_1, x_2, ..., x_n) \in X^N$։ Տրված է նաև $\mathcal{F}$ ֆունկցիաների բազմություն, որի կամայական $f \in \mathcal{F}$ ֆունկցիա $\mathcal{X}$ բազմությունը արտապատկերում է $\mathbb{R}^d$ էվկլիդյան տարածություն՝ $f:\mathcal{X} \rightarrow \mathbb{R}^d$։ Դիցուք $h_i$ ֆունկցիաներ ունենք՝ $$h_i:\mathbb{R}^d \times \mathcal{Y} \rightarrow \mathbb{R}$$ կամայական $i \in [n]$ համար։ Կենթադրենք, որ բոլոր $h_i(v, y)$ ֆունկցիաները, ինչ-որ $L$ դրական հաստատունով Լիպշից հատկությամբ օժտված ֆունկցիաներ են ըստ $v$-ի կամայական $y \in \mathcal{Y}$ համար։ Այդ դեպքում տեղի ունի հետևյալ անհավասարությունը՝
-\begin{equation}
-\label{contradiction_ineq}
-\E_{\sigma \sim \{\pm 1\}^n}\left[\sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal{Y}} }  \sum_{i=1}^n{\sigma_ih_i(f(x_i), y)}  \right]    \leq \sqrt{2}L \E_{\sigma \sim \{\pm1\}^{nd}} \left[  \sup_{f \in \mathcal{F}}  \sum_{i=1}^n\sum_{j=1}^d{\sigma_{ij}f_j(x_i)}   \right]
-\end{equation}
-\end{theorem}
-
-\begin{proof}[Ապացույց]
-Սկզբում ցույց տանք, որ բոլոր $i \in [n]$-երի համար և կամայական $g:\mathcal{F}\times \mathcal{Y} \rightarrow \mathbb{R}$  ֆունկցիոնալի համար տեղի ունի հետևյալ անհավասարությունը՝
-\begin{equation}
-\label{sup_ineq}
-\E_{\epsilon \sim \{\pm1\}}\sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal{Y}}}    {\epsilon h_i(f(x_i), y)} + g(f, y)   \leq    \sqrt{2}L 
-\E_{\epsilon \sim \{\pm1\}^d}\sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal{Y}}}      {   \sum_{j=1}^d    \epsilon_jf_j(x_i)} + g(f, y)
-\end{equation}
-Դիցուք $\delta > 0$ կամայական դրական թիվ է։ Այդ դեպքում համաձայն Ռադեմախերի փոփոխականի սահմանաման կունենանք՝
-\begin{align*}
- 2\E_{\epsilon \sim \{\pm1\}}\sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal{Y}}}    {\epsilon h_i(f(x_i), y)} - \delta  
-= \sup_{\substack{f, \bar{f} \in \mathcal{F}  \\ y \in \mathcal{Y}}}    {h_i(f(x_i), y)  + g(\bar{f}, y) - h_i(\bar{f}(x_i), y) + g(\bar{f}, y) - \delta}
-\end{align*}
-
-Օգտվելով սուպրեմումի սահմանումից՝ գոյություն ունեն $f*, \bar{f}^* \in \mathcal{F}$ ֆունկցիաներ, որ տեղի ունի հետևյալը՝
-\begin{align*}
- &\sup_{\substack{f, \bar{f} \in \mathcal{F}  \\ y \in \mathcal{Y}}}    {h_i(f(x_i), y)  + g(\bar{f}, y) - h_i(\bar{f}(x_i), y) + g(\bar{f}, y) -\delta}  \leq \\
- &\leq \sup_{y \in \mathcal{Y}}   h_i(f^*(x_i), y) - h_i(\bar{f}^*(x_i), y) + g(f^*, y) + g(\bar{f}^*, y)
-\end{align*}
-
-Օգտագործելով $h_i$ ֆունկցաի Լիպշիցի հատկությամբ օժտված լինելը կունենանք՝ 
-
-\begin{align*}
- &\sup_{y \in \mathcal{Y}}   h_i(f^*(x_i), y) - h_i(\bar{f}^*(x_i), y) + g(f^*, y) + g(\bar{f}^*, y) \leq \\
-& \leq   {L||f^*(x_i) - \bar{f}^*(x_i)||} + \sup_{y \in \mathcal{Y}}  g(f^*, y) + g(\bar{f}^*, y)
-\end{align*}
-
-Պնդում \ref{prep_vec_ineq}-ը կիրառելով կստանանք՝
-\begin{align*}
- &{L||f^*(x_i) - \bar{f}^*(x_i)||} + \sup_{y \in \mathcal{Y}}  g(f^*, y) + g(\bar{f}^*, y) \leq \\
-& \leq  {\sqrt{2}L} \E_{\epsilon \sim \{\pm 1\}^d}    \left |  \sum_{j=1}^d \epsilon_j (f^*_j(x_i) - \bar{f}_j^*(x_i))  \right|                    + \sup_{y \in \mathcal{Y}}    g(f^*, y) + g(\bar{f}^*, y)  \leq \\
-&\leq  {\sqrt{2}L} \E_{\epsilon \sim \{\pm 1\}^d}        \sup_{f, \bar{f} \in \mathcal{F}}      \left |  \sum_{j=1}^d \epsilon_j f_j(x_i) - \sum_{j=1}^d \epsilon_j\bar{f}_j(x_i)  \right|                    + \sup_{y \in \mathcal{Y}}    g(f, y) + g(\bar{f}, y) 
-\end{align*}
-
-Հեշտ է նկատել, որ կամայական ֆիքսված $\epsilon$-ի դեպքում 
-$$\sup_{f, \bar{f} \in \mathcal{F}}      \left |  \sum_{j=1}^d \epsilon_j f_j(x_i) - \sum_{j=1}^d \epsilon_j\bar{f}_j(x_i)  \right|  = 
-\sup_{f, \bar{f} \in \mathcal{F}}         \sum_{j=1}^d \epsilon_j f_j(x_i) - \sum_{j=1}^d \epsilon_j\bar{f}_j(x_i)    $$
-և քանի որ $\sup_{y \in \mathcal{Y}}    g(f, y) + g(\bar{f}, y)$ ինվարիանտ է $f, \bar{f}$ ֆունկցիաների փոփոխման նկատմամբ, կունենանք՝ 
-
-\begin{align*}
-&  {\sqrt{2}L} \E_{\epsilon \sim \{\pm 1\}^d}    \left |  \sum_{j=1}^d \epsilon_j (f^*_j(x_i) - \bar{f}_j^*(x_i))  \right|                    + \sup_{y \in \mathcal{Y}}    g(f^*, y) + g(\bar{f}^*, y)  \leq \\
-&\leq  {\sqrt{2}L} \E_{\epsilon \sim \{\pm 1\}^d}        \sup_{f, \bar{f} \in \mathcal{F}}        \sum_{j=1}^d \epsilon_j f_j(x_i) - \sum_{j=1}^d \epsilon_j\bar{f}_j(x_i)                      + \sup_{y \in \mathcal{Y}}    g(f, y) + g(\bar{f}, y)  = \\
-&=  {\sqrt{2}L} \E_{\epsilon \sim \{\pm 1\}^d}        \sup_{f \in \mathcal{F}}        \sum_{j=1}^d \epsilon_j f_j(x_i)    + \sup_{y \in \mathcal{Y}}    g(f, y)    +  \E_{\epsilon \sim \{\pm 1\}^d}        \sup_{\bar{f} \in \mathcal{F}}   -  \sum_{j=1}^d \epsilon_j\bar{f}_j(x_i)                      + \sup_{y \in \mathcal{Y}}  g(\bar{f}, y) 
-\end{align*}
-
-
-Հաշվի առնելով Ռադեմախերի $\epsilon_j$ փոփոխականների սիմետրիկություը կստանանք՝
-
-\begin{align*}
-&{\sqrt{2}L} \E_{\epsilon \sim \{\pm 1\}^d}        \sup_{f \in \mathcal{F}}        \sum_{j=1}^d \epsilon_j f_j(x_i)    + \sup_{y \in \mathcal{Y}}    g(f, y)    +  \E_{\epsilon \sim \{\pm 1\}^d}        \sup_{\bar{f} \in \mathcal{F}}   -  \sum_{j=1}^d \epsilon_j\bar{f}_j(x_i)                      + \sup_{y \in \mathcal{Y}}  g(\bar{f}, y)  = \\
-&= 2\left({\sqrt{2}L} \E_{\epsilon \sim \{\pm 1\}^d}        \sup_{f \in \mathcal{F}}        \sum_{j=1}^d \epsilon_j f_j(x_i)    + \sup_{y \in \mathcal{Y}}    g(f, y)  \right)    = \\
-&=  2\left({\sqrt{2}L} \E_{\epsilon \sim \{\pm 1\}^d}        \sup_{\substack{f \in \mathcal{F}  \\ y \in \mathcal{Y}  }}     \sum_{j=1}^d \epsilon_j f_j(x_i)    +   g(f, y)  \right)    
-\end{align*}
-
-Այսպիսով կամայական $\delta > 0$ դրական թվի համար՝
-$$\E_{\epsilon \sim \{\pm1\}}\sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal{Y}}}    {\epsilon h_i(f(x_i), y)} - \delta  \leq {\sqrt{2}L} \E_{\epsilon \sim \{\pm 1\}^d}        \sup_{\substack{f \in \mathcal{F}  \\ y \in \mathcal{Y}  }}     \sum_{j=1}^d \epsilon_j f_j(x_i)    +   g(f, y)   $$
-
-Քանի որ վերջինս տեղի ունի ցանկացած  $\delta$-ի համար, այստեղից անմիջապես հետևում է \ref{sup_ineq} անհավասարությունը։
-
-\par Այժմ ինդուկցիայի միջոցով ցույց տանք,
-որ  ցանկացած $m \in \{0, ..., n\}$ համար տեղի ունի հետևյալ անհավասարությունը։
-
-\begin{align*}
-&\E_{\epsilon \sim \{\pm 1\}^n}\left[\sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal{Y}} }  \sum_{i=1}^n{\epsilon_ih_i(f(x_i), y)}  \right]    \leq \sqrt{2}L \E_{\sigma \sim \{\pm1\}^{md}} \left[  \sup_{f \in \mathcal{F}}  \sum_{i=1}^m\sum_{j=1}^d{\sigma_{ij}f_j(x_i)}   \right] +\\ &+\E_{\epsilon \sim \{\pm 1\}^{n-m}}\left[\sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal{Y}} }  \sum_{i=m+1}^n{\epsilon_ih_i(f(x_i), y)}  \right]   
-\end{align*}
-
-\ref{contradiction_ineq} անհավասարությունը անմիջապես հետևում է՝ վերցնելով $m = n$։ Երբ $m=0$ անհավասարության երկու կողմերում նույն արտահայտությունն է գրված և հետևաբար տեղի ունի անհավասարությունը։ Կատարենք ինդուկցիոն ենթադրություն և համարենք անհավասարությունը տեղի ունի $(m-1)$-ի համար, որտեղ $m \leq n$։
-
-
-
-\begin{align*}
-&\E_{\epsilon \sim \{\pm 1\}^n}\left[\sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal{Y}} }  \sum_{i=1}^n{\epsilon_ih_i(f(x_i), y)}  \right]   
- \leq \sqrt{2}L \E_{\sigma \sim \{\pm1\}^{(m-1)d}} \left[  \sup_{f \in \mathcal{F}}  \sum_{i=1}^{m-1}\sum_{j=1}^d{\sigma_{ij}f_j(x_i)}   \right] +\\ 
- &+\E_{\epsilon \sim \{\pm 1\}^{n-m+1}}\left[\sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal{Y}} }  \sum_{i=m}^n{\epsilon_ih_i(f(x_i), y)}  \right] = \\  
- &= \E_{\substack{\epsilon \sim \{ \pm 1\}^{n-m}   \\ \sigma \sim \{ \pm 1\}^{(m-1)d} }}     \E_{\epsilon_m \sim \{ \pm1 \}} \left [          \sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal{Y}}}     \left(\epsilon_m h_m(f(x_m), y)   +   \sqrt{2}L 				 \sum_{i=1}^{m-1}\sum_{j=1}^d{\sigma_{ij}f_j(x_i)}  + \sum_{i = m+1}^n \epsilon_ih_i(f(x_i), y)				\right )	\right ]
-\end{align*}
-
-
-Սահմանենք $$g(f, y) = \sqrt{2}L\sum_{i=1}^{m-1}\sum_{j=1}^d{\sigma_{ij}f_j(x_i)}  + \sum_{i = m+1}^n\epsilon_ih_i(f(x_i), y)$$
-և տեղադրելով այն վերջինիս մեջ և օգտագործելով \ref{sup_ineq} անհավասարությունը կստանանք՝
-
-
-\begin{align*}
- &\E_{\substack{\epsilon \sim \{ \pm 1\}^{n-m}   \\ \sigma \sim \{ \pm 1\}^{(m-1)d} }}     \E_{\epsilon_m \sim \{ \pm1 \}} \left [          \sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal{Y}}}     \left(\epsilon_m h_m(f(x_m), y)   +   g(f, y)			\right )	\right ] \leq \\
- &\leq  \E_{\substack{\epsilon \sim \{ \pm 1\}^{n-m}   \\ \sigma \sim \{ \pm 1\}^{(m-1)d} }}     \E_{\sigma_m \sim \{ \pm1 \}^d} \left [          \sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal{Y}}}     \left( \sum_{j = 1}^d  \sigma_{mj}f(x_m) +   g(f, y)			\right )	\right ] =\\
- &= \sqrt{2}L \E_{\sigma \sim \{\pm1\}^{md}} \left[  \sup_{f \in \mathcal{F}}  \sum_{i=1}^m\sum_{j=1}^d{\sigma_{ij}f_j(x_i)}   \right] + \E_{\epsilon \sim \{\pm 1\}^{n-m}}\left[\sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal{Y}} }  \sum_{i=m+1}^n{\epsilon_ih_i(f(x_i), y)}  \right] 
-\end{align*}
-
-
-\end{proof}
-  
 Դիցուք ունենք միմյանցից անկախ $\mathcal{P}(\mathcal{T} \text{ } |\text{ }  |\mathcal{T}| = k +1)$ բաշխումից ընտրված $N$ հատ առաջադրանքներ՝ $\mathcal{T}_1, ..., \mathcal{T}_N$  և $\mathcal{T} = \cup_{i=1}^N{\mathcal{T}_i}$։ Միավորված առաջադրանքի հզորությունը $n$ է՝  $|\mathcal{T}| =n $։ Այժմ ենթադրենք միավորված $\mathcal{T}$ առաջադրանքի համար ունենք միմյանցին ակախ և $D_{\mathcal{T}}$ բաշխումից ընտրված $M$ օրինակներ՝
 $$S = \{(x_1, y_1), (x_2, y_2), ..., (x_M, y_M) | x_i \in \mathcal{X}, y_i \in \mathcal{T} \text{ և } i \in [M] \}$$
 $\mathcal{T}$   առաջադրանքի համար դիցուք $g(x) = Wf(x)$ գծային դասակարգչն է ըստ $f \in \mathcal{F}$ ներկայացման, որտեղ $W$-ն $(n+1) \times d$ չափանի մատրիցա է և $W \in \mathcal{V}$։ $g(x)$ դասակարգչի էմպիրիկ սխալանքը $S$ բազմության վրա սահմանենք հետևյալ կերպ՝
@@ -853,6 +907,13 @@ $$\hat{L}(\mathcal{T},f, W) = \frac{1}{M}\sum_{i=1}^Ml(\{(Wf(x_i))_{y_i} - (Wf(x
 Ալգորիթմը որով սովորելու ենք ներկայցման ֆունկցիա $\mathcal{F}$ դասից հետևյալն է՝
 $$(\hat{f}, \hat{W}) = \argmin_{\substack{f \in \mathcal{F} \\ W \in \mathcal{V}}} \hat{L}(\mathcal{T},f, W)$$
 որտեղ $\hat{f}$ փնտրվող ներկայացումն է։ Այսպիսով ալգորթմը ըստ $f$ ներկայացման և գծային դասկարգիչի $W$ մատրիցայի  մինիմիզացնում է $\mathcal{T}$ առաջադրանքի վերահսկիչ էմպիրիկ սխալանքը $S$ օրինակների բազմության վրա։
+
+Մինչև հաջորդ լեմմային անցնելը ներկայցնենք $f:\mathbb{R}^n \rightarrow \mathbb{R}^m$ դիֆերենցելի ֆունկցիայի Լիպշիցի հատկությամբ օժտված լինելու համար բավարար պայմանը(ավելի մանրամասն տես օրինակ \cite[էջ 60-61]{bib_item_13})։ 
+\begin{align*}
+||f(x) - f(y)|| \leq ||J||_F^* ||x-y||, \forall x, y \in \mathbb{R}^n
+\end{align*}
+որտեղ $$||J||^*_F =  \max_{x \in \mathbb{R}^n}||J||_F$$
+և $J$-ն f(x) ֆունկցիայի Յակոբյանն է։  Լիպշից ֆունկցիայի սահմանումը հաշվի առնելով՝ $$L \leq ||J||_F^*$$
 
 \begin{lemma}
 \label{rad_lemma_main}
@@ -1013,10 +1074,45 @@ L(\hat{f}) \leq  L(\mathcal{T}, f, W) + \frac{4\sqrt{2} \eta Q\sqrt{n}}{M} \E_{\
  \end{proof}
 
 \pagebreak
+
+\section*{\hfill Փորձարարական արդյունքներ \hfill} \noindent
+\phantomsection
+\addcontentsline{toc}{section}{Փորձարարական արդյունքներ}
+
+Նկարագրենք այն փորձարկումները, որոնք իրականցրել ենք պարզելու համար, թե արդյոք միջին վերահսկիչ կորստի ընդհանրական  սխալանքի գնահատականում մասնակցող քանակական մեծությունների միջև կապը  արտահայտվում է  իրական տվյալներում։ Մասնավորապես կարևոր է հասկանալ տվյալների ներկայցման առաջադրանքում մասնակցող դասերի տարբեր քանակների  դեպքում ինչպես է փոխվելու էմպիրիկ միջին վերահսկից կորուստը ուսուցման մեջ չմասնակցող դասերից բաղկացած դասակարգման առաջդրանքների համար։
+\par Փորձարկումների համար օգտագործել ենք $CIFAR-100$ տվյալների բազմությունը (տես \cite{bib_item_14})։ Այն $100$ դասերից բաղկացած $60000$ հատ $32\times 32$ չափսի փոքր նկարներ պարունակող տվյալների բազմություն է։
+
+\begin{figure}[htp]
+
+\centering
+\includegraphics[width=.5\textwidth]{imgs/k=2.pdf}\hfill
+\includegraphics[width=.5\textwidth]{imgs/k=5.pdf}\hfill
+\caption{default}
+\label{fig:figure3}
+
+\end{figure}
+
+
+\par Նախապես պատահականորեն $10$ դասեր ընտրվում են բոլոր հնարավոր 100 դասերից, որոնցից կազմվում են $k=2$, $k=5$ և $k=10$ դասեր պարունակող առաջադրանքներ։ Մնացած $90$ դասերի նկարների օրինակները օգտագործվում են ներկայացումներ սովորելու համար։ Ներկայացումների ֆունկցիաների ընտանիքի համար օգտագործվել  է ֆիքսված ճարտարապետություն ունեցող փաթույթային ցանցը։ Վարժեցումը կատարվում է $90$ դասերից պատահական ընտրված առաջադրանքների համար։ Հավասարահավանական ընտրված դասերով ձևավորված առաջադրանքները տարբեր քանակությամբ դասեր են պարունակում՝ $n=10$-ից մինչև $n=90$։ Երբ դասերի քանակը $10$ է ուսուցման նկարների քանակը՝ $M=5000$ և յուրաքանչյուր դասի համար $500$ հատ նկար կա տվյալներում։ Վերժեցման տվյալների դասերի քանակի՝ $n$-ի,  մեծացումից կախված ուսուցման մեջ մասնակցող նկարաների քանակը՝ $M$-ը փոփոխվում է երեք տարբեր կախվածությամբ՝ հաստատուն, գծային և $\frac{\sqrt{n}}{M}$-ը պահելով հաստատուն։
+
+\begin{figure}[htp]
+\centering
+\includegraphics[width=1\textwidth]{imgs/k=10.pdf}\hfill
+\caption{default}
+\label{fig:figure3}
+\end{figure}
+
+
+
+\pagebreak
 \medskip
 \begin{thebibliography}{9}
 \phantomsection
 \addcontentsline{toc}{section}{Գրականություն} 
+
+\bibitem{bib_item_12}
+S. Arora, H. Khandeparkar, M. Khodak, O. Plevrakis and N. Saunshin.
+\textit{ A Theoretical Analysis of Contrastive Unsupervised Representation Learning,} https://arxiv.org/abs/1902.09229, 2019.
 
 \bibitem{bib_item_1}
 S. Pan and Q. Yang.
@@ -1067,6 +1163,14 @@ Shai Shalev-Shwartz and Shai Ben-David. \textit{Understanding Machine Learning: 
 \bibitem{bib_item_11}
 A. Maurer. \textit{A vector-contraction inequality for rademacher
 complexities}, In International Conference on Algorithmic Learning Theory, pp. 3–17. Springer, 2016.
+
+\bibitem{bib_item_13}
+J.V. Burke. \textit{Nonlinear Optimization.} 
+University of Washington, 2004.
+
+\bibitem{bib_item_14}
+A. Krizhevsky.  \textit{Learning multiple layers of features from
+tiny images.} Technical report, 2009.
 
 \end{thebibliography}
 

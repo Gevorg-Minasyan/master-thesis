@@ -15,7 +15,32 @@
 %	PACKAGES AND THEMES
 %----------------------------------------------------------------------------------------
 
-\documentclass{beamer}
+
+
+\documentclass[10pt]{beamer}
+
+\setbeamertemplate{frametitle}[default][center]
+
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\E}{\mathbb{E}}
+
+%tikz package for drawing graphs%
+\usepackage{tkz-berge}
+\usepackage{tikz}
+
+\usetikzlibrary{arrows}
+
+
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{positioning,chains,fit,shapes,calc}
+
+\usetikzlibrary{trees,positioning,fit,arrows,decorations.pathreplacing}
+
+\usetikzlibrary{shapes.geometric, shapes.misc, positioning, calc, arrows.meta}
+\renewcommand{\figurename}{Նկ.}
+% the figure insert specific place with [H] param
+\usepackage{float}
 
 \mode<presentation> {
 
@@ -28,7 +53,7 @@
 %\usetheme{Antibes}
 %\usetheme{Bergen}
 %\usetheme{Berkeley}
-%\usetheme{Berlin}
+\usetheme{Berlin}
 %\usetheme{Boadilla}
 %\usetheme{CambridgeUS}
 %\usetheme{Copenhagen}
@@ -40,7 +65,7 @@
 %\usetheme{Ilmenau}
 %\usetheme{JuanLesPins}
 %\usetheme{Luebeck}
-\usetheme{Madrid}
+%\usetheme{Madrid}
 %\usetheme{Malmoe}
 %\usetheme{Marburg}
 %\usetheme{Montpellier}
@@ -75,7 +100,6 @@
 
 %\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
 }
-
 \usepackage {xltxtra, polyglossia}
 
 \usepackage {fontspec}
@@ -95,13 +119,12 @@
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
+\title[\armfont{Տրանսֆերային ուսուցման որոշակի մեթոդի ընհանրացման սխալանքի գնահատման մասին}]{\armfont{Տրանսֆերային ուսուցման որոշակի մեթոդի ընհանրացման սխալանքի գնահատման մասին}} % The short title appears at the bottom of every slide, the full title is only on the title page
+\institute[\armfont{ԵՊՀ}]{\armfont{Երևանի Պետական Համալսարան}}
 
-\title[]{\armfont{Տրանսֆերային ուսուցման որոշակի մեթոդի ընհանրացման սխալանքի գնահատման մասին}} % The short title appears at the bottom of every slide, the full title is only on the title page
 \author{\armfont{Գևորգ Մինասյան}} % Your name
-\institute[\armfont{ԵՊՀ}] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
-{
-\armfont{ Երևանի Պետական Համալսարան}}
-\date{\armfont{Մայիսի} 31, 2019} % Date, can be changed to a custom date
+
+\date{31 \armfont{Մայիսի}  2019} % Date, can be changed to a custom date
 
 \begin{document}
 
@@ -110,7 +133,7 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Overview} % Table of contents slide, comment this block out to remove it
+\frametitle{\armfont{Ակնարկ}} % Table of contents slide, comment this block out to remove it
 \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
 \end{frame}
 
@@ -119,49 +142,811 @@
 %----------------------------------------------------------------------------------------
 
 %------------------------------------------------
-\section{First Section} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+\section{\armfont{Տրանսֆերային ուսուցում}} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %------------------------------------------------
 
-\subsection{Subsection Example} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+\subsection{\armfont{Ինչ է տրասֆերային ուսուցումը}} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+
 
 \begin{frame}
-\frametitle{Paragraphs of Text}
-Sed iaculis dapibus gravida. Morbi sed tortor erat, nec interdum arcu. Sed id lorem lectus. Quisque viverra augue id sem ornare non aliquam nibh tristique. Aenean in ligula nisl. Nulla sed tellus ipsum. Donec vestibulum ligula non lorem vulputate fermentum accumsan neque mollis.\\~\\
+\frametitle{\armfont{ {Տրանֆերային ուսուցուման և սովորական մեքենայական ուսուցման միջև տարբերությունը  }}}
+\end{frame}
 
-Sed diam enim, sagittis nec condimentum sit amet, ullamcorper sit amet libero. Aliquam vel dui orci, a porta odio. Nullam id suscipit ipsum. Aenean lobortis commodo sem, ut commodo leo gravida vitae. Pellentesque vehicula ante iaculis arcu pretium rutrum eget sit amet purus. Integer ornare nulla quis neque ultrices lobortis. Vestibulum ultrices tincidunt libero, quis commodo erat ullamcorper id.
+
+
+\begin{frame}[t]
+\frametitle{\armfont{ {Տրանֆերային ուսուցուման և սովորական մեքենայական ուսուցման միջև տարբերությունը }}}
+% for double arrows a la chef
+% adapt line thickness and line width, if needed
+\tikzstyle{vecArrow} = [thick, decoration={markings,mark=at position
+   1 with {\arrow[semithick]{open triangle 60}}},
+   double distance=2.5pt, shorten >= 5.5pt,
+   preaction = {decorate},
+   postaction = {draw,line width=2.5pt, white,shorten >= 4.5pt}]
+\tikzstyle{innerWhite} = [semithick, white,line width=1pt, shorten >= 4.5pt]
+
+
+
+
+\begin{tikzpicture}[
+    arr/.style={-{Latex[length=2mm]}},
+    persistence/.style={cylinder, shape border rotate=90, 
+        minimum height=0.8cm, minimum width=1.2cm, draw},
+        persistence2/.style={cylinder, shape border rotate=90, 
+        minimum height=0.5cm, minimum width=1.cm, draw},
+    task_rec/.style={rectangle, draw, minimum height=0.8cm, minimum width=1.5cm},
+     knowledge_rec/.style={rectangle, draw, minimum height=0.7cm, minimum width=1.3cm}
+    ]
+
+
+
+
+
+  
+  \node(rep_node)[text width=6cm] at (0, 10.5) {\fontsize{8pt}{8pt}{ \armfont{ \textbf{Սովորական մեքենյական ուսուցում}}}};
+
+  
+ 
+\end{tikzpicture}
+
+
+
+\end{frame}
+
+
+
+
+
+\begin{frame}
+\frametitle{\armfont{ {Տրանֆերային ուսուցուման և սովորական մեքենայական ուսուցման միջև տարբերությունը }}}
+% for double arrows a la chef
+% adapt line thickness and line width, if needed
+\tikzstyle{vecArrow} = [thick, decoration={markings,mark=at position
+   1 with {\arrow[semithick]{open triangle 60}}},
+   double distance=2.5pt, shorten >= 5.5pt,
+   preaction = {decorate},
+   postaction = {draw,line width=2.5pt, white,shorten >= 4.5pt}]
+\tikzstyle{innerWhite} = [semithick, white,line width=1pt, shorten >= 4.5pt]
+
+
+
+
+\begin{tikzpicture}[
+    arr/.style={-{Latex[length=2mm]}},
+    persistence/.style={cylinder, shape border rotate=90, 
+        minimum height=0.8cm, minimum width=1.2cm, draw},
+        persistence2/.style={cylinder, shape border rotate=90, 
+        minimum height=0.5cm, minimum width=1.cm, draw},
+    task_rec/.style={rectangle, draw, minimum height=0.8cm, minimum width=1.5cm},
+     knowledge_rec/.style={rectangle, draw, minimum height=0.7cm, minimum width=1.3cm}
+    ]
+
+
+\node[persistence, label=below :\fontsize{6pt}{6pt}{\armfont{ {Տվյալներ 1}}}] (per1)  at (-2, 9) {};
+\node(task1) [task_rec, text width=2cm,align=center] at (1, 9) {\fontsize{6pt}{6pt}{\armfont{Առաջադրանք 1-ի  ուսուցում}}} ;
+ \draw[vecArrow] (per1) to (task1);
+
+
+
+\node(task2) [task_rec, text width=2cm,align=center] at (1, 6.7) {\fontsize{6pt}{6pt}{\armfont{Առաջադրանք 2-ի   ուսուցում} }};
+\node[persistence, label=below : {\fontsize{6pt}{6pt}{\armfont{Տվյալներ 2}}}] (per2)  at (-2, 6.7) {};
+\draw[vecArrow] (per2) to (task2);
+
+
+
+ 
+  % grouping ml nodes
+  \node[fit=(per1)(task1)](group_ml){};
+  
+  \draw[line width=0.5pt,decorate,decoration={amplitude=5pt,brace}]
+  (group_ml.north west) -- (group_ml.north east);
+  \node[above=of group_ml,anchor=center,yshift=-0.6cm]{\fontsize{6pt}{6pt}{\armfont{Մեկուսացված առաջադրանք 1}}};
+  
+  
+    % grouping ml nodes
+  \node[fit=(per2)(task2)](group_22_ml){};
+  
+  \draw[line width=0.5pt,decorate,decoration={amplitude=5pt,brace, mirror}]
+  (group_22_ml.south west) -- (group_22_ml.south east);
+  \node[below=of group_22_ml,anchor=center, yshift=0.6cm]{\fontsize{6pt}{6pt}{\armfont{Մեկուսացված առաջադրանք 2}}};
+
+
+
+  
+  \node(rep_node)[text width=6cm] at (0, 10.5) {\fontsize{8pt}{8pt}{ \armfont{ \textbf{Սովորական մեքենյական ուսուցում}}}};
+
+  
+ 
+\end{tikzpicture}
+
+
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\armfont{ {Տրանֆերային ուսուցուման և սովորական մեքենայական ուսուցման միջև տարբերությունը }}}
+% for double arrows a la chef
+% adapt line thickness and line width, if needed
+\tikzstyle{vecArrow} = [thick, decoration={markings,mark=at position
+   1 with {\arrow[semithick]{open triangle 60}}},
+   double distance=2.5pt, shorten >= 5.5pt,
+   preaction = {decorate},
+   postaction = {draw,line width=2.5pt, white,shorten >= 4.5pt}]
+\tikzstyle{innerWhite} = [semithick, white,line width=1pt, shorten >= 4.5pt]
+
+
+
+
+\begin{tikzpicture}[
+    arr/.style={-{Latex[length=2mm]}},
+    persistence/.style={cylinder, shape border rotate=90, 
+        minimum height=0.8cm, minimum width=1.2cm, draw},
+        persistence2/.style={cylinder, shape border rotate=90, 
+        minimum height=0.5cm, minimum width=1.cm, draw},
+    task_rec/.style={rectangle, draw, minimum height=0.8cm, minimum width=1.5cm},
+     knowledge_rec/.style={rectangle, draw, minimum height=0.7cm, minimum width=1.3cm}
+    ]
+
+
+\node[persistence, label=below :\fontsize{6pt}{6pt}{\armfont{ {Տվյալներ 1}}}] (per1)  at (-2, 9) {};
+\node(task1) [task_rec, text width=2cm,align=center] at (1, 9) {\fontsize{6pt}{6pt}{\armfont{Առաջադրանք 1-ի  ուսուցում}}} ;
+ \draw[vecArrow] (per1) to (task1);
+
+
+
+\node(task2) [task_rec, text width=2cm,align=center] at (1, 6.7) {\fontsize{6pt}{6pt}{\armfont{Առաջադրանք 2-ի   ուսուցում} }};
+\node[persistence, label=below : {\fontsize{6pt}{6pt}{\armfont{Տվյալներ 2}}}] (per2)  at (-2, 6.7) {};
+\draw[vecArrow] (per2) to (task2);
+
+
+
+ 
+  % grouping ml nodes
+  \node[fit=(per1)(task1)](group_ml){};
+  
+  \draw[line width=0.5pt,decorate,decoration={amplitude=5pt,brace}]
+  (group_ml.north west) -- (group_ml.north east);
+  \node[above=of group_ml,anchor=center,yshift=-0.6cm]{\fontsize{6pt}{6pt}{\armfont{Մեկուսացված առաջադրանք 1}}};
+  
+  
+    % grouping ml nodes
+  \node[fit=(per2)(task2)](group_22_ml){};
+  
+  \draw[line width=0.5pt,decorate,decoration={amplitude=5pt,brace, mirror}]
+  (group_22_ml.south west) -- (group_22_ml.south east);
+  \node[below=of group_22_ml,anchor=center, yshift=0.6cm]{\fontsize{6pt}{6pt}{\armfont{Մեկուսացված առաջադրանք 2}}};
+
+
+
+  
+  \node(rep_node)[text width=6cm] at (0, 10.5) {\fontsize{8pt}{8pt}{ \armfont{ \textbf{Սովորական մեքենյական ուսուցում}}}};
+
+  \node(rep_node)[text width=6cm] at (6.5, 10.5) {\fontsize{8pt}{8pt}{ \armfont{ \textbf{Տրանսֆերային ուսուցում}}}};
+ 
+\end{tikzpicture}
+
+
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\armfont{ {Տրանֆերային ուսուցուման և սովորական մեքենայական ուսուցման միջև տարբերությունը }}}
+% for double arrows a la chef
+% adapt line thickness and line width, if needed
+\tikzstyle{vecArrow} = [thick, decoration={markings,mark=at position
+   1 with {\arrow[semithick]{open triangle 60}}},
+   double distance=2.5pt, shorten >= 5.5pt,
+   preaction = {decorate},
+   postaction = {draw,line width=2.5pt, white,shorten >= 4.5pt}]
+\tikzstyle{innerWhite} = [semithick, white,line width=1pt, shorten >= 4.5pt]
+
+
+
+
+\begin{tikzpicture}[
+    arr/.style={-{Latex[length=2mm]}},
+    persistence/.style={cylinder, shape border rotate=90, 
+        minimum height=0.8cm, minimum width=1.2cm, draw},
+        persistence2/.style={cylinder, shape border rotate=90, 
+        minimum height=0.5cm, minimum width=1.cm, draw},
+    task_rec/.style={rectangle, draw, minimum height=0.8cm, minimum width=1.5cm},
+     knowledge_rec/.style={rectangle, draw, minimum height=0.7cm, minimum width=1.3cm}
+    ]
+
+
+\node[persistence, label=below :\fontsize{6pt}{6pt}{\armfont{ {Տվյալներ 1}}}] (per1)  at (-2, 9) {};
+\node(task1) [task_rec, text width=2cm,align=center] at (1, 9) {\fontsize{6pt}{6pt}{\armfont{Առաջադրանք 1-ի  ուսուցում}}} ;
+ \draw[vecArrow] (per1) to (task1);
+
+
+
+\node(task2) [task_rec, text width=2cm,align=center] at (1, 6.7) {\fontsize{6pt}{6pt}{\armfont{Առաջադրանք 2-ի   ուսուցում} }};
+\node[persistence, label=below : {\fontsize{6pt}{6pt}{\armfont{Տվյալներ 2}}}] (per2)  at (-2, 6.7) {};
+\draw[vecArrow] (per2) to (task2);
+
+
+
+ 
+  
+ \node[persistence, label=below : {\fontsize{6pt}{6pt}{\armfont{Տվյալներ 1}}}] (per1_tl)  at (4, 9) {};
+\node(task1_tl) [task_rec, text width=2cm,align=center] at (7, 9) {\fontsize{6pt}{6pt}{\armfont{Առաջադրանք 1-ի  ուսուցում} }};
+ \draw[vecArrow] (per1_tl) to (task1_tl);
+
+
+
+\node(task2_tl) [task_rec, text width=2cm,align=center] at (7, 6.7) {\fontsize{6pt}{6pt}{\armfont{Առաջադրանք 2-ի   ուսուցում} }};
+\node[persistence2, label=below : {\fontsize{6pt}{6pt}{\armfont{Տվյալներ 2}}}] (per2_tl)  at (4, 6.7) {};
+\draw[vecArrow] (per2_tl) to (task2_tl);
+
+
+
+\node(kn_rec_tl) [knowledge_rec] at (7, 7.83) {\fontsize{6pt}{6pt}{\armfont{Գիտելիք}}} ;
+\draw[vecArrow] (task1_tl) to (kn_rec_tl);
+\draw[vecArrow] (kn_rec_tl) to (task2_tl);
+ 
+ 
+  % grouping ml nodes
+  \node[fit=(per1)(task1)](group_ml){};
+  
+  \draw[line width=0.5pt,decorate,decoration={amplitude=5pt,brace}]
+  (group_ml.north west) -- (group_ml.north east);
+  \node[above=of group_ml,anchor=center,yshift=-0.6cm]{\fontsize{6pt}{6pt}{\armfont{Մեկուսացված առաջադրանք 1}}};
+  
+  
+    % grouping ml nodes
+  \node[fit=(per2)(task2)](group_22_ml){};
+  
+  \draw[line width=0.5pt,decorate,decoration={amplitude=5pt,brace, mirror}]
+  (group_22_ml.south west) -- (group_22_ml.south east);
+  \node[below=of group_22_ml,anchor=center, yshift=0.6cm]{\fontsize{6pt}{6pt}{\armfont{Մեկուսացված առաջադրանք 2}}};
+
+  % grouping ml nodes
+  \node[fit=(per1_tl)(task1_tl)](group_tl){};
+  
+  \draw[line width=0.5pt,decorate,decoration={amplitude=5pt,brace}]
+  (group_tl.north west) -- (group_tl.north east);
+  \node[above=of group_tl,anchor=center, yshift=-0.6cm]{\fontsize{6pt}{6pt}{\armfont{Աղբյուրի տիրույթ}}};
+  
+  
+  
+  % grouping ml nodes
+  \node[fit=(per2_tl)(task2_tl)](group_2_tl){};
+  
+ \draw[line width=0.5pt,decorate,decoration={amplitude=5pt,brace, mirror}]
+  (group_2_tl.south west) -- (group_2_tl.south east);
+  \node[below=of group_2_tl,anchor=center, yshift=0.6cm]{\fontsize{6pt}{6pt}{\armfont{Թիրախի տիրույթ}}};
+  
+  \node(rep_node)[text width=6cm] at (0, 10.5) {\fontsize{8pt}{8pt}{ \armfont{ \textbf{Սովորական մեքենյական ուսուցում}}}};
+  
+  \node(rep_node)[text width=6cm] at (6.5, 10.5) {\fontsize{8pt}{8pt}{ \armfont{ \textbf{Տրանսֆերային ուսուցում}}}};
+  
+ 
+\end{tikzpicture}
+
+
+
+\end{frame}
+
+\subsection{\armfont{Խորը տրասֆերային ուսուցում}}
+
+\begin{frame}
+\frametitle{\armfont{ {Տրանսֆերային ուսուցումը վարժեցված նեյրոնային ցանցի միջոցով }}}
+\end{frame}
+
+
+
+
+
+\begin{frame}
+\frametitle{\armfont{ {Տրանսֆերային ուսուցումը վարժեցված նեյրոնային ցանցի միջոցով }}}
+
+
+% for double arrows a la chef
+% adapt line thickness and line width, if needed
+\tikzstyle{vecArrow} = [thick, decoration={markings,mark=at position
+   1 with {\arrow[semithick]{open triangle 60}}},
+   double distance=2.5pt, shorten >= 5.5pt,
+   preaction = {decorate},
+   postaction = {draw,line width=2.5pt, white,shorten >= 4.5pt}, scale=0.5]
+\tikzstyle{innerWhite} = [semithick, white,line width=1.4pt, shorten >= 4.5pt , scale=0.5]
+
+
+\begin{tikzpicture}[
+    arr/.style={-{Latex[length=2mm]}},
+    persistence/.style={cylinder, shape border rotate=90, 
+        minimum height=.13cm, minimum width=.2cm, draw},
+        persistence2/.style={cylinder, shape border rotate=90, 
+        minimum height=0.8cm, minimum width=.15cm, draw},
+    task_rec/.style={rectangle, draw, minimum height=.2cm, minimum width=3.5cm},
+     input_rec/.style={rectangle, draw, minimum height=.1cm, minimum width=3.5cm},
+      conv_rec/.style={rectangle, draw, minimum height=.1cm, minimum width=3.5cm},
+      fc/.style={rectangle, draw, minimum height=.1cm, minimum width=3.5cm},
+      linclf/.style={rectangle, draw, minimum height=.1cm, minimum width=2.5cm},
+    ]
+\node(linclf_1)[linclf] at (-1, 8.5){ \fontsize{6pt}{6pt}{\armfont{Սոֆթմաքս}}};  
+\node(fc_12)[fc] at (-1, 7.7){\fontsize{6pt}{6pt}{ \armfont{Լրիվ կապակցված շերտ 2}}};  
+\node(fc_11)[fc] at (-1, 6.9){\fontsize{6pt}{6pt}{ \armfont{Լրիվ կապակցված շերտ 1}}};  
+\node(conv_rec_13)[conv_rec] at (-1, 6.1){\fontsize{6pt}{6pt}{ \armfont{փաթույթային շերտ 3}}};  
+
+\node(conv_rec_12)[conv_rec] at (-1,5.3){\fontsize{6pt}{6pt}{ \armfont{փաթույթային շերտ 2}}};   
+
+\node(conv_rec_11)[conv_rec] at (-1,4.5){\fontsize{6pt}{6pt}{ \armfont{փաթույթային շերտ 1}}};
+\node(input_rec_11)[input_rec] at (-1, 3.4){\fontsize{6pt}{6pt}{ \armfont{Աղբյուր տվյալների շերտ}}};
+
+\draw[vecArrow] (input_rec_11) to (conv_rec_11);
+\draw[vecArrow] (conv_rec_11) to (conv_rec_12);
+\draw[vecArrow] (conv_rec_12) to (conv_rec_13);
+\draw[vecArrow] (conv_rec_13) to (fc_11);
+\draw[vecArrow] (fc_11) to (fc_12);
+\draw[vecArrow] (fc_12) to (linclf_1);
+
+
+
+
+\draw[dashed] (-3, 7.3) -- (1, 7.3);
+
+
+
+%\draw [->, arr] (dts.south) to (per.top);
+\end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{\armfont{ {Տրանսֆերային ուսուցումը վարժեցված նեյրոնային ցանցի միջոցով }}}
+
+
+% for double arrows a la chef
+% adapt line thickness and line width, if needed
+\tikzstyle{vecArrow} = [thick, decoration={markings,mark=at position
+   1 with {\arrow[semithick]{open triangle 60}}},
+   double distance=2.5pt, shorten >= 5.5pt,
+   preaction = {decorate},
+   postaction = {draw,line width=2.5pt, white,shorten >= 4.5pt}, scale=0.5]
+\tikzstyle{innerWhite} = [semithick, white,line width=1.4pt, shorten >= 4.5pt , scale=0.5]
+
+
+\begin{tikzpicture}[
+    arr/.style={-{Latex[length=2mm]}},
+    persistence/.style={cylinder, shape border rotate=90, 
+        minimum height=.13cm, minimum width=.2cm, draw},
+        persistence2/.style={cylinder, shape border rotate=90, 
+        minimum height=0.8cm, minimum width=.15cm, draw},
+    task_rec/.style={rectangle, draw, minimum height=.2cm, minimum width=3.5cm},
+     input_rec/.style={rectangle, draw, minimum height=.1cm, minimum width=3.5cm},
+      conv_rec/.style={rectangle, draw, minimum height=.1cm, minimum width=3.5cm},
+      fc/.style={rectangle, draw, minimum height=.1cm, minimum width=3.5cm},
+      linclf/.style={rectangle, draw, minimum height=.1cm, minimum width=2.5cm},
+    ]
+\node(linclf_1)[linclf] at (-1, 8.5){ \fontsize{6pt}{6pt}{\armfont{Սոֆթմաքս}}};  
+\node(fc_12)[fc] at (-1, 7.7){\fontsize{6pt}{6pt}{ \armfont{Լրիվ կապակցված շերտ 2}}};  
+\node(fc_11)[fc] at (-1, 6.9){\fontsize{6pt}{6pt}{ \armfont{Լրիվ կապակցված շերտ 1}}};  
+\node(conv_rec_13)[conv_rec] at (-1, 6.1){\fontsize{6pt}{6pt}{ \armfont{փաթույթային շերտ 3}}};  
+
+\node(conv_rec_12)[conv_rec] at (-1,5.3){\fontsize{6pt}{6pt}{ \armfont{փաթույթային շերտ 2}}};   
+
+\node(conv_rec_11)[conv_rec] at (-1,4.5){\fontsize{6pt}{6pt}{ \armfont{փաթույթային շերտ 1}}};
+\node(input_rec_11)[input_rec] at (-1, 3.4){\fontsize{6pt}{6pt}{ \armfont{Աղբյուր տվյալների շերտ}}};
+
+\draw[vecArrow] (input_rec_11) to (conv_rec_11);
+\draw[vecArrow] (conv_rec_11) to (conv_rec_12);
+\draw[vecArrow] (conv_rec_12) to (conv_rec_13);
+\draw[vecArrow] (conv_rec_13) to (fc_11);
+\draw[vecArrow] (fc_11) to (fc_12);
+\draw[vecArrow] (fc_12) to (linclf_1);
+
+
+
+
+\draw[dashed] (-3, 7.3) -- (1, 7.3);
+
+
+\node(tr_arr)[draw, single arrow,
+              minimum height=20mm, minimum width=8mm,
+              single arrow head extend=2mm,
+              anchor=west] at (1.5,5.7) {\fontsize{6pt}{6pt}{ \armfont{ Փոխանցում}}};
+              
+              
+%\draw (3,6.2) -- (3.5,3.7);
+\draw [dashed](fc_11.north east) -- (tr_arr.west);
+\draw[dashed] (conv_rec_11.south east) -- (tr_arr.west);
+
+
+
+%\draw [->, arr] (dts.south) to (per.top);
+\end{tikzpicture}
+
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+
+\begin{frame}
+\frametitle{\armfont{ {Տրանսֆերային ուսուցումը վարժեցված նեյրոնային ցանցի միջոցով }}}
+
+
+% for double arrows a la chef
+% adapt line thickness and line width, if needed
+\tikzstyle{vecArrow} = [thick, decoration={markings,mark=at position
+   1 with {\arrow[semithick]{open triangle 60}}},
+   double distance=2.5pt, shorten >= 5.5pt,
+   preaction = {decorate},
+   postaction = {draw,line width=2.5pt, white,shorten >= 4.5pt}, scale=0.5]
+\tikzstyle{innerWhite} = [semithick, white,line width=1.4pt, shorten >= 4.5pt , scale=0.5]
+
+
+\begin{tikzpicture}[
+    arr/.style={-{Latex[length=2mm]}},
+    persistence/.style={cylinder, shape border rotate=90, 
+        minimum height=.13cm, minimum width=.2cm, draw},
+        persistence2/.style={cylinder, shape border rotate=90, 
+        minimum height=0.8cm, minimum width=.15cm, draw},
+    task_rec/.style={rectangle, draw, minimum height=.2cm, minimum width=3.5cm},
+     input_rec/.style={rectangle, draw, minimum height=.1cm, minimum width=3.5cm},
+      conv_rec/.style={rectangle, draw, minimum height=.1cm, minimum width=3.5cm},
+      fc/.style={rectangle, draw, minimum height=.1cm, minimum width=3.5cm},
+      linclf/.style={rectangle, draw, minimum height=.1cm, minimum width=2.5cm},
+    ]
+\node(linclf_1)[linclf] at (-1, 8.5){ \fontsize{6pt}{6pt}{\armfont{Սոֆթմաքս}}};  
+\node(fc_12)[fc] at (-1, 7.7){\fontsize{6pt}{6pt}{ \armfont{Լրիվ կապակցված շերտ 2}}};  
+\node(fc_11)[fc] at (-1, 6.9){\fontsize{6pt}{6pt}{ \armfont{Լրիվ կապակցված շերտ 1}}};  
+\node(conv_rec_13)[conv_rec] at (-1, 6.1){\fontsize{6pt}{6pt}{ \armfont{փաթույթային շերտ 3}}};  
+
+\node(conv_rec_12)[conv_rec] at (-1,5.3){\fontsize{6pt}{6pt}{ \armfont{փաթույթային շերտ 2}}};   
+
+\node(conv_rec_11)[conv_rec] at (-1,4.5){\fontsize{6pt}{6pt}{ \armfont{փաթույթային շերտ 1}}};
+\node(input_rec_11)[input_rec] at (-1, 3.4){\fontsize{6pt}{6pt}{ \armfont{Աղբյուր տվյալների շերտ}}};
+
+\draw[vecArrow] (input_rec_11) to (conv_rec_11);
+\draw[vecArrow] (conv_rec_11) to (conv_rec_12);
+\draw[vecArrow] (conv_rec_12) to (conv_rec_13);
+\draw[vecArrow] (conv_rec_13) to (fc_11);
+\draw[vecArrow] (fc_11) to (fc_12);
+\draw[vecArrow] (fc_12) to (linclf_1);
+
+
+
+\node(linclf_2)[linclf] at (6, 8.5){\fontsize{6pt}{6pt}{ \armfont{ Գծային դասակարգիչ}}};  
+\node(fc_21)[fc] at (6, 6.9){\fontsize{6pt}{6pt}{\armfont{ Լրիվ կապակցված շերտ 1}}};  
+\node(conv_rec_23)[conv_rec] at (6, 6.1){\fontsize{6pt}{6pt}{ \armfont{ փաթույթային շերտ 3}}};  
+
+\node(conv_rec_22)[conv_rec] at (6,5.3){\fontsize{6pt}{6pt}{ \armfont{ փաթույթային շերտ 2}}};   
+\node(conv_rec_21)[conv_rec] at (6,4.5){\fontsize{6pt}{6pt}{ \armfont{ փաթույթային շերտ 1}}};
+\node(input_rec_21)[input_rec] at (6, 3.4){\fontsize{6pt}{6pt}{ \armfont{ Թիրախ տվյալների շերտ}}};
+
+\draw[vecArrow] (input_rec_21) to (conv_rec_21);
+\draw[vecArrow] (conv_rec_21) to (conv_rec_22);
+\draw[vecArrow] (conv_rec_22) to (conv_rec_23);
+\draw[vecArrow] (conv_rec_23) to (fc_21);
+
+
+\node(rep_node)[text width=2.5cm] at (6, 7.7) {\fontsize{6pt}{6pt}{ \armfont{ Ներկայացումներ}}};
+
+\draw[vecArrow] (fc_21) to (rep_node);
+\draw[vecArrow] (rep_node) to (linclf_2);
+
+\draw[dashed] (-3, 7.3) -- (1, 7.3);
+
+
+\node(tr_arr)[draw, single arrow,
+              minimum height=20mm, minimum width=8mm,
+              single arrow head extend=2mm,
+              anchor=west] at (1.5,5.7) {\fontsize{6pt}{6pt}{ \armfont{ Փոխանցում}}};
+              
+              
+%\draw (3,6.2) -- (3.5,3.7);
+\draw [dashed](fc_11.north east) -- (tr_arr.west);
+\draw[dashed] (conv_rec_11.south east) -- (tr_arr.west);
+
+
+
+\draw[dashed] (fc_21.north west) -- (tr_arr.east);
+\draw [dashed](conv_rec_21.south west) -- (tr_arr.east);
+
+%\draw [->, arr] (dts.south) to (per.top);
+\end{tikzpicture}
+
 \end{frame}
 
 %------------------------------------------------
 
-\begin{frame}
-\frametitle{Bullet Points}
+
+
+%------------------------------------------------
+
+
+
+%------------------------------------------------
+
+
+
+%------------------------------------------------
+\section{\armfont{Սահմանումներ}}
+%------------------------------------------------
+
+\subsection{\armfont{Վերահսկվող առաջադրանքներ}}
+
+\begin{frame}[t]
+\frametitle{\armfont{Նշանակումներ}}
+\end{frame}
+
+\begin{frame}[t]
+\frametitle{\armfont{Նշանակումներ}}
 \begin{itemize}
-\item Lorem ipsum dolor sit amet, consectetur adipiscing elit
-\item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
-\item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
-\item Nam cursus est eget velit posuere pellentesque
-\item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
+\vspace{8mm}
+\item \armfont{$\mathcal{X}$ բոլոր հնարավոր տվյալների օրինակների բազմություն}
 \end{itemize}
 \end{frame}
 
-%------------------------------------------------
-
-\begin{frame}
-\frametitle{Blocks of Highlighted Text}
-\begin{block}{Block 1}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lectus nisl, ultricies in feugiat rutrum, porttitor sit amet augue. Aliquam ut tortor mauris. Sed volutpat ante purus, quis accumsan dolor.
-\end{block}
-
-\begin{block}{Block 2}
-Pellentesque sed tellus purus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum quis magna at risus dictum tempor eu vitae velit.
-\end{block}
-
-\begin{block}{Block 3}
-Suspendisse tincidunt sagittis gravida. Curabitur condimentum, enim sed venenatis rutrum, ipsum neque consectetur orci, sed blandit justo nisi ac lacus.
-\end{block}
+\begin{frame}[t]
+\frametitle{\armfont{Նշանակումներ}}
+\begin{itemize}
+\vspace{8mm}
+\item \armfont{$\mathcal{X}$ բոլոր հնարավոր տվյալների օրինակների բազմություն}
+\item $\mathcal{C}$ բոլոր հնարավոր դասերի բազմություն 
+\end{itemize}
 \end{frame}
 
-%------------------------------------------------
+\begin{frame}[t]
+\frametitle{\armfont{Նշանակումներ}}
+\begin{itemize}
+\vspace{8mm}
+\item \armfont{$\mathcal{X}$ բոլոր հնարավոր տվյալների օրինակների բազմություն}
+\item $\mathcal{C}$ բոլոր հնարավոր դասերի բազմություն 
+\item $\mathcal{F}$ տվյալների ներկայացումների ֆունկցիաների դաս $$f:\mathcal{X} \rightarrow \mathbb{R}^d, \text{ }\forall f \in \mathcal{F}$$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[t]
+\frametitle{\armfont{Նշանակումներ}}
+\begin{itemize}
+\vspace{8mm}
+\item \armfont{$\mathcal{X}$ բոլոր հնարավոր տվյալների օրինակների բազմություն}
+\item $\mathcal{C}$ բոլոր հնարավոր դասերի բազմություն 
+\item $\mathcal{F}$ տվյալների ներկայացումների ֆունկցիաների դաս $$f:\mathcal{X} \rightarrow \mathbb{R}^d, \text{ }\forall f \in \mathcal{F}$$
+\item $\exists R > 0 \text{ } \forall f \in \mathcal{F} \text{ } ||f(x)|| \leq R \text{ } \forall x \in \mathcal{X}$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[t]
+\frametitle{\armfont{Նշանակումներ}}
+\end{frame}
+
+\begin{frame}[t]
+\frametitle{\armfont{Նշանակումներ}}
+\begin{itemize}
+\vspace{8mm}
+\item $\mathcal{T}$ \armfont{վերահսկվող առաջդրանքը բաղկացած է $k+1$ հատ $$\{c_1, c_2, ..., c_{k+1}\} \subseteq \mathcal{C}$$ միմյանցից տարբեր դասերից}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[t]
+\frametitle{\armfont{Նշանակումներ}}
+\begin{itemize}
+\vspace{8mm}
+\item $\mathcal{T}$ \armfont{վերահսկվող առաջդրանքը բաղկացած է $k+1$ հատ $$\{c_1, c_2, ..., c_{k+1}\} \subseteq \mathcal{C}$$ միմյանցից տարբեր դասերից}
+
+\item $\mathcal{P}(\mathcal{T})$ վերասհկվող առաջադրանքների դիտարկվելու հավանականային բաշխումը
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[t]
+\frametitle{\armfont{Նշանակումներ}}
+\begin{itemize}
+\vspace{8mm}
+\item $\mathcal{T}$ \armfont{վերահսկվող առաջդրանքը բաղկացած է $k+1$ հատ $$\{c_1, c_2, ..., c_{k+1}\} \subseteq \mathcal{C}$$ միմյանցից տարբեր դասերից}
+
+\item $\mathcal{P}(\mathcal{T})$ վերասհկվող առաջադրանքների դիտարկվելու հավանականային բաշխումը
+\item $\mathcal{P}(\mathcal{T} \text{ } |\text{ }  |\mathcal{T}| = k +1)$ $k+1$ դասերից բաղկացած վերասհկվող առաջադրանքների դիտարկվելու հավանականային բաշխումը
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[t]
+\frametitle{\armfont{Նշանակումներ}}
+\end{frame}
+
+
+\begin{frame}[t]
+\frametitle{\armfont{Նշանակումներ}}
+\begin{itemize}
+\vspace{5mm}
+\item  \armfont{$\mathcal{D}_c(x)$ $c$ դասին համապատասխան հավանականային բաշխումն է, ցույց է տալիս, թե $x$ օրինակը ինչքանով է համապատասխան $c$ դասին}
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}[t]
+\frametitle{\armfont{Նշանակումներ}}
+\begin{itemize}
+\vspace{5mm}
+\item  \armfont{$\mathcal{D}_c(x)$ $c$ դասին համապատասխան հավանականային բաշխումն է, ցույց է տալիս, թե $x$ օրինակը ինչքանով է համապատասխան $c$ դասին}
+
+\item $\mathcal{D}_{\mathcal{T}}(x, c) = \mathcal{D}_{\mathcal{T}}(c)\mathcal{D}_{c}(x)$ $\mathcal{T}$ վերահսկվող առաջադրանգի պիտակավորված տվյալների հավանականային բաշխումն է
+
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}[t]
+\frametitle{\armfont{Նշանակումներ}}
+\begin{itemize}
+\vspace{5mm}
+\item  \armfont{$\mathcal{D}_c(x)$ $c$ դասին համապատասխան հավանականային բաշխումն է, ցույց է տալիս, թե $x$ օրինակը ինչքանով է համապատասխան $c$ դասին}
+
+\item $\mathcal{D}_{\mathcal{T}}(x, c) = \mathcal{D}_{\mathcal{T}}(c)\mathcal{D}_{c}(x)$ $\mathcal{T}$ վերահսկվող առաջադրանգի պիտակավորված տվյալների հավանականային բաշխումն է
+
+\item $S = \{(x_1, y_1), ..., (x_M, y_M) \ | x_i \in \mathcal{X}, y_i \in \mathcal{T}\}$ $\mathcal{T}$ առաջադրանքի պիտակավորված օրինակների ուսուցման բազմությունն է ընտրված միմյանցից անկախ և $\mathcal{D}_{\mathcal{T}}(x, c)$ հավանականային բաշխումից
+\end{itemize}
+\end{frame}
+
+\subsection{\armfont{Վերահսկվող ներկայացումների գնահատման չափը }}
+
+
+\begin{frame}[t]
+\frametitle{\armfont{Նշանակումներ}}
+\end{frame}
+
+
+\begin{frame}[t]
+\frametitle{\armfont{Նշանակումներ}}
+\begin{itemize}
+\vspace{5mm}
+\item \armfont $\mathcal{T}$ առաջադրանքի բազմադաս դասակարգիչը ֆուկցիա է՝ $g:\mathcal{X} \rightarrow \mathcal{R}^{k+1}$, որի արժեքի կորդինատները ինդեքսավորված են այդ առաջադրանքի դասերով։
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[t]
+\frametitle{\armfont{Նշանակումներ}}
+\begin{itemize}
+\vspace{5mm}
+\item \armfont $\mathcal{T}$ առաջադրանքի բազմադաս դասակարգիչը ֆուկցիա է՝ $g:\mathcal{X} \rightarrow \mathcal{R}^{k+1}$, որի արժեքի կորդինատները ինդեքսավորված են այդ առաջադրանքի դասերով։
+
+\item $l(\{ g(x)_y-g(x)_{y'}\}_{y \neq y'}  )$-ը $(x, y) \in \mathcal{X} \times \mathcal{T}$ կետում $g$ դասակարգիչով պայմանավորված կորուստն է
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[t]
+\frametitle{\armfont{Նշանակումներ}}
+\begin{itemize}
+\vspace{5mm}
+\item \armfont $\mathcal{T}$ առաջադրանքի բազմադաս դասակարգիչը ֆուկցիա է՝ $g:\mathcal{X} \rightarrow \mathcal{R}^{k+1}$, որի արժեքի կորդինատները ինդեքսավորված են այդ առաջադրանքի դասերով։
+
+\item $l(\{ g(x)_y-g(x)_{y'}\}_{y \neq y'}  )$-ը $(x, y) \in \mathcal{X} \times \mathcal{T}$ կետում $g$ դասակարգիչով պայմանավորված կորուստն է
+\item $l(v) = \max\{0, 1+\max_{i}\{-v_i\}\} $
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]
+\frametitle{\armfont{Նշանակումներ}}
+\begin{itemize}
+\vspace{5mm}
+\item \armfont $\mathcal{T}$ առաջադրանքի բազմադաս դասակարգիչը ֆուկցիա է՝ $g:\mathcal{X} \rightarrow \mathcal{R}^{k+1}$, որի արժեքի կորդինատները ինդեքսավորված են այդ առաջադրանքի դասերով։
+
+\item $l(\{ g(x)_y-g(x)_{y'}\}_{y \neq y'}  )$-ը $(x, y) \in \mathcal{X} \times \mathcal{T}$ կետում $g$ դասակարգիչով պայմանավորված կորուստն է
+\item $l(v) = \max\{0, 1+\max_{i}\{-v_i\}\} $
+\item $l(v) = \log_2(1+\sum_{i}{e^{-v_i}})$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[t]
+\frametitle{\armfont{Նշանակումներ}}
+\end{frame}
+
+
+\begin{frame}[t]
+\frametitle{\armfont{Նշանակումներ}}
+\begin{itemize}
+\vspace{5mm}
+\item \armfont $\mathcal{T}$ առաջադրանքի համար $g$ դասակարգիչի կորուստը հետևյալն է՝
+$$L(\mathcal{T}, g) = \E_{(x, c) \sim \mathcal{D}_{\mathcal{T}}} \left [ l(\{ g(x)_c-g(x)_{c'}\}_{c \neq c'}  ) \right ]$$
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]
+\frametitle{\armfont{Նշանակումներ}}
+\begin{itemize}
+\vspace{5mm}
+\item \armfont $\mathcal{T}$ առաջադրանքի համար $g$ դասակարգիչի կորուստը հետևյալն է՝
+$$L(\mathcal{T}, g) = \E_{(x, c) \sim \mathcal{D}_{\mathcal{T}}} \left [ l(\{ g(x)_c-g(x)_{c'}\}_{c \neq c'}  ) \right ]$$
+\item $\mathcal{V} = \{W: ||W||_{\infty} \leq Q \text{ և } Q > 0\}$
+
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]
+\frametitle{\armfont{Նշանակումներ}}
+\begin{itemize}
+\vspace{5mm}
+\item \armfont $\mathcal{T}$ առաջադրանքի համար $g$ դասակարգիչի կորուստը հետևյալն է՝
+$$L(\mathcal{T}, g) = \E_{(x, c) \sim \mathcal{D}_{\mathcal{T}}} \left [ l(\{ g(x)_c-g(x)_{c'}\}_{c \neq c'}  ) \right ]$$
+\item $\mathcal{V} = \{W: ||W||_{\infty} \leq Q \text{ և } Q > 0\}$
+\item  $g(x) = Wf(x)$, որտեղ $W \in \mathcal{V}$
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]
+\frametitle{\armfont{Նշանակումներ}}
+\begin{itemize}
+\vspace{5mm}
+\item \armfont $\mathcal{T}$ առաջադրանքի համար $g$ դասակարգիչի կորուստը հետևյալն է՝
+$$L(\mathcal{T}, g) = \E_{(x, c) \sim \mathcal{D}_{\mathcal{T}}} \left [ l(\{ g(x)_c-g(x)_{c'}\}_{c \neq c'}  ) \right ]$$
+\item $\mathcal{V} = \{W: ||W||_{\infty} \leq Q \text{ և } Q > 0\}$
+\item  $g(x) = Wf(x)$, որտեղ $W \in \mathcal{V}$
+
+\item $L(\mathcal{T}, f) = \inf_{W \in \mathcal{V}} L(\mathcal{T}, f, W)$
+
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\armfont Նշանակումներ}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\armfont Նշանակումներ}
+
+\begin{block}{\armfont Վերահսկիչ միջին կորուստ}
+\armfont \fontsize{8pt}{8pt}
+$k+1$ դասերից բաղկացած առաջադրանքների վերահսկիչ միջին կորուստը $f$ ներկայացման համար սահմանվում է որպես՝ 
+$$L(f) = \E_{\mathcal{T} \sim \mathcal{P}} \left [L (\mathcal{T}, f) \text{ } | \text{ } |\mathcal{T}| = k+1\right]$$
+\end{block}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{\armfont Նշանակումներ}
+\end{frame}
+
+\begin{frame}
+\frametitle{\armfont Նշանակումներ}
+
+\begin{block}{\armfont Էմպիրիկ վերահսկիչ միջին կորուստ}
+\armfont \fontsize{8pt}{8pt} Դիցուք ունենք միմյանցից անկախ $\mathcal{P}(\mathcal{T} \text{ } |\text{ }  |\mathcal{T}| = k +1)$ բաշխումից ընտրված $N$ հատ առաջադրանքներ՝ $\mathcal{T}_1, ..., \mathcal{T}_N$:
+էմպիրիկ վերահսկիչ միջին կորուստը $f$ ներկայացման համար հետևյալն է՝ 
+$$\hat{L}(f) = \frac{1}{N}\sum_{i=1}^{N}L (\mathcal{T}_i, f)$$
+\end{block}
+
+\end{frame}
+
+\begin{frame}[fragile] % Need to use the fragile option when verbatim is used in the slide
+\frametitle{Verbatim}
+\begin{example}[Theorem Slide Code]
+\begin{verbatim}
+\begin{frame}
+\frametitle{Theorem}
+\begin{theorem}[Mass--energy equivalence]
+$E = mc^2$
+\end{theorem}
+\end{frame}\end{verbatim}
+\end{example}
+\end{frame}
+
+\iffalse
+
 
 \begin{frame}
 \frametitle{Multiple Columns}
@@ -180,10 +965,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lectus nisl, ul
 
 \end{columns}
 \end{frame}
-
-%------------------------------------------------
-\section{Second Section}
-%------------------------------------------------
 
 \begin{frame}
 \frametitle{Table}
@@ -256,11 +1037,11 @@ This statement requires citation \cite{p1}.
 \end{thebibliography}
 }
 \end{frame}
-
+\fi
 %------------------------------------------------
 
 \begin{frame}
-\Huge{\centerline{The End}}
+\Huge{\centerline{\armfont{Շնորհակալություն}}}
 \end{frame}
 
 %----------------------------------------------------------------------------------------

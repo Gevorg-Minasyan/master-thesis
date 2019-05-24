@@ -1,0 +1,157 @@
+\documentclass[12pt]{article}
+
+\usepackage[top=2cm,bottom=3cm,left=3cm,right=2cm]{geometry}
+\usepackage{amsmath}
+
+
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\E}{\mathbb{E}}
+
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{fontspec}
+\usepackage{hyperref}
+\usepackage[thinc]{esdiff}
+\usepackage{cite}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    citecolor=cyan
+}
+
+
+% this package for increase or decrease vertical space between section chapter paragraph etc.
+\usepackage{titlesec}
+
+%tikz package for drawing graphs%
+\usepackage{tkz-berge}
+\usepackage{tikz}
+
+\usetikzlibrary{arrows}
+
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{positioning,chains,fit,shapes,calc}
+
+\usetikzlibrary{trees,positioning,fit,arrows,decorations.pathreplacing}
+
+\usetikzlibrary{shapes.geometric, shapes.misc, positioning, calc, arrows.meta}
+\renewcommand{\figurename}{Նկ.}
+% the figure insert specific place with [H] param
+\usepackage{float}
+
+
+
+
+\newcommand{\undertextline}[2]{ {
+\renewcommand{\arraystretch}{0.7}
+\begin{tabular}{p{#2cm}}
+\\
+\hline
+\centering{{\fontsize{8pt}{8pt} \textit{#1}}}
+\end{tabular}} }
+
+
+\newcommand*{\vertbar}{\rule[-1ex]{0.5pt}{2.5ex}}
+\newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}}
+
+
+
+
+% increase distance between two lines%
+\renewcommand{\baselinestretch}{1.5}
+
+% increase vertical space between section subsection%
+\titlespacing*{\section}
+{0pt}{5ex plus 1ex minus .2ex}{3ex plus .2ex}
+\titlespacing*{\subsection}
+{0pt}{5ex plus 1ex minus .2ex}{3ex plus .2ex}
+
+
+\setmainfont[
+BoldItalicFont=arnamu_italic_bold.ttf,
+BoldFont      =arnamu_bold.ttf,
+ItalicFont    =arnamu_italic.ttf]{arnamu.ttf}
+
+\renewcommand{\contentsname}{Բովանդակություն}
+\renewcommand{\refname}{Գրականություն}
+
+\renewcommand{\tablename}{Աղյուսակ}
+%\usepackage{mathtools}
+%\newcommand\defeq{\stackrel{\mathclap{\normalfont\mbox{def}}}{=}}
+\newcommand\defeq{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily def}}}{=}}}
+
+\sloppy
+\begin{document}
+
+\newtheorem{theorem}{Թեորեմ}
+\newtheorem{lemma}{Լեմմա}
+\newtheorem{corollary}{Հետևանք}
+\newtheorem{preposition}{Պնդում}
+\newtheorem{defination}{Սահմանում}
+\newtheorem{remark}{Դիտողություն}
+\newtheorem*{remark*}{Դիտողություն}
+
+
+\theoremstyle{definition} %After this line new defined commands by \newthorem will be non italic.%
+\newtheorem{innercustomcase}{Դեպք}
+\newenvironment{customcase}[1]
+  {\renewcommand\theinnercustomcase{#1}\innercustomcase}
+  {\endinnercustomcase}
+\newtheorem{case}{Դեպք}
+
+
+
+{
+\begin{center}
+{\fontsize{18pt}{18pt} \selectfont \textbf{Կարծիք}}\\
+\vspace{10mm}
+{\fontsize{14pt}{14pt} \selectfont \textbf{ԵՊՀ մագիստրատուրայի ուսանող}}\\
+{\fontsize{13pt}{13pt} \selectfont {\textbf{Մինասյան Գևորգ Մանվելի}}}\\
+{\fontsize{13pt}{13pt} \selectfont {\textbf{Տրանսֆերային ուսուցման որոշակի մեթոդի ընդհանրացման սխալանքի գնահատման մասին}}}\\
+{\fontsize{13pt}{13pt} \selectfont {\textbf{Մագիստրոսական թեզի վերաբերյալ}}}
+\end{center}
+
+\vspace{10mm}
+
+{\fontsize{11pt}{11pt} {\textbf{1. Աշխատանքի արդիականության հիմնավորումը և գրականության վերլուծությունը}}\\
+
+
+{\fontsize{11pt}{11pt} {\textbf{2. Հետազոտության իրականացումը և արդյունքները}}\\
+
+{\fontsize{11pt}{11pt} {\textbf{2. Աշխատանքի շարադրումը և ձևավորումը}}\\
+
+
+\pagebreak
+
+{\fontsize{13pt}{13pt} {\textbf{Դիտողություններ}}\\
+
+{\fontsize{13pt}{13pt} {\textbf{Եզրակացություն}} (աշխատանքը բավարարում է/չի բավարարում մագիստրոսական թեզին
+ներկայացվող պահանջները, հեղինակն արժանի է տվյալ մասնագիտությամբ մագիստրոսի
+որակավորման աստիճանի շնորհմանը) \\
+
+{\fontsize{13pt}{13pt} {\textbf{Գրախոս՝}}
+
+
+\large{\undertextline{(ազգանուն, անուն, հայրանուն)}{12} \hspace{0.3cm} \hspace{0.3cm}  {\fontsize{13pt}{13pt}\\
+
+\large{\undertextline{(գիտական աստիճան և կոչում)}{15} \hspace{0.3cm} \hspace{0.3cm}  {\fontsize{13pt}{13pt}
+
+\large{\undertextline{(աշխատանքի վայրը, պաշտոնը)}{12} \hspace{0.3cm} \hspace{0.3cm}  {\fontsize{13pt}{13pt}\\
+
+
+\vspace{10mm}
+
+
+\large{Ստորագրություն \undertextline{}{7} \hspace{0.3cm}} \\
+
+\vspace{15mm}
+
+{\fontsize{13pt}{13pt} \selectfont \textit{{31 մայիսի 2019 թ.}}}
+}
+\pagebreak
+
+
+\end{document}
