@@ -38,9 +38,22 @@
 \usetikzlibrary{trees,positioning,fit,arrows,decorations.pathreplacing}
 
 \usetikzlibrary{shapes.geometric, shapes.misc, positioning, calc, arrows.meta}
+
+
+
 \renewcommand{\figurename}{Նկ.}
 % the figure insert specific place with [H] param
 \usepackage{float}
+
+
+
+\newcommand\Wider[2][3em]{%
+\makebox[\linewidth][c]{%
+  \begin{minipage}{\dimexpr\textwidth+#1\relax}
+  \raggedright#2
+  \end{minipage}%
+  }%
+}
 
 \mode<presentation> {
 
@@ -126,38 +139,47 @@
 
 \date{31 \armfont{Մայիսի}  2019} % Date, can be changed to a custom date
 
-\begin{document}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\usefonttheme[onlymath]{serif}
+
+\begin{document}
 \begin{frame}
 \titlepage % Print the title page as the first slide
 \end{frame}
 
-\begin{frame}
-\frametitle{\armfont{Ակնարկ}} % Table of contents slide, comment this block out to remove it
-\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
-\end{frame}
 
 %----------------------------------------------------------------------------------------
 %	PRESENTATION SLIDES
 %----------------------------------------------------------------------------------------
 
 %------------------------------------------------
-\section{\armfont{Տրանսֆերային ուսուցում}} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
-%------------------------------------------------
+\section{\armfont{Տրանսֆերային ուսուցում}} % Sections can be created in order to organize your presentation into discrete 
 
-\subsection{\armfont{Ինչ է տրասֆերային ուսուցումը}} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
-
-
-\begin{frame}
-\frametitle{\armfont{ {Տրանֆերային ուսուցուման և սովորական մեքենայական ուսուցման միջև տարբերությունը  }}}
+\begin{frame}[t]
+\frametitle{\armfont{Տրանսֆերային ուսուցում}}
 \end{frame}
 
 
 
 \begin{frame}[t]
-\frametitle{\armfont{ {Տրանֆերային ուսուցուման և սովորական մեքենայական ուսուցման միջև տարբերությունը }}}
+\frametitle{\armfont{Տրանսֆերային ուսուցում}}
 % for double arrows a la chef
 % adapt line thickness and line width, if needed
+\vspace{4.3mm}
 \tikzstyle{vecArrow} = [thick, decoration={markings,mark=at position
    1 with {\arrow[semithick]{open triangle 60}}},
    double distance=2.5pt, shorten >= 5.5pt,
@@ -183,7 +205,7 @@
 
 
   
-  \node(rep_node)[text width=6cm] at (0, 10.5) {\fontsize{8pt}{8pt}{ \armfont{ \textbf{Սովորական մեքենյական ուսուցում}}}};
+  \node(rep_node)[text width=6cm] at (0, 10.5) {\fontsize{8pt}{8pt}{ \armfont{ \textbf{Դասական մեքենայական ուսուցում}}}};
 
   
  
@@ -198,7 +220,7 @@
 
 
 \begin{frame}
-\frametitle{\armfont{ {Տրանֆերային ուսուցուման և սովորական մեքենայական ուսուցման միջև տարբերությունը }}}
+\frametitle{\armfont{Տրանսֆերային ուսուցում}}
 % for double arrows a la chef
 % adapt line thickness and line width, if needed
 \tikzstyle{vecArrow} = [thick, decoration={markings,mark=at position
@@ -253,7 +275,7 @@
 
 
   
-  \node(rep_node)[text width=6cm] at (0, 10.5) {\fontsize{8pt}{8pt}{ \armfont{ \textbf{Սովորական մեքենյական ուսուցում}}}};
+  \node(rep_node)[text width=6cm] at (0, 10.5) {\fontsize{8pt}{8pt}{ \armfont{ \textbf{Դասական մեքենայական ուսուցում}}}};
 
   
  
@@ -265,7 +287,7 @@
 
 
 \begin{frame}
-\frametitle{\armfont{ {Տրանֆերային ուսուցուման և սովորական մեքենայական ուսուցման միջև տարբերությունը }}}
+\frametitle{\armfont{Տրանսֆերային ուսուցում}}
 % for double arrows a la chef
 % adapt line thickness and line width, if needed
 \tikzstyle{vecArrow} = [thick, decoration={markings,mark=at position
@@ -320,7 +342,7 @@
 
 
   
-  \node(rep_node)[text width=6cm] at (0, 10.5) {\fontsize{8pt}{8pt}{ \armfont{ \textbf{Սովորական մեքենյական ուսուցում}}}};
+  \node(rep_node)[text width=6cm] at (0, 10.5) {\fontsize{8pt}{8pt}{ \armfont{ \textbf{Դասական մեքենայական ուսուցում}}}};
 
   \node(rep_node)[text width=6cm] at (6.5, 10.5) {\fontsize{8pt}{8pt}{ \armfont{ \textbf{Տրանսֆերային ուսուցում}}}};
  
@@ -332,7 +354,7 @@
 
 
 \begin{frame}
-\frametitle{\armfont{ {Տրանֆերային ուսուցուման և սովորական մեքենայական ուսուցման միջև տարբերությունը }}}
+\frametitle{\armfont{Տրանսֆերային ուսուցում}}
 % for double arrows a la chef
 % adapt line thickness and line width, if needed
 \tikzstyle{vecArrow} = [thick, decoration={markings,mark=at position
@@ -418,7 +440,7 @@
   (group_2_tl.south west) -- (group_2_tl.south east);
   \node[below=of group_2_tl,anchor=center, yshift=0.6cm]{\fontsize{6pt}{6pt}{\armfont{Թիրախի տիրույթ}}};
   
-  \node(rep_node)[text width=6cm] at (0, 10.5) {\fontsize{8pt}{8pt}{ \armfont{ \textbf{Սովորական մեքենյական ուսուցում}}}};
+  \node(rep_node)[text width=6cm] at (0, 10.5) {\fontsize{8pt}{8pt}{ \armfont{ \textbf{Դասական մեքենայական ուսուցում}}}};
   
   \node(rep_node)[text width=6cm] at (6.5, 10.5) {\fontsize{8pt}{8pt}{ \armfont{ \textbf{Տրանսֆերային ուսուցում}}}};
   
@@ -727,7 +749,7 @@
 \frametitle{\armfont{Նշանակումներ}}
 \begin{itemize}
 \vspace{8mm}
-\item $\mathcal{T}$ \armfont{վերահսկվող առաջդրանքը բաղկացած է $k+1$ հատ $$\{c_1, c_2, ..., c_{k+1}\} \subseteq \mathcal{C}$$ միմյանցից տարբեր դասերից}
+\item $\mathcal{T}$ \armfont{վերահսկվող առաջդրանքը բաղկացած է $k$ հատ $$\{c_1, c_2, ..., c_{k}\} \subseteq \mathcal{C}$$ միմյանցից տարբեր դասերից, ոտեղ $k\geq 2$}
 \end{itemize}
 \end{frame}
 
@@ -736,7 +758,7 @@
 \frametitle{\armfont{Նշանակումներ}}
 \begin{itemize}
 \vspace{8mm}
-\item $\mathcal{T}$ \armfont{վերահսկվող առաջդրանքը բաղկացած է $k+1$ հատ $$\{c_1, c_2, ..., c_{k+1}\} \subseteq \mathcal{C}$$ միմյանցից տարբեր դասերից}
+\item $\mathcal{T}$ \armfont{վերահսկվող առաջդրանքը բաղկացած է $k$ հատ $$\{c_1, c_2, ..., c_{k}\} \subseteq \mathcal{C}$$ միմյանցից տարբեր դասերից, ոտեղ $k\geq 2$}
 
 \item $\mathcal{P}(\mathcal{T})$ վերասհկվող առաջադրանքների դիտարկվելու հավանականային բաշխումը
 \end{itemize}
@@ -747,10 +769,11 @@
 \frametitle{\armfont{Նշանակումներ}}
 \begin{itemize}
 \vspace{8mm}
-\item $\mathcal{T}$ \armfont{վերահսկվող առաջդրանքը բաղկացած է $k+1$ հատ $$\{c_1, c_2, ..., c_{k+1}\} \subseteq \mathcal{C}$$ միմյանցից տարբեր դասերից}
+\item $\mathcal{T}$ \armfont{վերահսկվող առաջդրանքը բաղկացած է $k$ հատ $$\{c_1, c_2, ..., c_{k}\} \subseteq \mathcal{C}$$ միմյանցից տարբեր դասերից, ոտեղ $k\geq 2$}
 
 \item $\mathcal{P}(\mathcal{T})$ վերասհկվող առաջադրանքների դիտարկվելու հավանականային բաշխումը
-\item $\mathcal{P}(\mathcal{T} \text{ } |\text{ }  |\mathcal{T}| = k +1)$ $k+1$ դասերից բաղկացած վերասհկվող առաջադրանքների դիտարկվելու հավանականային բաշխումը
+
+\item $\mathcal{P}(\mathcal{T} \text{ } |\text{ }  |\mathcal{T}| = k )$ $k$ հատ դասերից բաղկացած վերասհկվող առաջադրանքների դիտարկվելու հավանականային բաշխումը
 \end{itemize}
 \end{frame}
 
@@ -807,7 +830,7 @@
 \frametitle{\armfont{Նշանակումներ}}
 \begin{itemize}
 \vspace{5mm}
-\item \armfont $\mathcal{T}$ առաջադրանքի բազմադաս դասակարգիչը ֆուկցիա է՝ $g:\mathcal{X} \rightarrow \mathcal{R}^{k+1}$, որի արժեքի կորդինատները ինդեքսավորված են այդ առաջադրանքի դասերով։
+\item \armfont $\mathcal{T}$ առաջադրանքի բազմադաս դասակարգիչը ֆուկցիա է՝ $g:\mathcal{X} \rightarrow \mathcal{R}^{k}$, որի արժեքի կորդինատները ինդեքսավորված են այդ առաջադրանքի դասերով։
 \end{itemize}
 \end{frame}
 
@@ -816,7 +839,7 @@
 \frametitle{\armfont{Նշանակումներ}}
 \begin{itemize}
 \vspace{5mm}
-\item \armfont $\mathcal{T}$ առաջադրանքի բազմադաս դասակարգիչը ֆուկցիա է՝ $g:\mathcal{X} \rightarrow \mathcal{R}^{k+1}$, որի արժեքի կորդինատները ինդեքսավորված են այդ առաջադրանքի դասերով։
+\item \armfont $\mathcal{T}$ առաջադրանքի բազմադաս դասակարգիչը ֆուկցիա է՝ $g:\mathcal{X} \rightarrow \mathcal{R}^{k}$, որի արժեքի կորդինատները ինդեքսավորված են այդ առաջադրանքի դասերով։
 
 \item $l(\{ g(x)_y-g(x)_{y'}\}_{y \neq y'}  )$-ը $(x, y) \in \mathcal{X} \times \mathcal{T}$ կետում $g$ դասակարգիչով պայմանավորված կորուստն է
 \end{itemize}
@@ -827,7 +850,7 @@
 \frametitle{\armfont{Նշանակումներ}}
 \begin{itemize}
 \vspace{5mm}
-\item \armfont $\mathcal{T}$ առաջադրանքի բազմադաս դասակարգիչը ֆուկցիա է՝ $g:\mathcal{X} \rightarrow \mathcal{R}^{k+1}$, որի արժեքի կորդինատները ինդեքսավորված են այդ առաջադրանքի դասերով։
+\item \armfont $\mathcal{T}$ առաջադրանքի բազմադաս դասակարգիչը ֆուկցիա է՝ $g:\mathcal{X} \rightarrow \mathcal{R}^{k}$, որի արժեքի կորդինատները ինդեքսավորված են այդ առաջադրանքի դասերով։
 
 \item $l(\{ g(x)_y-g(x)_{y'}\}_{y \neq y'}  )$-ը $(x, y) \in \mathcal{X} \times \mathcal{T}$ կետում $g$ դասակարգիչով պայմանավորված կորուստն է
 \item $l(v) = \max\{0, 1+\max_{i}\{-v_i\}\} $
@@ -838,7 +861,7 @@
 \frametitle{\armfont{Նշանակումներ}}
 \begin{itemize}
 \vspace{5mm}
-\item \armfont $\mathcal{T}$ առաջադրանքի բազմադաս դասակարգիչը ֆուկցիա է՝ $g:\mathcal{X} \rightarrow \mathcal{R}^{k+1}$, որի արժեքի կորդինատները ինդեքսավորված են այդ առաջադրանքի դասերով։
+\item \armfont $\mathcal{T}$ առաջադրանքի բազմադաս դասակարգիչը ֆուկցիա է՝ $g:\mathcal{X} \rightarrow \mathcal{R}^{k}$, որի արժեքի կորդինատները ինդեքսավորված են այդ առաջադրանքի դասերով։
 
 \item $l(\{ g(x)_y-g(x)_{y'}\}_{y \neq y'}  )$-ը $(x, y) \in \mathcal{X} \times \mathcal{T}$ կետում $g$ դասակարգիչով պայմանավորված կորուստն է
 \item $l(v) = \max\{0, 1+\max_{i}\{-v_i\}\} $
@@ -911,8 +934,8 @@ $$L(\mathcal{T}, g) = \E_{(x, c) \sim \mathcal{D}_{\mathcal{T}}} \left [ l(\{ g(
 
 \begin{block}{\armfont Վերահսկիչ միջին կորուստ}
 \armfont \fontsize{8pt}{8pt}
-$k+1$ դասերից բաղկացած առաջադրանքների վերահսկիչ միջին կորուստը $f$ ներկայացման համար սահմանվում է որպես՝ 
-$$L(f) = \E_{\mathcal{T} \sim \mathcal{P}} \left [L (\mathcal{T}, f) \text{ } | \text{ } |\mathcal{T}| = k+1\right]$$
+$k$ դասերից բաղկացած առաջադրանքների վերահսկիչ միջին կորուստը $f$ ներկայացման համար սահմանվում է որպես՝ 
+$$L_k(f) = \E_{\mathcal{T} \sim \mathcal{P}} \left [L (\mathcal{T}, f) \text{ } | \text{ } |\mathcal{T}| = k\right]$$
 \end{block}
 
 \end{frame}
@@ -925,12 +948,249 @@ $$L(f) = \E_{\mathcal{T} \sim \mathcal{P}} \left [L (\mathcal{T}, f) \text{ } | 
 \frametitle{\armfont Նշանակումներ}
 
 \begin{block}{\armfont Էմպիրիկ վերահսկիչ միջին կորուստ}
-\armfont \fontsize{8pt}{8pt} Դիցուք ունենք միմյանցից անկախ $\mathcal{P}(\mathcal{T} \text{ } |\text{ }  |\mathcal{T}| = k +1)$ բաշխումից ընտրված $N$ հատ առաջադրանքներ՝ $\mathcal{T}_1, ..., \mathcal{T}_N$:
+\armfont \fontsize{8pt}{8pt} Դիցուք ունենք միմյանցից անկախ $\mathcal{P}(\mathcal{T} \text{ } |\text{ }  |\mathcal{T}| = k )$ բաշխումից ընտրված $N$ հատ առաջադրանքներ՝ $\mathcal{T}_1, ..., \mathcal{T}_N$:
 էմպիրիկ վերահսկիչ միջին կորուստը $f$ ներկայացման համար հետևյալն է՝ 
-$$\hat{L}(f) = \frac{1}{N}\sum_{i=1}^{N}L (\mathcal{T}_i, f)$$
+$$\hat{L}_k(f) = \frac{1}{N}\sum_{i=1}^{N}L (\mathcal{T}_i, f)$$
 \end{block}
 
 \end{frame}
+
+\section{\armfont{Ռադեմախերի բարդությունը}}
+
+
+\subsection{\armfont{Ներկայացումների էմպիրիկ Ռադեմախերի բարդությունը}}
+
+\begin{frame}
+\frametitle{\armfont Ռադեմախերի բարդությունը}
+\end{frame}
+
+\begin{frame}
+\frametitle{\armfont Ռադեմախերի բարդությունը}
+
+\begin{block}{\armfont Ներկայացումների էմպիրիկ Ռադեմախերի բարդությունը}
+ \fontsize{8pt}{8pt}
+\armfont Դիցուք $\mathcal{F}$ տվյալների ներկայացումների ֆունկցիաների ընտանիք է՝ $$\forall f \in \mathcal{F}, f:\mathcal{X}: \rightarrow \mathbb{R}^d$$
+իսկ $S$-ը $m$ հզորությամբ տվյալների ֆիքսված օրինակների բազմություն է՝
+$$S = \{x_i | x_i \in \mathcal{X}, \forall i \in [m]\}$$
+Այդ դեպքում ներկայացումների $\mathcal{F}$ ընտանիքի էմպիրիկ Ռադեմախերի բարդությունը ֆիքսված օրինակների $S$ բազմության համար սահմանվում է հետևյալ կերպ՝
+$$\hat{\mathcal{R}}_S(\mathcal{F}) = \frac{1}{m} \E_{\sigma \sim \{\pm 1\}^{md}} \sup_{f\in \mathcal{F}} \sum_{i = 1}^m \sum_{j = 1}^d \sigma_{ij} f_j(x_i) $$
+\end{block}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\armfont Անհավասարություն Ռադեմախերի բարդությունների վերաբերյալ}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{\armfont Անհավասարություն Ռադեմախերի բարդությունների վերաբերյալ}
+ \fontsize{8pt}{8pt} 
+\begin{exampleblock}{\armfont{Թեորեմ}} \armfont
+Դիցուք $\mathcal{X}$-ը և $\mathcal{Y}$-ը որևէ բազմություններ են  և $(x_1, x_2, ..., x_n) \in X^N$։ Տրված է նաև $\mathcal{F}$ ֆունկցիաների բազմություն, որի կամայական $f \in \mathcal{F}$ ֆունկցիա $\mathcal{X}$ բազմությունը արտապատկերում է $\mathbb{R}^d$ էվկլիդյան տարածություն՝ $f:\mathcal{X} \rightarrow \mathbb{R}^d$։ Դիցուք $h_i$ ֆունկցիաներ ունենք՝ $$h_i:\mathbb{R}^d \times \mathcal{Y} \rightarrow \mathbb{R}$$ կամայական $i \in [n]$ համար։ Կենթադրենք, որ բոլոր $h_i(v, y)$ ֆունկցիաները, ինչ-որ $L$ դրական հաստատունով Լիպշից հատկությամբ օժտված ֆունկցիաներ են ըստ $v$-ի կամայական $y \in \mathcal{Y}$ համար։ Այդ դեպքում տեղի ունի հետևյալ անհավասարությունը՝
+\begin{align*}
+\E_{\sigma \sim \{\pm 1\}^n}\left[\sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal{Y}} }  \sum_{i=1}^n{\sigma_ih_i(f(x_i), y)}  \right]    \leq \sqrt{2}L \E_{\sigma \sim \{\pm1\}^{nd}} \left[  \sup_{f \in \mathcal{F}}  \sum_{i=1}^n\sum_{j=1}^d{\sigma_{ij}f_j(x_i)}   \right]
+\end{align*}
+\end{exampleblock}
+\end{frame}
+
+
+\section{\armfont Հիմնական արդյունքներ}
+
+\subsection{\armfont Վերահսկիչ միջին կորուստի գնահատականը}
+
+\begin{frame}
+\frametitle{\armfont Ներկայացումների ուսուցման ալգորիթմը}
+\end{frame}
+
+\begin{frame}
+\frametitle{\armfont Ներկայացումների ուսուցման ալգորիթմը}\armfont
+$\mathcal{F}$ դասից  ներկայցման ֆունկցիա սովորելու ալգորիթմը հետևյալն է՝
+$$(\hat{f}, \hat{W}) = \argmin_{\substack{f \in \mathcal{F} \\ W \in \mathcal{V}}} \hat{L}(\mathcal{T},f, W)$$
+որտեղ $\hat{f}$-ը փնտրվող ներկայացումն է։
+\end{frame}
+
+\begin{frame}
+\frametitle{\armfont Վերահսկիչ միջին կորուստի գնահատականը}
+\end{frame}
+
+
+\begin{frame}[t]
+\frametitle{\armfont{Վերահսկիչ միջին կորուստի գնահատականը}}
+\begin{itemize}
+\armfont
+\vspace{15mm}
+\item $\rho_{min}  = \min_{c \in \mathcal{T} } D_\mathcal{T}(c)$
+
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}[t]
+\frametitle{\armfont{Վերահսկիչ միջին կորուստի գնահատականը}}
+\begin{itemize}
+\armfont
+\vspace{15mm}
+\item $\rho_{min}  = \min_{c \in \mathcal{T} } D_\mathcal{T}(c)$
+\item $m(c)$ այն $T_i$ առաջադրանքների քանակը, որոնցում $c$ դասն է մասնակցում
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[t]
+\frametitle{\armfont{Վերահսկիչ միջին կորուստի գնահատականը}}
+\begin{itemize}
+\armfont
+\vspace{15mm}
+\item $\rho_{min}  = \min_{c \in \mathcal{T} } D_\mathcal{T}(c)$
+\item $m(c)$ այն $T_i$ առաջադրանքների քանակը, որոնցում $c$ դասն է մասնակցում
+\item $m_{max} = \max_{c \in T} m(c)$
+\end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}
+\frametitle{\armfont Վերահսկիչ միջին կորուստի գնահատականը}
+\end{frame}
+
+\begin{frame}
+\frametitle{\armfont Վերահսկիչ միջին կորուստի գնահատականը}
+ \fontsize{7pt}{7pt} 
+\begin{exampleblock}{\armfont{Թեորեմ}} \armfont
+Դիցուք $\delta$-ն կամայական դրական թիվ է,  իսկ $l$ կորստի ֆունկցիան սահմափակ է $B$-ով և $\eta$ հաստատունով Լիպշից հատկությամբ օժտված ֆունկցիա է։ Այդ դեպքում առնվազն $1-\delta$ հավանականությամբ $\forall f \in \mathcal{F}$ ներկայացման ֆունկցիայի և $\forall W \in \mathcal{V}$ մատրիցայի համար տեղի ունի հետևյալ անհավասարությունը՝ 
+\begin{align*}
+L_k(\hat{f}) \leq  \frac{m_{max}}{n \rho_{min}}  L(\mathcal{T}, f, W)+ O\left(
+\frac{\eta Qm_{max}}{\sqrt{n}\rho_{min}} \hat{\mathcal{R}}_S(\mathcal{F})+    \frac{Bm_{max}}{n\rho_{min}}\sqrt{\frac{\log \left( \frac{1}{\delta} \right)}{M}} + B\sqrt{\frac{k\log \left(\frac{1}{\delta}\right) }{n}} \right)
+\end{align*}
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}
+\frametitle{\armfont Վերահսկիչ միջին կորուստի գնահատականը}
+\end{frame}
+
+\begin{frame}
+\frametitle{\armfont Վերահսկիչ միջին կորուստի գնահատականը}
+ \fontsize{7pt}{7pt} 
+\begin{exampleblock}{\armfont{Հետևանք}} \armfont
+Դիցուք $\delta$-ն կամայական դրական թիվ է, իսկ $l$ կորստի ֆունկցիան սահմափակ է $B$-ով և $\eta$ հաստատունով Լիպշից հատկությամբ օժտված ֆունկցիա է։ Բացի այդ $\mathcal{P}(\mathcal{T})$ և $\mathcal{D}_\mathcal{T}(c)$-ն հավասարավանական են, այդ դեպքում առնվազն $1-\delta$ հավանականությամբ $\forall f \in \mathcal{F}$ ներկայացման ֆունկցիայի և $\forall W \in \mathcal{V}$ մատրիցայի համար տեղի ունի հետևյալ անհավասարությունը՝ 
+\begin{align*}
+L_k(\hat{f}) \leq m_{max}  L(\mathcal{T}, f, W)+ O\left(
+\eta Qm_{max}\sqrt{n} \hat{\mathcal{R}}_S(\mathcal{F})+   Bm_{max}\sqrt{\frac{\log \left( \frac{1}{\delta} \right)}{M}} + B\sqrt{\frac{k\log \left(\frac{1}{\delta}\right) }{n}} \right)
+\end{align*}
+Իսկ եթե $|\mathcal{C}| \rightarrow \infty$, ապա $m_{max} \rightarrow 1$։
+\end{exampleblock}
+\end{frame}
+
+
+\subsection{\armfont Փորձարարական արդյունքներ}
+
+\begin{frame}
+\begin{figure}[htp]
+\centering
+\includegraphics[width=0.8\textwidth]{imgs/k=2.pdf}
+\end{figure}
+\begin{center}
+ \fontsize{7pt}{7pt} 
+\armfont \textit{$k=2$ քանակությամբ դասերից բաղկացած առաջադրանքի էմպիրիկ միջին վերահսկիչ կորստի կախվածությունը ներկայացումների ցանցի վարժեցման ժամանակ  օգտագործված դասերի քանակից։}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{figure}[htp]
+\centering
+\includegraphics[width=0.8\textwidth]{imgs/k=2_acc.pdf}
+\end{figure}
+\begin{center}
+ \fontsize{7pt}{7pt} 
+\armfont \textit{$k=2$ քանակությամբ դասերից բաղկացած առաջադրանքի ճշգրտության կախվածությունը ներկայացումների ցանցի վարժեցման ժամանակ  օգտագործված դասերի քանակից։}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{figure}[htp]
+\centering
+\includegraphics[width=0.8\textwidth]{imgs/k=5.pdf}
+\end{figure}
+\begin{center}
+ \fontsize{7pt}{7pt} 
+\armfont \textit{$k=5$ քանակությամբ դասերից բաղկացած առաջադրանքի էմպիրիկ միջին վերահսկիչ կորստի կախվածությունը ներկայացումների ցանցի վարժեցման ժամանակ  օգտագործված դասերի քանակից։}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+\begin{figure}[htp]
+\centering
+\includegraphics[width=0.8\textwidth]{imgs/k=5_acc.pdf}
+\end{figure}
+\begin{center}
+ \fontsize{7pt}{7pt} 
+\armfont \textit{$k=5$ քանակությամբ դասերից բաղկացած առաջադրանքի ճշգրտության կախվածությունը ներկայացումների ցանցի վարժեցման ժամանակ  օգտագործված դասերի քանակից։}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{figure}[htp]
+\centering
+\includegraphics[width=0.8\textwidth]{imgs/k=10.pdf}
+\end{figure}
+\begin{center}
+ \fontsize{7pt}{7pt} 
+\armfont \textit{$k=10$ քանակությամբ դասերից բաղկացած առաջադրանքի էմպիրիկ միջին վերահսկիչ կորստի կախվածությունը ներկայացումների ցանցի վարժեցման ժամանակ  օգտագործված դասերի քանակից։}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+\begin{figure}[htp]
+\centering
+\includegraphics[width=0.8\textwidth]{imgs/k=10_acc.pdf}
+\end{figure}
+\begin{center}
+ \fontsize{7pt}{7pt} 
+\armfont \textit{$k=10$ քանակությամբ դասերից բաղկացած առաջադրանքի ճշգրտության կախվածությունը ներկայացումների ցանցի վարժեցման ժամանակ  օգտագործված դասերի քանակից։}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\Wider[4em]{
+\begin{center}
+ \fontsize{6pt}{6pt} 
+\begin{tabular}{|l||r|r|r||r|r|r||r|r|r||}
+ \cline{2-10}
+  \multicolumn{1}{c|}{} & \multicolumn{3}{|l||}{\hspace{10mm} $M=const$} & \multicolumn{3}{|l||}{\hspace{10mm} $\frac{M}{\sqrt{n}} = const$ } & \multicolumn{3}{|l||}{$\hspace{10mm} \frac{M}{n} = const$} \\
+ \cline{2-10}
+  \multicolumn{1}{c|}{} &     $k=2$ &     $k=5$ &     $k=10$ &    $k=2$ &     $k=5$ &     $k=10$ &    $k=2$ &     $k=5$ &     $k=10$ \\
+\hline
+$n=10$                  & $85.930$ & $66.386$ & $51.077$ & $85.955$ & $66.918$ & $51.352$ & $85.440$ & $66.498$ & $51.760$ \\
+\hline
+$n=20$                 & $87.590$ & $70.856$ & $56.126$ & $88.350$ & $71.168$ & $56.594$ & $89.130$ & $73.404$ & $58.875$ \\
+\hline
+$n=30$                 & $88.795$ & $72.506$ & $57.624$ & $89.840$ & $74.356$ & $60.393$ & $91.435$ & $77.400$ & $63.458$ \\
+\hline
+$n=40$                 & $89.005$ & $73.002$ & $57.835$ & $90.725$ & $75.866$ & $61.643$ & $92.385$ & $79.386$ & $66.309$ \\
+\hline
+$n=50$                 & $89.580$ & $73.442$ & $58.853$ & $91.325$ & $77.436$ & $63.865$ & $93.105$ & $80.966$ & $68.515$ \\
+\hline
+$n=60$                 & $89.610$ & $73.614$ & $59.526$ & $91.820$ & $78.522$ & $65.085$ & $93.895$ & $82.396$ & $69.817$ \\
+\hline
+$n=70$                 & $89.665$ & $74.238$ & $60.060$ & $92.200$ & $78.854$ & $65.473$ & $94.170$ & $82.928$ & $71.096$ \\
+\hline
+$n=80$                 & $89.920$ & $74.724$ & $60.410$ & $92.545$ & $79.166$ & $66.401$ & $94.430$ & $83.810$ & $72.518$ \\
+\hline
+$n=90$                 & $89.855$ & $74.156$ & $60.107$ & $92.750$ & $79.642$ & $66.821$ & $95.265$ & $84.906$ & $73.671$ \\
+\hline
+\end{tabular}
+\end{center}
+}
+\end{frame}
+
+\iffalse
 
 \begin{frame}[fragile] % Need to use the fragile option when verbatim is used in the slide
 \frametitle{Verbatim}
@@ -944,9 +1204,6 @@ $E = mc^2$
 \end{frame}\end{verbatim}
 \end{example}
 \end{frame}
-
-\iffalse
-
 
 \begin{frame}
 \frametitle{Multiple Columns}
@@ -1039,6 +1296,7 @@ This statement requires citation \cite{p1}.
 \end{frame}
 \fi
 %------------------------------------------------
+
 
 \begin{frame}
 \Huge{\centerline{\armfont{Շնորհակալություն}}}
