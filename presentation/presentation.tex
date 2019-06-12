@@ -132,15 +132,52 @@
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
-\title[\armfont{Տրանսֆերային ուսուցման որոշակի մեթոդի ընհանրացման սխալանքի գնահատման մասին}]{\armfont{Տրանսֆերային ուսուցման որոշակի մեթոդի ընհանրացման սխալանքի գնահատման մասին}} % The short title appears at the bottom of every slide, the full title is only on the title page
-\institute[\armfont{ԵՊՀ}]{\armfont{Երևանի Պետական Համալսարան}}
+%\institute[\armfont{ԵՊՀ}]{\armfont{Երևանի Պետական Համալսարան}}
+%\title[\armfont{Տրանսֆերային ուսուցման որոշակի մեթոդի ընհանրացման սխալանքի գնահատման մասին}]{\armfont{Տրանսֆերային ուսուցման որոշակի մեթոդի ընհանրացման սխալանքի գնահատման մասին}} % The short title appears at the bottom of every slide, the full title is only on the title page
+%
+%
+%\author{\armfont{Գևորգ Մինասյան}} % Your name
+%
+%\date{31 \armfont{Մայիսի}  2019} % Date, can be changed to a custom date
 
-\author{\armfont{Գևորգ Մինասյան}} % Your name
 
-\date{31 \armfont{Մայիսի}  2019} % Date, can be changed to a custom date
-
-
-
+     \titlegraphic{\fontsize{14pt}{14pt}\armfont{Երևանի Պետական Համալսարան}}
+     \title[\armfont{Տրանսֆերային ուսուցման որոշակի մեթոդի ընհանրացման սխալանքի գնահատման մասին}]{\armfont{Տրանսֆերային ուսուցման որոշակի մեթոդի ընհանրացման սխալանքի գնահատման մասին}} 
+    \author{\armfont{Գևորգ Մինասյան}}
+    \institute[\armfont{ԵՊՀ}]{}
+     \date{31 \armfont{Մայիսի}  2019} 
+ 
+\makeatletter
+\setbeamertemplate{title page}
+{
+   \vbox{}
+   \vfill
+   \begin{centering}
+       \vskip0.25em%
+       {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}        
+       \vskip2.25em%
+     \begin{beamercolorbox}[sep=8pt,center]{title}
+       \usebeamerfont{title}\inserttitle\par%
+       \ifx\insertsubtitle\@empty%
+       \else%
+         \vskip0.25em%
+         {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+       \fi%    
+     \end{beamercolorbox}%
+     \vskip1em\par
+     \begin{beamercolorbox}[sep=8pt,center]{author}
+       \usebeamerfont{author}\insertauthor
+     \end{beamercolorbox}
+     \begin{beamercolorbox}[sep=8pt,center]{institute}
+       \usebeamerfont{institute}\insertinstitute
+     \end{beamercolorbox}
+     \vspace{-20pt} %<-- right here
+     \begin{beamercolorbox}[sep=8pt,center]{date}
+       \usebeamerfont{date}\insertdate
+     \end{beamercolorbox}\vskip0.5em
+   \end{centering}
+   \vfill
+}
 
 
 
@@ -705,7 +742,7 @@
 \frametitle{\armfont{Նշանակումներ}}
 \begin{itemize}
 \vspace{8mm}
-\item \armfont{$\mathcal{X}$ բոլոր հնարավոր տվյալների օրինակների բազմություն}
+\item \armfont{$\mathcal{X}$ բոլոր հնարավոր տվյալների օրինակների բազմություն։}
 \end{itemize}
 \end{frame}
 
@@ -713,8 +750,8 @@
 \frametitle{\armfont{Նշանակումներ}}
 \begin{itemize}
 \vspace{8mm}
-\item \armfont{$\mathcal{X}$ բոլոր հնարավոր տվյալների օրինակների բազմություն}
-\item $\mathcal{C}$ բոլոր հնարավոր դասերի բազմություն 
+\item \armfont{$\mathcal{X}$ բոլոր հնարավոր տվյալների օրինակների բազմություն։}
+\item $\mathcal{C}$ բոլոր հնարավոր դասերի բազմություն։
 \end{itemize}
 \end{frame}
 
@@ -722,34 +759,9 @@
 \frametitle{\armfont{Նշանակումներ}}
 \begin{itemize}
 \vspace{8mm}
-\item \armfont{$\mathcal{X}$ բոլոր հնարավոր տվյալների օրինակների բազմություն}
-\item $\mathcal{C}$ բոլոր հնարավոր դասերի բազմություն 
-\item $\mathcal{F}$ տվյալների ներկայացումների ֆունկցիաների դաս $$f:\mathcal{X} \rightarrow \mathbb{R}^d, \text{ }\forall f \in \mathcal{F}$$
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}[t]
-\frametitle{\armfont{Նշանակումներ}}
-\begin{itemize}
-\vspace{8mm}
-\item \armfont{$\mathcal{X}$ բոլոր հնարավոր տվյալների օրինակների բազմություն}
-\item $\mathcal{C}$ բոլոր հնարավոր դասերի բազմություն 
-\item $\mathcal{F}$ տվյալների ներկայացումների ֆունկցիաների դաս $$f:\mathcal{X} \rightarrow \mathbb{R}^d, \text{ }\forall f \in \mathcal{F}$$
-\item $\exists R > 0 \text{ } \forall f \in \mathcal{F} \text{ } ||f(x)|| \leq R \text{ } \forall x \in \mathcal{X}$
-\end{itemize}
-\end{frame}
-
-
-\begin{frame}[t]
-\frametitle{\armfont{Նշանակումներ}}
-\end{frame}
-
-\begin{frame}[t]
-\frametitle{\armfont{Նշանակումներ}}
-\begin{itemize}
-\vspace{8mm}
-\item $\mathcal{T}$ \armfont{վերահսկվող առաջդրանքը բաղկացած է $k$ հատ $$\{c_1, c_2, ..., c_{k}\} \subseteq \mathcal{C}$$ միմյանցից տարբեր դասերից, ոտեղ $k\geq 2$}
+\item \armfont{$\mathcal{X}$ բոլոր հնարավոր տվյալների օրինակների բազմություն։}
+\item $\mathcal{C}$ բոլոր հնարավոր դասերի բազմություն։ 
+\item $\mathcal{F}$ տվյալների ներկայացումների ֆունկցիաների դաս $$f:\mathcal{X} \rightarrow \mathbb{R}^d, \text{ }\forall f \in \mathcal{F} \text{\textit{։}}$$
 \end{itemize}
 \end{frame}
 
@@ -758,9 +770,23 @@
 \frametitle{\armfont{Նշանակումներ}}
 \begin{itemize}
 \vspace{8mm}
-\item $\mathcal{T}$ \armfont{վերահսկվող առաջդրանքը բաղկացած է $k$ հատ $$\{c_1, c_2, ..., c_{k}\} \subseteq \mathcal{C}$$ միմյանցից տարբեր դասերից, ոտեղ $k\geq 2$}
+\item \armfont{$\mathcal{X}$ բոլոր հնարավոր տվյալների օրինակների բազմություն։}
+\item $\mathcal{C}$ բոլոր հնարավոր դասերի բազմություն։ 
+\item $\mathcal{F}$ տվյալների ներկայացումների ֆունկցիաների դաս $$f:\mathcal{X} \rightarrow \mathbb{R}^d, \text{ }\forall f \in \mathcal{F}\text{\textit{։}}$$
+\item $\exists R > 0 \text{ } \forall f \in \mathcal{F} \text{ } ||f(x)|| \leq R \text{ } \forall x \in \mathcal{X}\text{\textit{։}}$
+\end{itemize}
+\end{frame}
 
-\item $\mathcal{P}(\mathcal{T})$ վերասհկվող առաջադրանքների դիտարկվելու հավանականային բաշխումը
+
+\begin{frame}[t]
+\frametitle{\armfont{Նշանակումներ}}
+\end{frame}
+
+\begin{frame}[t]
+\frametitle{\armfont{Նշանակումներ}}
+\begin{itemize}
+\vspace{8mm}
+\item $\mathcal{T}$ \armfont{վերահսկվող առաջդրանքը բաղկացած է $k$ հատ $$\{c_1, c_2, ..., c_{k}\} \subseteq \mathcal{C}$$ միմյանցից տարբեր դասերից, ոտեղ $k\geq 2\text{\textit{։}}$}
 \end{itemize}
 \end{frame}
 
@@ -769,11 +795,22 @@
 \frametitle{\armfont{Նշանակումներ}}
 \begin{itemize}
 \vspace{8mm}
-\item $\mathcal{T}$ \armfont{վերահսկվող առաջդրանքը բաղկացած է $k$ հատ $$\{c_1, c_2, ..., c_{k}\} \subseteq \mathcal{C}$$ միմյանցից տարբեր դասերից, ոտեղ $k\geq 2$}
+\item $\mathcal{T}$ \armfont{վերահսկվող առաջդրանքը բաղկացած է $k$ հատ $$\{c_1, c_2, ..., c_{k}\} \subseteq \mathcal{C}$$ միմյանցից տարբեր դասերից, ոտեղ $k\geq 2\text{\textit{։}}$}
 
-\item $\mathcal{P}(\mathcal{T})$ վերասհկվող առաջադրանքների դիտարկվելու հավանականային բաշխումը
+\item $\mathcal{P}(\mathcal{T})$ վերասհկվող առաջադրանքների դիտարկվելու հավանականային բաշխումը։
+\end{itemize}
+\end{frame}
 
-\item $\mathcal{P}(\mathcal{T} \text{ } |\text{ }  |\mathcal{T}| = k )$ $k$ հատ դասերից բաղկացած վերասհկվող առաջադրանքների դիտարկվելու հավանականային բաշխումը
+
+\begin{frame}[t]
+\frametitle{\armfont{Նշանակումներ}}
+\begin{itemize}
+\vspace{8mm}
+\item $\mathcal{T}$ \armfont{վերահսկվող առաջդրանքը բաղկացած է $k$ հատ $$\{c_1, c_2, ..., c_{k}\} \subseteq \mathcal{C}$$ միմյանցից տարբեր դասերից, ոտեղ $k\geq 2\text{\textit{։}}$}
+
+\item $\mathcal{P}(\mathcal{T})$ վերասհկվող առաջադրանքների դիտարկվելու հավանականային բաշխումը։
+
+\item $\mathcal{P}(\mathcal{T} \text{ } |\text{ }  |\mathcal{T}| = k )$ $k$ դասերից բաղկացած վերասհկվող առաջադրանքների դիտարկվելու հավանականային բաշխումը։
 \end{itemize}
 \end{frame}
 
@@ -787,7 +824,7 @@
 \frametitle{\armfont{Նշանակումներ}}
 \begin{itemize}
 \vspace{5mm}
-\item  \armfont{$\mathcal{D}_c(x)$ $c$ դասին համապատասխան հավանականային բաշխումն է, ցույց է տալիս, թե $x$ օրինակը ինչքանով է համապատասխան $c$ դասին}
+\item  \armfont{$\mathcal{D}_c(x)$ $c$ դասին համապատասխան հավանականային բաշխումն է, ցույց է տալիս, թե $x$ օրինակը ինչքանով է համապատասխան $c$ դասին։}
 \end{itemize}
 \end{frame}
 
@@ -797,9 +834,9 @@
 \frametitle{\armfont{Նշանակումներ}}
 \begin{itemize}
 \vspace{5mm}
-\item  \armfont{$\mathcal{D}_c(x)$ $c$ դասին համապատասխան հավանականային բաշխումն է, ցույց է տալիս, թե $x$ օրինակը ինչքանով է համապատասխան $c$ դասին}
+\item  \armfont{$\mathcal{D}_c(x)$ $c$ դասին համապատասխան հավանականային բաշխումն է, ցույց է տալիս, թե $x$ օրինակը ինչքանով է համապատասխան $c$ դասին։}
 
-\item $\mathcal{D}_{\mathcal{T}}(x, c) = \mathcal{D}_{\mathcal{T}}(c)\mathcal{D}_{c}(x)$ $\mathcal{T}$ վերահսկվող առաջադրանգի պիտակավորված տվյալների հավանականային բաշխումն է
+\item $\mathcal{D}_{\mathcal{T}}(x, c) = \mathcal{D}_{\mathcal{T}}(c)\mathcal{D}_{c}(x)$ $\mathcal{T}$ վերահսկվող առաջադրանքի պիտակավորված տվյալների հավանականային բաշխումն է։
 
 \end{itemize}
 \end{frame}
@@ -810,11 +847,11 @@
 \frametitle{\armfont{Նշանակումներ}}
 \begin{itemize}
 \vspace{5mm}
-\item  \armfont{$\mathcal{D}_c(x)$ $c$ դասին համապատասխան հավանականային բաշխումն է, ցույց է տալիս, թե $x$ օրինակը ինչքանով է համապատասխան $c$ դասին}
+\item  \armfont{$\mathcal{D}_c(x)$ $c$ դասին համապատասխան հավանականային բաշխումն է, ցույց է տալիս, թե $x$ օրինակը ինչքանով է համապատասխան $c$ դասին։}
 
-\item $\mathcal{D}_{\mathcal{T}}(x, c) = \mathcal{D}_{\mathcal{T}}(c)\mathcal{D}_{c}(x)$ $\mathcal{T}$ վերահսկվող առաջադրանգի պիտակավորված տվյալների հավանականային բաշխումն է
+\item $\mathcal{D}_{\mathcal{T}}(x, c) = \mathcal{D}_{\mathcal{T}}(c)\mathcal{D}_{c}(x)$ $\mathcal{T}$ վերահսկվող առաջադրանքի պիտակավորված տվյալների հավանականային բաշխումն է։
 
-\item $S = \{(x_1, y_1), ..., (x_M, y_M) \ | x_i \in \mathcal{X}, y_i \in \mathcal{T}\}$ $\mathcal{T}$ առաջադրանքի պիտակավորված օրինակների ուսուցման բազմությունն է ընտրված միմյանցից անկախ և $\mathcal{D}_{\mathcal{T}}(x, c)$ հավանականային բաշխումից
+\item $S = \{(x_1, y_1), ..., (x_M, y_M) \ | x_i \in \mathcal{X}, y_i \in \mathcal{T}\}$ $\mathcal{T}$ առաջադրանքի պիտակավորված օրինակների ուսուցման բազմությունն է՝ ընտրված միմյանցից անկախ և $\mathcal{D}_{\mathcal{T}}(x, c)$ հավանականային բաշխումից։
 \end{itemize}
 \end{frame}
 
@@ -830,7 +867,7 @@
 \frametitle{\armfont{Նշանակումներ}}
 \begin{itemize}
 \vspace{5mm}
-\item \armfont $\mathcal{T}$ առաջադրանքի բազմադաս դասակարգիչը ֆուկցիա է՝ $g:\mathcal{X} \rightarrow \mathcal{R}^{k}$, որի արժեքի կորդինատները ինդեքսավորված են այդ առաջադրանքի դասերով։
+\item \armfont $\mathcal{T}$ առաջադրանքի բազմադաս դասակարգիչը ֆուկցիա է՝ $g:\mathcal{X} \rightarrow \mathbb{R}^{k}$, որի արժեքի կորդինատները ինդեքսավորված են այդ առաջադրանքի դասերով։
 \end{itemize}
 \end{frame}
 
@@ -839,9 +876,9 @@
 \frametitle{\armfont{Նշանակումներ}}
 \begin{itemize}
 \vspace{5mm}
-\item \armfont $\mathcal{T}$ առաջադրանքի բազմադաս դասակարգիչը ֆուկցիա է՝ $g:\mathcal{X} \rightarrow \mathcal{R}^{k}$, որի արժեքի կորդինատները ինդեքսավորված են այդ առաջադրանքի դասերով։
+\item \armfont $\mathcal{T}$ առաջադրանքի բազմադաս դասակարգիչը ֆուկցիա է՝ $g:\mathcal{X} \rightarrow \mathbb{R}^{k}$, որի արժեքի կորդինատները ինդեքսավորված են այդ առաջադրանքի դասերով։
 
-\item $l(\{ g(x)_y-g(x)_{y'}\}_{y \neq y'}  )$-ը $(x, y) \in \mathcal{X} \times \mathcal{T}$ կետում $g$ դասակարգիչով պայմանավորված կորուստն է
+\item $l(\{ g(x)_y-g(x)_{y'}\}_{y \neq y'}  )$-ը $(x, y) \in \mathcal{X} \times \mathcal{T}$ կետում $g$ դասակարգիչով պայմանավորված կորուստն է։
 \end{itemize}
 \end{frame}
 
@@ -850,10 +887,10 @@
 \frametitle{\armfont{Նշանակումներ}}
 \begin{itemize}
 \vspace{5mm}
-\item \armfont $\mathcal{T}$ առաջադրանքի բազմադաս դասակարգիչը ֆուկցիա է՝ $g:\mathcal{X} \rightarrow \mathcal{R}^{k}$, որի արժեքի կորդինատները ինդեքսավորված են այդ առաջադրանքի դասերով։
+\item \armfont $\mathcal{T}$ առաջադրանքի բազմադաս դասակարգիչը ֆուկցիա է՝ $g:\mathcal{X} \rightarrow \mathbb{R}^{k}$, որի արժեքի կորդինատները ինդեքսավորված են այդ առաջադրանքի դասերով։
 
-\item $l(\{ g(x)_y-g(x)_{y'}\}_{y \neq y'}  )$-ը $(x, y) \in \mathcal{X} \times \mathcal{T}$ կետում $g$ դասակարգիչով պայմանավորված կորուստն է
-\item $l(v) = \max\{0, 1+\max_{i}\{-v_i\}\} $
+\item $l(\{ g(x)_y-g(x)_{y'}\}_{y \neq y'}  )$-ը $(x, y) \in \mathcal{X} \times \mathcal{T}$ կետում $g$ դասակարգիչով պայմանավորված կորուստն է։
+\item $l(v) = \max\{0, 1+\max_{i}\{-v_i\}\} \text{\textit{։}}$
 \end{itemize}
 \end{frame}
 
@@ -861,11 +898,11 @@
 \frametitle{\armfont{Նշանակումներ}}
 \begin{itemize}
 \vspace{5mm}
-\item \armfont $\mathcal{T}$ առաջադրանքի բազմադաս դասակարգիչը ֆուկցիա է՝ $g:\mathcal{X} \rightarrow \mathcal{R}^{k}$, որի արժեքի կորդինատները ինդեքսավորված են այդ առաջադրանքի դասերով։
+\item \armfont $\mathcal{T}$ առաջադրանքի բազմադաս դասակարգիչը ֆուկցիա է՝ $g:\mathcal{X} \rightarrow \mathbb{R}^{k}$, որի արժեքի կորդինատները ինդեքսավորված են այդ առաջադրանքի դասերով։
 
-\item $l(\{ g(x)_y-g(x)_{y'}\}_{y \neq y'}  )$-ը $(x, y) \in \mathcal{X} \times \mathcal{T}$ կետում $g$ դասակարգիչով պայմանավորված կորուստն է
-\item $l(v) = \max\{0, 1+\max_{i}\{-v_i\}\} $
-\item $l(v) = \log_2(1+\sum_{i}{e^{-v_i}})$
+\item $l(\{ g(x)_y-g(x)_{y'}\}_{y \neq y'}  )$-ը $(x, y) \in \mathcal{X} \times \mathcal{T}$ կետում $g$ դասակարգիչով պայմանավորված կորուստն է։
+\item $l(v) = \max\{0, 1+\max_{i}\{-v_i\}\} \text{\textit{։}}$
+\item $l(v) = \log_2(1+\sum_{i}{e^{-v_i}}) \text{\textit{։}}$
 \end{itemize}
 \end{frame}
 
@@ -874,25 +911,13 @@
 \frametitle{\armfont{Նշանակումներ}}
 \end{frame}
 
-
-\begin{frame}[t]
-\frametitle{\armfont{Նշանակումներ}}
-\begin{itemize}
-\vspace{5mm}
-\item \armfont $\mathcal{T}$ առաջադրանքի համար $g$ դասակարգիչի կորուստը հետևյալն է՝
-$$L(\mathcal{T}, g) = \E_{(x, c) \sim \mathcal{D}_{\mathcal{T}}} \left [ l(\{ g(x)_c-g(x)_{c'}\}_{c \neq c'}  ) \right ]$$
-
-\end{itemize}
-\end{frame}
 
 \begin{frame}[t]
 \frametitle{\armfont{Նշանակումներ}}
 \begin{itemize}
 \vspace{5mm}
 \item \armfont $\mathcal{T}$ առաջադրանքի համար $g$ դասակարգիչի կորուստը հետևյալն է՝
-$$L(\mathcal{T}, g) = \E_{(x, c) \sim \mathcal{D}_{\mathcal{T}}} \left [ l(\{ g(x)_c-g(x)_{c'}\}_{c \neq c'}  ) \right ]$$
-\item $\mathcal{V} = \{W: ||W||_{\infty} \leq Q \text{ և } Q > 0\}$
-
+$$L(\mathcal{T}, g) = \E_{(x, c) \sim \mathcal{D}_{\mathcal{T}}} \left [ l(\{ g(x)_c-g(x)_{c'}\}_{c \neq c'}  ) \right ]\text{\textit{։}}$$
 
 \end{itemize}
 \end{frame}
@@ -902,9 +927,9 @@ $$L(\mathcal{T}, g) = \E_{(x, c) \sim \mathcal{D}_{\mathcal{T}}} \left [ l(\{ g(
 \begin{itemize}
 \vspace{5mm}
 \item \armfont $\mathcal{T}$ առաջադրանքի համար $g$ դասակարգիչի կորուստը հետևյալն է՝
-$$L(\mathcal{T}, g) = \E_{(x, c) \sim \mathcal{D}_{\mathcal{T}}} \left [ l(\{ g(x)_c-g(x)_{c'}\}_{c \neq c'}  ) \right ]$$
-\item $\mathcal{V} = \{W: ||W||_{\infty} \leq Q \text{ և } Q > 0\}$
-\item  $g(x) = Wf(x)$, որտեղ $W \in \mathcal{V}$
+$$L(\mathcal{T}, g) = \E_{(x, c) \sim \mathcal{D}_{\mathcal{T}}} \left [ l(\{ g(x)_c-g(x)_{c'}\}_{c \neq c'}  ) \right ]\text{\textit{։}}$$
+\item $\mathcal{V} = \{W: ||W||_{\infty} \leq Q \text{ և } Q > 0\}\text{\textit{։}}$
+
 
 \end{itemize}
 \end{frame}
@@ -914,11 +939,23 @@ $$L(\mathcal{T}, g) = \E_{(x, c) \sim \mathcal{D}_{\mathcal{T}}} \left [ l(\{ g(
 \begin{itemize}
 \vspace{5mm}
 \item \armfont $\mathcal{T}$ առաջադրանքի համար $g$ դասակարգիչի կորուստը հետևյալն է՝
-$$L(\mathcal{T}, g) = \E_{(x, c) \sim \mathcal{D}_{\mathcal{T}}} \left [ l(\{ g(x)_c-g(x)_{c'}\}_{c \neq c'}  ) \right ]$$
-\item $\mathcal{V} = \{W: ||W||_{\infty} \leq Q \text{ և } Q > 0\}$
-\item  $g(x) = Wf(x)$, որտեղ $W \in \mathcal{V}$
+$$L(\mathcal{T}, g) = \E_{(x, c) \sim \mathcal{D}_{\mathcal{T}}} \left [ l(\{ g(x)_c-g(x)_{c'}\}_{c \neq c'}  ) \right ]\text{\textit{։}}$$
+\item $\mathcal{V} = \{W: ||W||_{\infty} \leq Q \text{ և } Q > 0\}\text{\textit{։}}$
+\item  $g(x) = Wf(x)$, որտեղ $W \in \mathcal{V}\text{\textit{։}}$
 
-\item $L(\mathcal{T}, f) = \inf_{W \in \mathcal{V}} L(\mathcal{T}, f, W)$
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]
+\frametitle{\armfont{Նշանակումներ}}
+\begin{itemize}
+\vspace{5mm}
+\item \armfont $\mathcal{T}$ առաջադրանքի համար $g$ դասակարգիչի կորուստը հետևյալն է՝
+$$L(\mathcal{T}, g) = \E_{(x, c) \sim \mathcal{D}_{\mathcal{T}}} \left [ l(\{ g(x)_c-g(x)_{c'}\}_{c \neq c'}  ) \right ]\text{\textit{։}}$$
+\item $\mathcal{V} = \{W: ||W||_{\infty} \leq Q \text{ և } Q > 0\}\text{\textit{։}}$
+\item  $g(x) = Wf(x)$, որտեղ $W \in \mathcal{V}\text{\textit{։}}$
+
+\item $L(\mathcal{T}, f) = \inf_{W \in \mathcal{V}} L(\mathcal{T}, f, W)\text{\textit{։}}$
 
 \end{itemize}
 \end{frame}
@@ -935,7 +972,7 @@ $$L(\mathcal{T}, g) = \E_{(x, c) \sim \mathcal{D}_{\mathcal{T}}} \left [ l(\{ g(
 \begin{block}{\armfont Վերահսկիչ միջին կորուստ}
 \armfont \fontsize{8pt}{8pt}
 $k$ դասերից բաղկացած առաջադրանքների վերահսկիչ միջին կորուստը $f$ ներկայացման համար սահմանվում է որպես՝ 
-$$L_k(f) = \E_{\mathcal{T} \sim \mathcal{P}} \left [L (\mathcal{T}, f) \text{ } | \text{ } |\mathcal{T}| = k\right]$$
+$$L_k(f) = \E_{\mathcal{T} \sim \mathcal{P}} \left [L (\mathcal{T}, f) \text{ } | \text{ } |\mathcal{T}| = k\right]\text{\textit{։}}$$
 \end{block}
 
 \end{frame}
@@ -950,7 +987,7 @@ $$L_k(f) = \E_{\mathcal{T} \sim \mathcal{P}} \left [L (\mathcal{T}, f) \text{ } 
 \begin{block}{\armfont Էմպիրիկ վերահսկիչ միջին կորուստ}
 \armfont \fontsize{8pt}{8pt} Դիցուք ունենք միմյանցից անկախ $\mathcal{P}(\mathcal{T} \text{ } |\text{ }  |\mathcal{T}| = k )$ բաշխումից ընտրված $N$ հատ առաջադրանքներ՝ $\mathcal{T}_1, ..., \mathcal{T}_N$:
 էմպիրիկ վերահսկիչ միջին կորուստը $f$ ներկայացման համար հետևյալն է՝ 
-$$\hat{L}_k(f) = \frac{1}{N}\sum_{i=1}^{N}L (\mathcal{T}_i, f)$$
+$$\hat{L}_k(f) = \frac{1}{N}\sum_{i=1}^{N}L (\mathcal{T}_i, f)\text{\textit{։}}$$
 \end{block}
 
 \end{frame}
@@ -969,11 +1006,11 @@ $$\hat{L}_k(f) = \frac{1}{N}\sum_{i=1}^{N}L (\mathcal{T}_i, f)$$
 
 \begin{block}{\armfont Ներկայացումների էմպիրիկ Ռադեմախերի բարդությունը}
  \fontsize{8pt}{8pt}
-\armfont Դիցուք $\mathcal{F}$ տվյալների ներկայացումների ֆունկցիաների ընտանիք է՝ $$\forall f \in \mathcal{F}, f:\mathcal{X}: \rightarrow \mathbb{R}^d$$
-իսկ $S$-ը $m$ հզորությամբ տվյալների ֆիքսված օրինակների բազմություն է՝
-$$S = \{x_i | x_i \in \mathcal{X}, \forall i \in [m]\}$$
+\armfont Դիցուք $\mathcal{F}$ տվյալների ներկայացումների ֆունկցիաների ընտանիք է՝ $$\forall f \in \mathcal{F}, f:\mathcal{X}: \rightarrow \mathbb{R}^d\text{\textit{,}}$$
+իսկ $S$-ը՝ $m$ հզորությամբ տվյալների ֆիքսված օրինակների բազմություն՝
+$$S = \{x_i | x_i \in \mathcal{X}, \forall i \in [m]\}\text{\textit{։}}$$
 Այդ դեպքում ներկայացումների $\mathcal{F}$ ընտանիքի էմպիրիկ Ռադեմախերի բարդությունը ֆիքսված օրինակների $S$ բազմության համար սահմանվում է հետևյալ կերպ՝
-$$\hat{\mathcal{R}}_S(\mathcal{F}) = \frac{1}{m} \E_{\sigma \sim \{\pm 1\}^{md}} \sup_{f\in \mathcal{F}} \sum_{i = 1}^m \sum_{j = 1}^d \sigma_{ij} f_j(x_i) $$
+$$\hat{\mathcal{R}}_S(\mathcal{F}) = \frac{1}{m} \E_{\sigma \sim \{\pm 1\}^{md}} \sup_{f\in \mathcal{F}} \sum_{i = 1}^m \sum_{j = 1}^d \sigma_{ij} f_j(x_i)\text{\textit{։}} $$
 \end{block}
 
 \end{frame}
@@ -988,9 +1025,9 @@ $$\hat{\mathcal{R}}_S(\mathcal{F}) = \frac{1}{m} \E_{\sigma \sim \{\pm 1\}^{md}}
 \frametitle{\armfont Անհավասարություն Ռադեմախերի բարդությունների վերաբերյալ}
  \fontsize{8pt}{8pt} 
 \begin{exampleblock}{\armfont{Թեորեմ}} \armfont
-Դիցուք $\mathcal{X}$-ը և $\mathcal{Y}$-ը որևէ բազմություններ են  և $(x_1, x_2, ..., x_n) \in X^N$։ Տրված է նաև $\mathcal{F}$ ֆունկցիաների բազմություն, որի կամայական $f \in \mathcal{F}$ ֆունկցիա $\mathcal{X}$ բազմությունը արտապատկերում է $\mathbb{R}^d$ էվկլիդյան տարածություն՝ $f:\mathcal{X} \rightarrow \mathbb{R}^d$։ Դիցուք $h_i$ ֆունկցիաներ ունենք՝ $$h_i:\mathbb{R}^d \times \mathcal{Y} \rightarrow \mathbb{R}$$ կամայական $i \in [n]$ համար։ Կենթադրենք, որ բոլոր $h_i(v, y)$ ֆունկցիաները, ինչ-որ $L$ դրական հաստատունով Լիպշից հատկությամբ օժտված ֆունկցիաներ են ըստ $v$-ի կամայական $y \in \mathcal{Y}$ համար։ Այդ դեպքում տեղի ունի հետևյալ անհավասարությունը՝
+Դիցուք $\mathcal{X}$-ը և $\mathcal{Y}$-ը որևէ բազմություններ են,  և $(x_1, x_2, ..., x_n) \in X^n$։ Տրված է նաև $\mathcal{F}$ ֆունկցիաների բազմություն, որի կամայական $f \in \mathcal{F}$ ֆունկցիա $\mathcal{X}$ բազմությունը արտապատկերում է $\mathbb{R}^d$ էվկլիդյան տարածություն՝ $f:\mathcal{X} \rightarrow \mathbb{R}^d$։ Դիցուք ունենք $h_i$ ֆունկցիաներ՝ $$h_i:\mathbb{R}^d \times \mathcal{Y} \rightarrow \mathbb{R}\text{\textit{՝}}$$ կամայական $i \in [n]$ համար։ Ենթադրենք, որ բոլոր $h_i(v, y)$ ֆունկցիաները ինչ-որ $L$ դրական հաստատունով Լիպշիցի հատկությամբ օժտված ֆունկցիաներ են՝ ըստ $v$-ի կամայական $y \in \mathcal{Y}$ համար։ Այդ դեպքում տեղի ունի հետևյալ անհավասարությունը՝
 \begin{align*}
-\E_{\sigma \sim \{\pm 1\}^n}\left[\sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal{Y}} }  \sum_{i=1}^n{\sigma_ih_i(f(x_i), y)}  \right]    \leq \sqrt{2}L \E_{\sigma \sim \{\pm1\}^{nd}} \left[  \sup_{f \in \mathcal{F}}  \sum_{i=1}^n\sum_{j=1}^d{\sigma_{ij}f_j(x_i)}   \right]
+\E_{\sigma \sim \{\pm 1\}^n}\left[\sup_{\substack{f \in \mathcal{F} \\ y \in \mathcal{Y}} }  \sum_{i=1}^n{\sigma_ih_i(f(x_i), y)}  \right]    \leq \sqrt{2}L \E_{\sigma \sim \{\pm1\}^{nd}} \left[  \sup_{f \in \mathcal{F}}  \sum_{i=1}^n\sum_{j=1}^d{\sigma_{ij}f_j(x_i)}   \right]\text{\textit{։}}
 \end{align*}
 \end{exampleblock}
 \end{frame}
@@ -1007,7 +1044,7 @@ $$\hat{\mathcal{R}}_S(\mathcal{F}) = \frac{1}{m} \E_{\sigma \sim \{\pm 1\}^{md}}
 \begin{frame}
 \frametitle{\armfont Ներկայացումների ուսուցման ալգորիթմը}\armfont
 $\mathcal{F}$ դասից  ներկայցման ֆունկցիա սովորելու ալգորիթմը հետևյալն է՝
-$$(\hat{f}, \hat{W}) = \argmin_{\substack{f \in \mathcal{F} \\ W \in \mathcal{V}}} \hat{L}(\mathcal{T},f, W)$$
+$$(\hat{f}, \hat{W}) = \argmin_{\substack{f \in \mathcal{F} \\ W \in \mathcal{V}}} \hat{L}(\mathcal{T},f, W)\text{\textit{,}}$$
 որտեղ $\hat{f}$-ը փնտրվող ներկայացումն է։
 \end{frame}
 
@@ -1021,7 +1058,7 @@ $$(\hat{f}, \hat{W}) = \argmin_{\substack{f \in \mathcal{F} \\ W \in \mathcal{V}
 \begin{itemize}
 \armfont
 \vspace{15mm}
-\item $\rho_{min}  = \min_{c \in \mathcal{T} } D_\mathcal{T}(c)$
+\item $\rho_{min}  = \min_{c \in \mathcal{T} } D_\mathcal{T}(c)\text{\textit{։}}$
 
 \end{itemize}
 \end{frame}
@@ -1033,8 +1070,8 @@ $$(\hat{f}, \hat{W}) = \argmin_{\substack{f \in \mathcal{F} \\ W \in \mathcal{V}
 \begin{itemize}
 \armfont
 \vspace{15mm}
-\item $\rho_{min}  = \min_{c \in \mathcal{T} } D_\mathcal{T}(c)$
-\item $m(c)$ այն $T_i$ առաջադրանքների քանակը, որոնցում $c$ դասն է մասնակցում
+\item $\rho_{min}  = \min_{c \in \mathcal{T} } D_\mathcal{T}(c)\text{\textit{։}}$
+\item $m(c)$ այն $T_i$ առաջադրանքների քանակը, որոնցում $c$ դասն է մասնակցում։
 \end{itemize}
 \end{frame}
 
@@ -1044,9 +1081,9 @@ $$(\hat{f}, \hat{W}) = \argmin_{\substack{f \in \mathcal{F} \\ W \in \mathcal{V}
 \begin{itemize}
 \armfont
 \vspace{15mm}
-\item $\rho_{min}  = \min_{c \in \mathcal{T} } D_\mathcal{T}(c)$
-\item $m(c)$ այն $T_i$ առաջադրանքների քանակը, որոնցում $c$ դասն է մասնակցում
-\item $m_{max} = \max_{c \in T} m(c)$
+\item $\rho_{min}  = \min_{c \in \mathcal{T} } D_\mathcal{T}(c)\text{\textit{։}}$
+\item $m(c)$ այն $T_i$ առաջադրանքների քանակը, որոնցում $c$ դասն է մասնակցում։
+\item $m_{max} = \max_{c \in T} m(c)\text{\textit{։}}$
 \end{itemize}
 \end{frame}
 
@@ -1061,10 +1098,10 @@ $$(\hat{f}, \hat{W}) = \argmin_{\substack{f \in \mathcal{F} \\ W \in \mathcal{V}
 \frametitle{\armfont Վերահսկիչ միջին կորուստի գնահատականը}
  \fontsize{7pt}{7pt} 
 \begin{exampleblock}{\armfont{Թեորեմ}} \armfont
-Դիցուք $\delta$-ն կամայական դրական թիվ է,  իսկ $l$ կորստի ֆունկցիան սահմափակ է $B$-ով և $\eta$ հաստատունով Լիպշից հատկությամբ օժտված ֆունկցիա է։ Այդ դեպքում առնվազն $1-\delta$ հավանականությամբ $\forall f \in \mathcal{F}$ ներկայացման ֆունկցիայի և $\forall W \in \mathcal{V}$ մատրիցայի համար տեղի ունի հետևյալ անհավասարությունը՝ 
+Դիցուք $\delta$-ն կամայական դրական թիվ է,  իսկ $l$ կորստի ֆունկցիան սահմափակ է $B$-ով և $\eta$ հաստատունով Լիպշիցի հատկությամբ օժտված ֆունկցիա է։ Այդ դեպքում առնվազն $1-\delta$ հավանականությամբ $\forall f \in \mathcal{F}$ ներկայացման ֆունկցիայի և $\forall W \in \mathcal{V}$ մատրիցայի համար տեղի ունի հետևյալ անհավասարությունը՝ 
 \begin{align*}
 L_k(\hat{f}) \leq  \frac{m_{max}}{n \rho_{min}}  L(\mathcal{T}, f, W)+ O\left(
-\frac{\eta Qm_{max}}{\sqrt{n}\rho_{min}} \hat{\mathcal{R}}_S(\mathcal{F})+    \frac{Bm_{max}}{n\rho_{min}}\sqrt{\frac{\log \left( \frac{1}{\delta} \right)}{M}} + B\sqrt{\frac{k\log \left(\frac{1}{\delta}\right) }{n}} \right)
+\frac{\eta Qm_{max}}{\sqrt{n}\rho_{min}} \hat{\mathcal{R}}_S(\mathcal{F})+    \frac{Bm_{max}}{n\rho_{min}}\sqrt{\frac{\log \left( \frac{1}{\delta} \right)}{M}} + B\sqrt{\frac{k\log \left(\frac{1}{\delta}\right) }{n}} \right)\text{\textit{։}}
 \end{align*}
 \end{exampleblock}
 \end{frame}
@@ -1077,10 +1114,10 @@ L_k(\hat{f}) \leq  \frac{m_{max}}{n \rho_{min}}  L(\mathcal{T}, f, W)+ O\left(
 \frametitle{\armfont Վերահսկիչ միջին կորուստի գնահատականը}
  \fontsize{7pt}{7pt} 
 \begin{exampleblock}{\armfont{Հետևանք}} \armfont
-Դիցուք $\delta$-ն կամայական դրական թիվ է, իսկ $l$ կորստի ֆունկցիան սահմափակ է $B$-ով և $\eta$ հաստատունով Լիպշից հատկությամբ օժտված ֆունկցիա է։ Բացի այդ $\mathcal{P}(\mathcal{T})$ և $\mathcal{D}_\mathcal{T}(c)$-ն հավասարավանական են, այդ դեպքում առնվազն $1-\delta$ հավանականությամբ $\forall f \in \mathcal{F}$ ներկայացման ֆունկցիայի և $\forall W \in \mathcal{V}$ մատրիցայի համար տեղի ունի հետևյալ անհավասարությունը՝ 
+Դիցուք $\delta$-ն կամայական դրական թիվ է, իսկ $l$ կորստի ֆունկցիան սահմափակ է $B$-ով և $\eta$ հաստատունով Լիպշիցի հատկությամբ օժտված ֆունկցիա է։ Բացի այդ, $\mathcal{P}(\mathcal{T})$ և $\mathcal{D}_\mathcal{T}(c)$-ն հավասարահավանական են, այդ դեպքում առնվազն $1-\delta$ հավանականությամբ $\forall f \in \mathcal{F}$ ներկայացման ֆունկցիայի և $\forall W \in \mathcal{V}$ մատրիցայի համար տեղի ունի հետևյալ անհավասարությունը՝ 
 \begin{align*}
 L_k(\hat{f}) \leq m_{max}  L(\mathcal{T}, f, W)+ O\left(
-\eta Qm_{max}\sqrt{n} \hat{\mathcal{R}}_S(\mathcal{F})+   Bm_{max}\sqrt{\frac{\log \left( \frac{1}{\delta} \right)}{M}} + B\sqrt{\frac{k\log \left(\frac{1}{\delta}\right) }{n}} \right)
+\eta Qm_{max}\sqrt{n} \hat{\mathcal{R}}_S(\mathcal{F})+   Bm_{max}\sqrt{\frac{\log \left( \frac{1}{\delta} \right)}{M}} + B\sqrt{\frac{k\log \left(\frac{1}{\delta}\right) }{n}} \right)\text{\textit{։}}
 \end{align*}
 Իսկ եթե $|\mathcal{C}| \rightarrow \infty$, ապա $m_{max} \rightarrow 1$։
 \end{exampleblock}
@@ -1096,7 +1133,7 @@ L_k(\hat{f}) \leq m_{max}  L(\mathcal{T}, f, W)+ O\left(
 \end{figure}
 \begin{center}
  \fontsize{7pt}{7pt} 
-\armfont \textit{$k=2$ քանակությամբ դասերից բաղկացած առաջադրանքի էմպիրիկ միջին վերահսկիչ կորստի կախվածությունը ներկայացումների ցանցի վարժեցման ժամանակ  օգտագործված դասերի քանակից։}
+\armfont \textit{$k=2$ քանակությամբ դասերից բաղկացած առաջադրանքի էմպիրիկ միջին վերահսկիչ կորստի կախվածությունը՝ ներկայացումների ցանցի վարժեցման ժամանակ  օգտագործված դասերի քանակից։}
 \end{center}
 \end{frame}
 
@@ -1107,7 +1144,7 @@ L_k(\hat{f}) \leq m_{max}  L(\mathcal{T}, f, W)+ O\left(
 \end{figure}
 \begin{center}
  \fontsize{7pt}{7pt} 
-\armfont \textit{$k=2$ քանակությամբ դասերից բաղկացած առաջադրանքի ճշգրտության կախվածությունը ներկայացումների ցանցի վարժեցման ժամանակ  օգտագործված դասերի քանակից։}
+\armfont \textit{$k=2$ քանակությամբ դասերից բաղկացած առաջադրանքի ճշգրտության կախվածությունը՝ ներկայացումների ցանցի վարժեցման ժամանակ  օգտագործված դասերի քանակից։}
 \end{center}
 \end{frame}
 
@@ -1118,7 +1155,7 @@ L_k(\hat{f}) \leq m_{max}  L(\mathcal{T}, f, W)+ O\left(
 \end{figure}
 \begin{center}
  \fontsize{7pt}{7pt} 
-\armfont \textit{$k=5$ քանակությամբ դասերից բաղկացած առաջադրանքի էմպիրիկ միջին վերահսկիչ կորստի կախվածությունը ներկայացումների ցանցի վարժեցման ժամանակ  օգտագործված դասերի քանակից։}
+\armfont \textit{$k=5$ քանակությամբ դասերից բաղկացած առաջադրանքի էմպիրիկ միջին վերահսկիչ կորստի կախվածությունը՝ ներկայացումների ցանցի վարժեցման ժամանակ  օգտագործված դասերի քանակից։}
 \end{center}
 \end{frame}
 
@@ -1130,7 +1167,7 @@ L_k(\hat{f}) \leq m_{max}  L(\mathcal{T}, f, W)+ O\left(
 \end{figure}
 \begin{center}
  \fontsize{7pt}{7pt} 
-\armfont \textit{$k=5$ քանակությամբ դասերից բաղկացած առաջադրանքի ճշգրտության կախվածությունը ներկայացումների ցանցի վարժեցման ժամանակ  օգտագործված դասերի քանակից։}
+\armfont \textit{$k=5$ քանակությամբ դասերից բաղկացած առաջադրանքի ճշգրտության կախվածությունը՝ ներկայացումների ցանցի վարժեցման ժամանակ  օգտագործված դասերի քանակից։}
 \end{center}
 \end{frame}
 
@@ -1141,7 +1178,7 @@ L_k(\hat{f}) \leq m_{max}  L(\mathcal{T}, f, W)+ O\left(
 \end{figure}
 \begin{center}
  \fontsize{7pt}{7pt} 
-\armfont \textit{$k=10$ քանակությամբ դասերից բաղկացած առաջադրանքի էմպիրիկ միջին վերահսկիչ կորստի կախվածությունը ներկայացումների ցանցի վարժեցման ժամանակ  օգտագործված դասերի քանակից։}
+\armfont \textit{$k=10$ քանակությամբ դասերից բաղկացած առաջադրանքի էմպիրիկ միջին վերահսկիչ կորստի կախվածությունը՝ ներկայացումների ցանցի վարժեցման ժամանակ  օգտագործված դասերի քանակից։}
 \end{center}
 \end{frame}
 
@@ -1153,7 +1190,7 @@ L_k(\hat{f}) \leq m_{max}  L(\mathcal{T}, f, W)+ O\left(
 \end{figure}
 \begin{center}
  \fontsize{7pt}{7pt} 
-\armfont \textit{$k=10$ քանակությամբ դասերից բաղկացած առաջադրանքի ճշգրտության կախվածությունը ներկայացումների ցանցի վարժեցման ժամանակ  օգտագործված դասերի քանակից։}
+\armfont \textit{$k=10$ քանակությամբ դասերից բաղկացած առաջադրանքի ճշգրտության կախվածությունը՝ ներկայացումների ցանցի վարժեցման ժամանակ  օգտագործված դասերի քանակից։}
 \end{center}
 \end{frame}
 
@@ -1188,6 +1225,11 @@ $n=90$                 & $89.855$ & $74.156$ & $60.107$ & $92.750$ & $79.642$ & 
 \end{tabular}
 \end{center}
 }
+\end{frame}
+
+\begin{frame}
+\armfont
+Իրակացված փորձարկումների ծրագիրը հասանելի է հետևյալ հասցեով՝ \url{https://github.com/Gevorg-Minasyan/fine-tune-tj}։
 \end{frame}
 
 \iffalse
